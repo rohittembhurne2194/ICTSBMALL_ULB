@@ -278,7 +278,7 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
             // Getting host name
             string host = Dns.GetHostName();
 
-            // Getting ip address using host name
+            //// Getting ip address using host name
             IPHostEntry ip = Dns.GetHostEntry(host);
             string hname = ip.HostName.ToString();
             string ipAdd = (ip.AddressList[1].ToString());
@@ -301,13 +301,10 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
                 Daily_Attendance.EmployeeType = Result.ADUM_DESIGNATION;
                 Daily_Attendance.ipaddress = ipAdd;
                 Daily_Attendance.HostName = hname;
-
-                if(Daily_Attendance.EmployeeType != "SUA")
-                {
+                if (Daily_Attendance.EmployeeType != "SUA")
+                {                  
                     mainRepository.SaveAttendance(Daily_Attendance);
                 }
-               
-               
 
                 Session["utype"] = Result.ADUM_DESIGNATION;
                 Session["Id"] = Result.ADUM_LOGIN_ID;
