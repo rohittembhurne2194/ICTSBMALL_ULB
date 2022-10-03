@@ -171,6 +171,13 @@
           <Property Name="ref_id" Type="nvarchar" MaxLength="200" />
           <Property Name="Type" Type="int" />
         </EntityType>
+        <EntityType Name="HouseBunch">
+          <Key>
+            <PropertyRef Name="bunchId" />
+          </Key>
+          <Property Name="bunchId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bunchname" Type="nvarchar" MaxLength="500" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatNagpur.dbo.HouseList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="HouseList">
@@ -266,6 +273,15 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatNagpur.dbo.HouseList' do
           </Key>
           <Property Name="MasterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ReferanceId" Type="nvarchar" MaxLength="350" />
+          <Property Name="QRList" Type="nvarchar(max)" />
+          <Property Name="ISActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="MasterQRBunch">
+          <Key>
+            <PropertyRef Name="MasterId" />
+          </Key>
+          <Property Name="MasterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HouseBunchId" Type="int" />
           <Property Name="QRList" Type="nvarchar(max)" />
           <Property Name="ISActive" Type="bit" />
         </EntityType>
@@ -711,8 +727,12 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatNagpur.dbo.Vw_MsgNotific
           <Parameter Name="ReferanceId" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="LiquidCurrentAllUserLocationTest1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MasterQRBunchDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MasterQRDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="PointDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Remaining_QRList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="masterId" Type="int" Mode="In" />
+        </Function>
         <Function Name="RPT_1POINT7_DETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="INSERT_ID" Type="int" Mode="In" />
         </Function>
@@ -907,10 +927,12 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatNagpur.dbo.Vw_MsgNotific
           <EntitySet Name="GarbageCollectionDetails" EntityType="Self.GarbageCollectionDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GarbagePointDetails" EntityType="Self.GarbagePointDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GramCleaningComplient" EntityType="Self.GramCleaningComplient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HouseBunch" EntityType="Self.HouseBunch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HouseMaster" EntityType="Self.HouseMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LiquidWasteDetails" EntityType="Self.LiquidWasteDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MasterQR" EntityType="Self.MasterQR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MasterQRBunch" EntityType="Self.MasterQRBunch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Qr_Employee_Daily_Attendance" EntityType="Self.Qr_Employee_Daily_Attendance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Qr_Location" EntityType="Self.Qr_Location" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QrEmployeeMaster" EntityType="Self.QrEmployeeMaster" Schema="dbo" store:Type="Tables" />
@@ -1329,8 +1351,14 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatNagpur.dbo.Vw_MsgNotific
           <EntitySet Name="LiquidWasteDetails" EntityType="DevSwachhBharatNagpurModel.LiquidWasteDetail" />
           <EntitySet Name="StreetSweepingDetails" EntityType="DevSwachhBharatNagpurModel.StreetSweepingDetail" />
           <FunctionImport Name="SP_HouseOnMapDetailsForEmpBitMap" ReturnType="Collection(DevSwachhBharatNagpurModel.SP_HouseOnMapDetailsForEmpBitMap_Result)">
-            <Parameter Name="EmpType" Mode="In" Type="String" />
+          <Parameter Name="EmpType" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="HouseBunches" EntityType="DevSwachhBharatNagpurModel.HouseBunch" />
+          <EntitySet Name="MasterQRBunches" EntityType="DevSwachhBharatNagpurModel.MasterQRBunch" />
+          <FunctionImport Name="Remaining_QRList" ReturnType="Collection(String)">
+          <Parameter Name="masterId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="MasterQRBunchDetails" ReturnType="Collection(DevSwachhBharatNagpurModel.MasterQRBunchDetails_Result)" />
          
         </EntityContainer>
         <ComplexType Name="CurrentAllUserLocation_Result">
@@ -2791,6 +2819,29 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatNagpur.dbo.Vw_MsgNotific
           <Property Type="Int32" Name="gcDate" Nullable="true" />
           <Property Type="String" Name="houseLat" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="houseLong" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <EntityType Name="HouseBunch">
+          <Key>
+            <PropertyRef Name="bunchId" />
+          </Key>
+          <Property Name="bunchId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bunchname" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MasterQRBunch">
+          <Key>
+            <PropertyRef Name="MasterId" />
+          </Key>
+          <Property Name="MasterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HouseBunchId" Type="Int32" />
+          <Property Name="QRList" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ISActive" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="MasterQRBunchDetails_Result">
+          <Property Type="Int32" Name="MasterId" Nullable="false" />
+          <Property Type="String" Name="BunchName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="QRList" Nullable="true" />
+          <Property Type="Int64" Name="TotalCount" Nullable="true" />
+          <Property Type="Boolean" Name="ISActive" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -4371,6 +4422,36 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatNagpur.dbo.Vw_MsgNotific
                 <ScalarProperty Name="gcDate" ColumnName="gcDate" />
                 <ScalarProperty Name="houseLat" ColumnName="houseLat" />
                 <ScalarProperty Name="houseLong" ColumnName="houseLong" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="HouseBunches">
+            <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.HouseBunch">
+              <MappingFragment StoreEntitySet="HouseBunch">
+                <ScalarProperty Name="bunchname" ColumnName="bunchname" />
+                <ScalarProperty Name="bunchId" ColumnName="bunchId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MasterQRBunches">
+            <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.MasterQRBunch">
+              <MappingFragment StoreEntitySet="MasterQRBunch">
+                <ScalarProperty Name="ISActive" ColumnName="ISActive" />
+                <ScalarProperty Name="QRList" ColumnName="QRList" />
+                <ScalarProperty Name="HouseBunchId" ColumnName="HouseBunchId" />
+                <ScalarProperty Name="MasterId" ColumnName="MasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Remaining_QRList" FunctionName="DevSwachhBharatNagpurModel.Store.Remaining_QRList" />
+          <FunctionImportMapping FunctionImportName="MasterQRBunchDetails" FunctionName="DevSwachhBharatNagpurModel.Store.MasterQRBunchDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.MasterQRBunchDetails_Result">
+                <ScalarProperty Name="MasterId" ColumnName="MasterId" />
+                <ScalarProperty Name="BunchName" ColumnName="BunchName" />
+                <ScalarProperty Name="QRList" ColumnName="QRList" />
+                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+                <ScalarProperty Name="ISActive" ColumnName="ISActive" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

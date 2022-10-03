@@ -267,6 +267,10 @@ namespace SwachBharat.CMS.Bll.Repository.ChildRepository
 
         StreetSweepVM GetBeat(int teamId);
         StreetSweepVM SaveStreetBeat(StreetSweepVM data);
+        HouseQRBunchVM GetHouseBunch(int teamId);
+        void SaveHouseBunch(HouseQRBunchVM housebunch);
+        MasterQRDetailsVM GetMasterQRBunchById(int teamId);
+        void SaveMasterQrBunchDetails(MasterQRDetailsVM employee);
 
     }
 }
