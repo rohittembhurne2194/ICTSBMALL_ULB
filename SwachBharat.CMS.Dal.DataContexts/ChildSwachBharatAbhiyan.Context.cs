@@ -67,6 +67,8 @@ namespace SwachBharat.CMS.Dal.DataContexts
         public virtual DbSet<DumpYardDetail> DumpYardDetails { get; set; }
         public virtual DbSet<LiquidWasteDetail> LiquidWasteDetails { get; set; }
         public virtual DbSet<StreetSweepingDetail> StreetSweepingDetails { get; set; }
+        public virtual DbSet<HouseBunch> HouseBunches { get; set; }
+        public virtual DbSet<MasterQRBunch> MasterQRBunches { get; set; }
     
         public virtual ObjectResult<GetAttendenceDetailsTotal_Result> GetAttendenceDetailsTotal(Nullable<int> userId, Nullable<int> year, Nullable<int> month)
         {
@@ -817,6 +819,20 @@ namespace SwachBharat.CMS.Dal.DataContexts
                 new ObjectParameter("EmpType", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_HouseOnMapDetailsForEmpBitMap_Result>("SP_HouseOnMapDetailsForEmpBitMap", empTypeParameter);
+        }
+    
+        public virtual ObjectResult<string> Remaining_QRList(Nullable<int> masterId)
+        {
+            var masterIdParameter = masterId.HasValue ?
+                new ObjectParameter("masterId", masterId) :
+                new ObjectParameter("masterId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Remaining_QRList", masterIdParameter);
+        }
+    
+        public virtual ObjectResult<MasterQRBunchDetails_Result> MasterQRBunchDetails()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MasterQRBunchDetails_Result>("MasterQRBunchDetails");
         }
     }
 }

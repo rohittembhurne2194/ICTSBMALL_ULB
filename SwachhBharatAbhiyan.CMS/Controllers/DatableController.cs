@@ -619,8 +619,16 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
                     gridRepository = new StreetSweepBeatGrid(0, searchString, appId);
                     return gridRepository;
                     break;
+                case "HouseBunchDetail":
+                    gridRepository = new HouseBunchGridRepository(0, searchString, appId);
+                    return gridRepository;
+                    break;
+                case "MasterQRBunchDetail":
+                    gridRepository = new MasterQRBunchDetailsGridRepository(0, searchString, appId);
+                    return gridRepository;
+                    break;
             }
-            
+
             return null;
         }
 

@@ -246,6 +246,10 @@ namespace SwachBharat.CMS.Bll.Services
         List<string> CheckShiftName();
         StreetSweepVM GetBeatDetails(int teamId);
         StreetSweepVM SaveStreetBeatDetails(StreetSweepVM data);
+        HouseQRBunchVM GetHouseBunch(int teamId);
+        void SaveHouseBunchDetails(HouseQRBunchVM housebunch);
+        MasterQRDetailsVM GetMasterQRBunchDetails(int teamId);
+        void SaveMasterQRBunchDetails(MasterQRDetailsVM data);
 
     }
 }

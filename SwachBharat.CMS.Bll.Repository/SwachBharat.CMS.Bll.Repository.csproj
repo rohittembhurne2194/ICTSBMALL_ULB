@@ -109,6 +109,7 @@
     <Compile Include="GridRepository\Grid\GarbageCountGridRepository.cs" />
     <Compile Include="GridRepository\Grid\HGarbageCotectionGridRepository.cs" />
     <Compile Include="GridRepository\Grid\GarbagePointGridRepository.cs" />
+    <Compile Include="GridRepository\Grid\HouseBunchGridRepository.cs" />
     <Compile Include="GridRepository\Grid\HouseDetailsGridRepository.cs" />
     <Compile Include="GridRepository\Grid\HouseScanifyGridRepository.cs" />
     <Compile Include="GridRepository\Grid\HSAttendanceGridRepository.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="GridRepository\Grid\LiquidWasteGridRepository.cs" />
     <Compile Include="GridRepository\Grid\LiquidZoneGridRepository.cs" />
     <Compile Include="GridRepository\Grid\LocationGridRepository.cs" />
+    <Compile Include="GridRepository\Grid\MasterQRBunchDetailsGridRepository.cs" />
     <Compile Include="GridRepository\Grid\MasterQRDetailsGridRepository.cs" />
     <Compile Include="GridRepository\Grid\MonthlyAttendeceGridRepository.cs" />
     <Compile Include="GridRepository\Grid\OnePointeightEditGridRepository.cs" />

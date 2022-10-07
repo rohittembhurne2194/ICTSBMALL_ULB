@@ -7546,6 +7546,73 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
         }
 
         #endregion
+
+
+        public IEnumerable<SBAHouseBunchGridRow> GetHouseBunchData(long wildcard, string SearchString, int appId)
+        {
+            using (var db = new DevChildSwachhBharatNagpurEntities(appId))
+            {
+                var data = db.HouseBunches.Select(x => new SBAHouseBunchGridRow
+                {
+                    bunchId = x.bunchId,
+                    bunchName = x.bunchname,
+                }).ToList();
+                //  var result = data.SkipWhile(element => element.cId != element.reNewId); 
+                for (int i = 0;i < data.Count;i++)
+                {
+                    if (data[i].bunchName == null || data[i].bunchName == "")
+                        data[i].bunchName = "";
+                }
+               
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    var model = data.Where(c => c.bunchName.ToUpper().Contains(SearchString.ToUpper())).ToList();
+
+                    data = model.ToList();
+                }
+                return data.OrderByDescending(c => c.bunchId);
+            }
+        }
+        public IEnumerable<SBAHouseDetailsGridRow> GetMasterQRBunchDetailsData(long wildcard, string SearchString, int appId)
+        {
+            DevSwachhBharatMainEntities dbMain = new DevSwachhBharatMainEntities();
+            var appDetails = dbMain.AppDetails.Where(x => x.AppId == appId).FirstOrDefault();
+
+            string ThumbnaiUrlCMS = appDetails.baseImageUrlCMS + appDetails.basePath + appDetails.HouseQRCode + "/";
+            using (var db = new DevChildSwachhBharatNagpurEntities(appId))
+            {
+                var data = db.MasterQRBunchDetails().Select(x => new SBAHouseDetailsGridRow
+                {
+                    masterId = x.MasterId,
+                    BunchName = x.BunchName,
+                    QRList = x.QRList,
+                    TotalCount = x.TotalCount.ToString(),
+                    isActive = x.ISActive
+                }).Where(x => x.isActive == true).ToList();
+
+
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    var model = data.Where(c => ((string.IsNullOrEmpty(c.BunchName) ? " " : c.BunchName) + " " +
+                                          (string.IsNullOrEmpty(c.TotalCount) ? " " : c.TotalCount)).ToUpper().Contains(SearchString.ToUpper())).ToList();
+
+
+                    data = model.ToList();
+                }
+                else if (appDetails.APIHit == null)
+                {
+                    data = data.ToList();
+                }
+                else
+                {
+                    //data = data.Where(c => c.masterId <= appDetails.APIHit).ToList();
+                    data = data.ToList();
+                }
+
+                return data.OrderByDescending(c => c.masterId);
+            }
+        }
+
     }
 }
 #region old Code
