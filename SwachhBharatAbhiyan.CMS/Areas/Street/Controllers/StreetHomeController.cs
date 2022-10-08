@@ -38,9 +38,7 @@ namespace SwachhBharatAbhiyan.CMS.Areas.Street.Controllers
                 ViewBag.lat = SessionHandler.Current.Latitude;
                 ViewBag.lang = SessionHandler.Current.Logitude;
                 ViewBag.YoccFeddbackLink = SessionHandler.Current.YoccFeddbackLink;
-                DevSwachhBharatMainEntities dbmain = new DevSwachhBharatMainEntities();
-                var apikey = dbmain.GoogleAPIDetails.Select(a => a.GoogleAPI).FirstOrDefault();
-                Session["apikey"] = apikey;
+               
                 TempData.Keep();
                 var details = childRepository.GetStreetDashBoardDetails();
                 return View(details);

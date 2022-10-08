@@ -71,7 +71,9 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> Login(string returnUrl, string Type=null)
         {
-
+            DevSwachhBharatMainEntities dbmain = new DevSwachhBharatMainEntities();
+            var apikey = dbmain.GoogleAPIDetails.Select(a => a.GoogleAPI).FirstOrDefault();
+            Session["apikey"] = apikey;
             if (returnUrl !=null)
             {
 

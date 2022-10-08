@@ -41,10 +41,6 @@ namespace SwachhBharatAbhiyan.CMS.Areas.Liquid.Controllers
                 ViewBag.lang = SessionHandler.Current.Logitude;
                 ViewBag.YoccFeddbackLink = SessionHandler.Current.YoccFeddbackLink;
                 TempData.Keep();
-
-                DevSwachhBharatMainEntities dbmain = new DevSwachhBharatMainEntities();
-                var apikey = dbmain.GoogleAPIDetails.Select(a => a.GoogleAPI).FirstOrDefault();
-                Session["apikey"] = apikey;
                 var details = childRepository.GetLiquidDashBoardDetails();
                 return View(details);
             }
