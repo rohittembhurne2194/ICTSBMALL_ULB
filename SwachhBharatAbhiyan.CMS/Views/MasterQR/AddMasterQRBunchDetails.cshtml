@@ -65,7 +65,7 @@
                             @Html.Label("House Bunch Id")
                             @if (@Model.HouseBunchId > 0)
                             {
-                                @Html.DropDownListFor(model => model.HouseBunchId, Model.BunchList, new { style = "font-family:Arial, FontAwesome", required = "required", @readonly = "readonly", @class = "form-control RequiredInput validate[required] RequiredInput", @onchange = "getValue(this);" })
+                                @Html.DropDownListFor(model => model.HouseBunchId, Model.BunchList, new { style = "font-family:Arial, FontAwesome", required = "required", @disabled = "disabled", @readonly = "readonly", @class = "form-control RequiredInput validate[required] RequiredInput", @onchange = "getValue(this);" })
                             }
                             else
                             {
@@ -73,7 +73,7 @@
                             }
 
                             @Html.ValidationMessageFor(model => model.HouseBunchId, "", new { @class = "text-danger" })
-                            <span class="text-danger" id="err_zone"></span>
+                            <span class="text-danger" id="err_BunchId"></span>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-
+                        <span class="text-danger" id="err_House"></span>
                     </div>
                     <div class="col-md-3">
                         <h4>House QR List</h4>
@@ -154,7 +154,7 @@
                 <div class="row" id="checkUR">
 
 
-                    <div class="container py-4">
+                    <div class="container py-4" style="overflow: scroll; height: 320px;">
 
                         <table class="table table-hover">
 
@@ -216,7 +216,7 @@
 
                     @Html.HiddenFor(c => c.HouseBunchId)
 
-                    <div class="col-md-4" style="padding-top:10%">
+                    <div class="col-md-12" style="padding-top:10%">
                         <center><span class="text-danger" id="err_generate"></span></center>
                         <div class="form-group1">
                             <button type="submit" name="submit" class="btn" id="btnSubmit" onclick="return Validate()">
@@ -517,45 +517,58 @@
     });
 
     $("#btnSubmit").click(function () {
-
-        var bool = validation();
-
-        if (bool == false) {
+        if ($.trim($("#HouseBunchId").val()) == '0') {
+            //$("#err_name").html("नाव आवश्यक आहे / Name is Required").delay(1500).show().fadeOut('slow');
+            $("#err_BunchId").html("Bunch Name is Required").delay(1500).show().fadeOut('slow');
+            $('#HouseBunchId').focus();
             return false;
-        } else {
-            //   alert($("#FileUpload_Preview img").attr('src'));
-            $("#houseOwner").change(function () {
-                //      alert("Sdsadsa");
-                //$("#FileUpload_Preview img").attr('src') === "/Images/QRcode.png";
-                $("#FileUpload_Preview img").attr("src", "/Images/QRcode.png");
-                $("input #filesUpload").attr("src", "/Images/QRcode.png");
-                $('#Download1').hide();
-                $('#send_link').hide();
-                return false;
-            });
-
-            $("#houseNumber").change(function () {
-                //$("#FileUpload_Preview img").attr('src') === "/Images/QRcode.png";
-                $("#FileUpload_Preview img").attr("src", "/Images/QRcode.png");
-                $("input #filesUpload").attr("src", "/Images/QRcode.png");
-                $('#Download1').hide();
-                return false;
-            });
-            if ($("#FileUpload_Preview img").attr('src') == "/Images/QRcode.png") {
-                //$("#err_generate").html("स्कॅनिफाय कोड व्युत्पन्न करा नंतर सेव करा / Generate Scaniffy code then save").delay(1500).show().fadeOut('slow');
-                $("#err_generate").html("Generate Scaniffy code then save").delay(1500).show().fadeOut('slow');
-                return false;
-            }
-            if ($(".add-image").attr("src") == "/Images/default_not_upload.png") {
-                //$("#err_generate").html("स्कॅनिफाय कोड व्युत्पन्न करा नंतर सेव करा / Generate Scaniffy code then save").delay(1500).show().fadeOut('slow');
-                $("#err_generate").html("Generate Scaniffy code then save").delay(1500).show().fadeOut('slow');
-                return false;
-            }
-            return true;
         }
-
-
+        if ($('.individual:checked').length == 0) {
+            $("#err_House").html("Please Select atleast one House").delay(1500).show().fadeOut('slow');
+            return false;
+        }
+         return true;
     });
+    //$("#btnSubmit").click(function () {
+
+    //    var bool = validation();
+
+    //    if (bool == false) {
+    //        return false;
+    //    } else {
+    //        //   alert($("#FileUpload_Preview img").attr('src'));
+    //        $("#houseOwner").change(function () {
+    //            //      alert("Sdsadsa");
+    //            //$("#FileUpload_Preview img").attr('src') === "/Images/QRcode.png";
+    //            $("#FileUpload_Preview img").attr("src", "/Images/QRcode.png");
+    //            $("input #filesUpload").attr("src", "/Images/QRcode.png");
+    //            $('#Download1').hide();
+    //            $('#send_link').hide();
+    //            return false;
+    //        });
+
+    //        $("#houseNumber").change(function () {
+    //            //$("#FileUpload_Preview img").attr('src') === "/Images/QRcode.png";
+    //            $("#FileUpload_Preview img").attr("src", "/Images/QRcode.png");
+    //            $("input #filesUpload").attr("src", "/Images/QRcode.png");
+    //            $('#Download1').hide();
+    //            return false;
+    //        });
+    //        if ($("#FileUpload_Preview img").attr('src') == "/Images/QRcode.png") {
+    //            //$("#err_generate").html("स्कॅनिफाय कोड व्युत्पन्न करा नंतर सेव करा / Generate Scaniffy code then save").delay(1500).show().fadeOut('slow');
+    //            $("#err_generate").html("Generate Scaniffy code then save").delay(1500).show().fadeOut('slow');
+    //            return false;
+    //        }
+    //        if ($(".add-image").attr("src") == "/Images/default_not_upload.png") {
+    //            //$("#err_generate").html("स्कॅनिफाय कोड व्युत्पन्न करा नंतर सेव करा / Generate Scaniffy code then save").delay(1500).show().fadeOut('slow');
+    //            $("#err_generate").html("Generate Scaniffy code then save").delay(1500).show().fadeOut('slow');
+    //            return false;
+    //        }
+    //        return true;
+    //    }
+
+
+    //});
 
 
 
