@@ -56,6 +56,9 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
         public ActionResult login()
 
         {
+            DevSwachhBharatMainEntities dbmain = new DevSwachhBharatMainEntities();
+            var apikey = dbmain.GoogleAPIDetails.Select(a => a.GoogleAPI).FirstOrDefault();
+            Session["apikey"] = apikey;
             return View();
         }
         public ActionResult Index()
