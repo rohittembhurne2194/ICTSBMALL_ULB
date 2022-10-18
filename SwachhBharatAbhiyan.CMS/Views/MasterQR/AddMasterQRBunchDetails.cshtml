@@ -374,12 +374,12 @@
       $(document).ready(function () {
           debugger;
 
-          var ReferanceId = $('#HouseBunchId').val();
+          //var ReferanceId = $('#HouseBunchId').val();
 
-          if (ReferanceId == '0') {
-              var selItem = sessionStorage.getItem("SelItem");
-              $('#HouseBunchId').val(selItem);
-          }
+          //if (ReferanceId == '0') {
+          //    var selItem = sessionStorage.getItem("SelItem");
+          //    $('#HouseBunchId').val(selItem);
+          //}
 
 
     })
@@ -611,6 +611,7 @@
             $("#err_House").html("Please Select atleast one House").delay(1500).show().fadeOut('slow');
             return false;
         }
+        $(this).prop("disabled", true);
          return true;
     });
     //$("#btnSubmit").click(function () {
