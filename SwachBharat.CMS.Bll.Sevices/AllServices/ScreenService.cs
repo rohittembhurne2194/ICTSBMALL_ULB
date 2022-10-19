@@ -9837,7 +9837,7 @@ namespace SwachBharat.CMS.Bll.Services
                     var excluding = values_new;
 
                     // master.CheckHlist = db.HouseLists.Where(x => x.IsActive == true).OrderBy(x => x.ReferanceId).ToList<HouseList>();
-                    master.CheckHlist = db.HouseLists.Where(x => x.IsActive == true && !excluding.Contains(x.ReferanceId)).OrderBy(x => x.ReferanceId).ToList<HouseList>();
+                    master.CheckHlist = db.HouseLists.Where(x => x.IsActive == true && !excluding.Contains(x.ReferanceId)).OrderBy(x => x.HouseId).ToList<HouseList>();
 
 
 
@@ -9850,7 +9850,7 @@ namespace SwachBharat.CMS.Bll.Services
 
                         var including = values;
 
-                        master.SelectedHouseList = db.HouseLists.Where(x => including.Contains(x.ReferanceId)).ToList<HouseList>();
+                        master.SelectedHouseList = db.HouseLists.Where(x => including.Contains(x.ReferanceId)).OrderBy(x => x.HouseId).ToList<HouseList>();
 
 
 
@@ -9902,8 +9902,8 @@ namespace SwachBharat.CMS.Bll.Services
                         var excluding = values_new;
 
                         //master.CheckHlist = db.HouseLists.Where(x => x.IsActive == true & x.AreaId > 0).OrderBy(x => x.HouseId).ToList<HouseList>();
-                        master.CheckHlist = db.HouseLists.Where(x => x.IsActive == true && !excluding.Contains(x.ReferanceId)).OrderBy(x => x.ReferanceId).ToList<HouseList>();
-                        master.SelectedHouseList = db.HouseLists.Where(x => including.Contains(x.ReferanceId)).ToList<HouseList>();
+                        master.CheckHlist = db.HouseLists.Where(x => x.IsActive == true && !excluding.Contains(x.ReferanceId)).OrderBy(x => x.HouseId).ToList<HouseList>();
+                        master.SelectedHouseList = db.HouseLists.Where(x => including.Contains(x.ReferanceId)).OrderBy(x => x.HouseId).ToList<HouseList>();
                         // master.CheckAppDs = (List<HouseMaster>)db.HouseMasters.Where(x => x.ReferanceId != null).Select(x => new { x.ReferanceId, x.houseId });
                         master.BunchList = ListBunch(teamId);
                         return master;
@@ -9922,8 +9922,8 @@ namespace SwachBharat.CMS.Bll.Services
 
                         var excluding = values_new;
                         // master.CheckHlist = db.HouseLists.Where(x => x.IsActive == true & x.AreaId == AreaId).OrderBy(x => x.HouseId).ToList<HouseList>();
-                        master.CheckHlist = db.HouseLists.Where(x => x.IsActive == true && !excluding.Contains(x.ReferanceId)).OrderBy(x => x.ReferanceId).ToList<HouseList>();
-                        master.SelectedHouseList = db.HouseLists.Where(x => including.Contains(x.ReferanceId)).ToList<HouseList>();
+                        master.CheckHlist = db.HouseLists.Where(x => x.IsActive == true && !excluding.Contains(x.ReferanceId)).OrderBy(x => x.HouseId).ToList<HouseList>();
+                        master.SelectedHouseList = db.HouseLists.Where(x => including.Contains(x.ReferanceId)).OrderBy(x => x.HouseId).ToList<HouseList>();
                         // master.CheckAppDs = (List<HouseMaster>)db.HouseMasters.Where(x => x.ReferanceId != null).Select(x => new { x.ReferanceId, x.houseId });
                         master.BunchList = ListBunch(teamId);
                         return master;
@@ -9968,25 +9968,28 @@ namespace SwachBharat.CMS.Bll.Services
                     }
                     else
                     {
-                        var type = FillMasterQRBunchDataModel(data);
-
-                        //arr[CheckAppD] myArray = data.CheckAppDs.ToArray();
-
-                        string state1 = "";
-                        foreach (var s in data.CheckHlist)
+                        if (!db.MasterQRBunches.Any(x => x.HouseBunchId == data.HouseBunchId))
                         {
-                            if (s.IsCheked == true)
+                            var type = FillMasterQRBunchDataModel(data);
+
+                            //arr[CheckAppD] myArray = data.CheckAppDs.ToArray();
+
+                            string state1 = "";
+                            foreach (var s in data.CheckHlist)
                             {
+                                if (s.IsCheked == true)
+                                {
 
-                                state1 += s.ReferanceId + ",";
+                                    state1 += s.ReferanceId + ",";
 
+                                }
                             }
+
+                            type.QRList = state1;
+
+                            db.MasterQRBunches.Add(type);
+                            db.SaveChanges();
                         }
-
-                        type.QRList = state1;
-
-                        db.MasterQRBunches.Add(type);
-                        db.SaveChanges();
                     }
                 }
             }

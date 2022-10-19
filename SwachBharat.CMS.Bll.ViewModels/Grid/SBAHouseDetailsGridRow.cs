@@ -30,6 +30,7 @@ namespace SwachBharat.CMS.Bll.ViewModels.ChildModel.Grid
         public Nullable<bool> isActive { get; set; }
         public string TotalCount { get; set; }
         public string BunchName { get; set; }
+        public string strIsActive { get; set; }
 
     }
 }
