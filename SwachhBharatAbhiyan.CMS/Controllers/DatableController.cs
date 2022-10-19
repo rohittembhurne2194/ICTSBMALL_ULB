@@ -623,8 +623,12 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
                     gridRepository = new HouseBunchGridRepository(0, searchString, appId);
                     return gridRepository;
                     break;
-                case "MasterQRBunchDetail":
-                    gridRepository = new MasterQRBunchDetailsGridRepository(0, searchString, appId);
+                case "MasterQRBunchDetailA":
+                    gridRepository = new MasterQRBunchDetailsGridRepository(0, searchString, "1", appId);
+                    return gridRepository;
+                    break;
+                case "MasterQRBunchDetailNA":
+                    gridRepository = new MasterQRBunchDetailsGridRepository(0, searchString, "0", appId);
                     return gridRepository;
                     break;
             }

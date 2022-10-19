@@ -24,7 +24,7 @@
     }
 </style>
 @*<title class="title_change"></title>*@
-@using (Html.BeginForm("AddMasterQRBunchDetails", "MasterQR", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator", role = "form" }))
+@using (Html.BeginForm("AddMasterQRBunchDetails", "MasterQR", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator", role = "form", id = "idMyForm" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.masterId);
@@ -86,61 +86,50 @@
 
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <span class="text-danger" id="err_House"></span>
-                    </div>
-                    <div class="col-md-3">
-                        <h4>House QR List</h4>
-                    </div>
-                    <div class="col-md-3">
-                        <input id="searchbar_ulb" onkeyup="search_ulb()" type="text" name="search" placeholder="Search ">
-                    </div>
-                    <div class="col-md-2">
-                        <span style="float: right; margin-left: -10%; }">
-                            <input type="checkbox" class="selectall" />
-                            <span style="font-size: 15px;font-weight:bold">Select All</span>
-                        </span>
-                    </div>
-                </div>
+
                 <center id="hur" style="padding-right: 14%;">
                 </center>
                 @if (Model.SelectedHouseList.Count > 0)
                 {
+                    <div class="row">
+                        <div class="col-md-12" style="text-align:center">
+                            <h4>Selected House QR List</h4>
+                        </div>
+                    </div>
                     <div class="row" id="checkUR">
                         <div class="container py-4">
                             <table class="table table-hover">
                                 @*@Html.Label("रक्त गट / Blood Group ")*@
                                 @*@for (int i = 0; i < Model.SelectedHouseList.Count; i++)
-                                {
+                        {
 
-                                    if (i % 4 == 0)
-                                    {
+                            if (i % 4 == 0)
+                            {
 
-                                        <tr></tr>
+                                <tr></tr>
 
-                                    }
-                                    else
-                                    {
-                                        <td class="ulbs">
+                            }
+                            else
+                            {
+                                <td class="ulbs">
 
-                                            @Html.CheckBoxFor(x => x.SelectedHouseList[i].IsCheked, new { @class = "custom-checkbox individual" })
-                                            <label>@Model.SelectedHouseList[i].ReferanceId</label>
-                                            @Html.HiddenFor(x => x.SelectedHouseList[i].ReferanceId)
-                                            @Html.HiddenFor(x => x.SelectedHouseList[i].ReferanceId)
-                                        </td>
-                                    }
-                                    if (i % 4 == 0)
-                                    {
-                                        <td class="ulbs">
-                                            @Html.CheckBoxFor(x => x.SelectedHouseList[i].IsCheked, new { @class = "custom-checkbox individual" })
-                                            <label>@Model.SelectedHouseList[i].ReferanceId</label>
-                                            @Html.HiddenFor(x => x.SelectedHouseList[i].ReferanceId)
-                                            @Html.HiddenFor(x => x.SelectedHouseList[i].ReferanceId)
-                                        </td>
-                                    }
+                                    @Html.CheckBoxFor(x => x.SelectedHouseList[i].IsCheked, new { @class = "custom-checkbox individual" })
+                                    <label>@Model.SelectedHouseList[i].ReferanceId</label>
+                                    @Html.HiddenFor(x => x.SelectedHouseList[i].ReferanceId)
+                                    @Html.HiddenFor(x => x.SelectedHouseList[i].ReferanceId)
+                                </td>
+                            }
+                            if (i % 4 == 0)
+                            {
+                                <td class="ulbs">
+                                    @Html.CheckBoxFor(x => x.SelectedHouseList[i].IsCheked, new { @class = "custom-checkbox individual" })
+                                    <label>@Model.SelectedHouseList[i].ReferanceId</label>
+                                    @Html.HiddenFor(x => x.SelectedHouseList[i].ReferanceId)
+                                    @Html.HiddenFor(x => x.SelectedHouseList[i].ReferanceId)
+                                </td>
+                            }
 
-                                }*@
+                        }*@
                                 @{
                                     var rows1 = (Model.SelectedHouseList.Count / 4);
                                     var k1 = Model.SelectedHouseList.Count % 4;
@@ -157,7 +146,7 @@
                                         {
 
                                             <td class="ulbs">
-                                                @Html.CheckBoxFor(x => x.SelectedHouseList[l].IsCheked, new { @class = "custom-checkbox individual" })
+                                                @Html.CheckBoxFor(x => x.SelectedHouseList[l].IsCheked, new { @class = "custom-checkbox individual", @onclick = "return false;" })
                                                 <label>@Model.SelectedHouseList[l].ReferanceId</label>
                                                 @Html.HiddenFor(x => x.SelectedHouseList[l].ReferanceId)
                                                 @Html.HiddenFor(x => x.SelectedHouseList[l].ReferanceId)
@@ -177,8 +166,28 @@
 
                     </div>
                 }
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="text-danger" id="err_House"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <input id="searchbar_ulb" onkeyup="search_ulb()" type="text" name="search" placeholder="Search ">
+                    </div>
+                    <div class="col-md-2">
+                        <span style="float: right; margin-left: -10%; }">
+                            <input type="checkbox" class="selectall" />
+                            <span style="font-size: 15px;font-weight:bold">Select All</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
 
-                <div class="row" id="checkUR">
+                    <div class="col-md-12" style="text-align:center">
+                        <h4>Add / Edit House QR List</h4>
+                    </div>
+
+                </div>
+                <div class="row" id="checkUR2">
 
 
                     <div class="container py-4" style="overflow: scroll; height: 320px;">
@@ -190,40 +199,40 @@
 
                             @*@Html.Label("रक्त गट / Blood Group ")*@
                             @*@for (int i = 0; i < Model.CheckHlist.Count; i++)
-        {
+                    {
 
 
 
-            if (i % 4 == 0)
-            {
+                        if (i % 4 == 0)
+                        {
 
 
-                <tr></tr>
+                            <tr></tr>
 
 
 
-            }
-            else
-            {
-                <td class="ulbs">
+                        }
+                        else
+                        {
+                            <td class="ulbs">
 
-                    @Html.CheckBoxFor(x => x.CheckHlist[i].IsCheked, new { @class = "custom-checkbox individual" })
-                    <label>@Model.CheckHlist[i].ReferanceId</label>
-                    @Html.HiddenFor(x => x.CheckHlist[i].ReferanceId)
-                    @Html.HiddenFor(x => x.CheckHlist[i].ReferanceId)
-                </td>
-            }
-            if (i % 4 == 0)
-            {
-                <td class="ulbs">
-                    @Html.CheckBoxFor(x => x.CheckHlist[i].IsCheked, new { @class = "custom-checkbox individual" })
-                    <label>@Model.CheckHlist[i].ReferanceId</label>
-                    @Html.HiddenFor(x => x.CheckHlist[i].ReferanceId)
-                    @Html.HiddenFor(x => x.CheckHlist[i].ReferanceId)
-                </td>
-            }
+                                @Html.CheckBoxFor(x => x.CheckHlist[i].IsCheked, new { @class = "custom-checkbox individual" })
+                                <label>@Model.CheckHlist[i].ReferanceId</label>
+                                @Html.HiddenFor(x => x.CheckHlist[i].ReferanceId)
+                                @Html.HiddenFor(x => x.CheckHlist[i].ReferanceId)
+                            </td>
+                        }
+                        if (i % 4 == 0)
+                        {
+                            <td class="ulbs">
+                                @Html.CheckBoxFor(x => x.CheckHlist[i].IsCheked, new { @class = "custom-checkbox individual" })
+                                <label>@Model.CheckHlist[i].ReferanceId</label>
+                                @Html.HiddenFor(x => x.CheckHlist[i].ReferanceId)
+                                @Html.HiddenFor(x => x.CheckHlist[i].ReferanceId)
+                            </td>
+                        }
 
-        }*@
+                    }*@
 
                             @{
                                 var rows = (Model.CheckHlist.Count / 4);
@@ -273,10 +282,10 @@
                     <div class="col-md-12" style="padding-top:10%">
                         <center><span class="text-danger" id="err_generate"></span></center>
                         <div class="form-group1">
-                            <button type="submit" name="submit" class="btn" id="btnSubmit" onclick="return Validate()">
+                            <button type="submit" name="submit" class="btn" id="btnSubmit">
 
                                 <span class="glyphicon glyphicon-saved"></span>
-                                <span id="buttonName" onclick="disableButton(this)">Save</span>
+                                <span id="buttonName">Save</span>
                             </button>
                         </div>
 
@@ -319,7 +328,7 @@
 </div>
 <script>
     $(".selectall").click(function () {
-        $(".individual").prop("checked", $(this).prop("checked"));
+        $("#checkUR2 .individual").prop("checked", $(this).prop("checked"));
     });
 
     // JavaScript code
@@ -343,8 +352,9 @@
 
         let input = document.getElementById('searchbar_ulb').value
         input = input.toLowerCase();
-        let x = document.getElementsByClassName('ulbsRows');
-
+        let parent = document.querySelector('#checkUR2');
+        //let x = document.getElementsByClassName('ulbsRows');
+        let x = parent.querySelectorAll('.ulbsRows');
         for (i = 0; i < x.length; i++) {
             let y = x[i].getElementsByClassName('ulbs');
             let k = 0;
@@ -598,22 +608,54 @@
             }
         });
 
+
+        $("#idMyForm").submit(function (e) {
+            if (validateForm()) {
+                $("#btnSubmit").attr("disabled", true);
+                return true;
+            } else {
+                return false;
+            }
+
+
+        });
     });
 
-    $("#btnSubmit").click(function () {
+
+    function validateForm() {
+
         if ($.trim($("#HouseBunchId").val()) == '0') {
             //$("#err_name").html("नाव आवश्यक आहे / Name is Required").delay(1500).show().fadeOut('slow');
-            $("#err_BunchId").html("Bunch Name is Required").delay(1500).show().fadeOut('slow');
+            $("#err_generate").html("Bunch Name is Required").delay(1500).show().fadeOut('slow');
             $('#HouseBunchId').focus();
             return false;
         }
-        if ($('.individual:checked').length == 0) {
-            $("#err_House").html("Please Select atleast one House").delay(1500).show().fadeOut('slow');
+        if ($('#checkUR2 .individual:checked').length == 0) {
+            $("#err_generate").html("Please Select atleast one House").delay(1500).show().fadeOut('slow');
             return false;
         }
-        $(this).prop("disabled", true);
-         return true;
-    });
+        return true;
+
+    }
+
+
+
+
+
+    //$("#btnSubmit").click(function () {
+    //    if ($.trim($("#HouseBunchId").val()) == '0') {
+    //        //$("#err_name").html("नाव आवश्यक आहे / Name is Required").delay(1500).show().fadeOut('slow');
+    //        $("#err_BunchId").html("Bunch Name is Required").delay(1500).show().fadeOut('slow');
+    //        $('#HouseBunchId').focus();
+    //        return false;
+    //    }
+    //    if ($('.individual:checked').length == 0) {
+    //        $("#err_House").html("Please Select atleast one House").delay(1500).show().fadeOut('slow');
+    //        return false;
+    //    }
+    //    $(this).prop("disabled", true);
+    //     return true;
+    //});
     //$("#btnSubmit").click(function () {
 
     //    var bool = validation();
