@@ -55,23 +55,26 @@ namespace SwachhBharatAbhiyan.CMS
                     string urlReportServer = "";
 
                     //Live Server
-                    // urlReportServer = "http://202.65.157.253:85/ReportServer";
-                    //  rptViewer.ServerReport.ReportServerCredentials = new ReportServerCredentials("Administrator", "Telec0m#B!9V", "202.65.157.253");
+                     urlReportServer = "http://202.65.157.253:85/ReportServer";
+                     rptViewer.ServerReport.ReportServerCredentials = new ReportServerCredentials("Administrator", "Telec0m#B!9V", "202.65.157.253");
                     //ICTSBM Server
-                    urlReportServer = "http://114.143.244.133:86/ReportServer";
-                    rptViewer.ServerReport.ReportServerCredentials = new ReportServerCredentials("Administrator", "Telec0m#B!9V", "114.143.244.133");
+                 //   urlReportServer = "http://114.143.244.133:86/ReportServer";
+               //     rptViewer.ServerReport.ReportServerCredentials = new ReportServerCredentials("Administrator", "Telec0m#B!9V", "114.143.244.133");
                   //  string urlReportServer = "http://COMP-7/ReportServer";
                     //rptViewer.ServerReport.ReportServerCredentials = new ReportServerCredentials("Administrator", "Pass@123", "192.168.100.7");
 
 
                     rptViewer.ProcessingMode = ProcessingMode.Remote;
-
+              
                     rptViewer.ServerReport.ReportServerUrl = new Uri(urlReportServer);
                     rptViewer.ServerReport.ReportPath = "/ICTSBM_BI_REPORT_NEW/" + ReportName;
                     rptViewer.ShowToolBar = true;
                     rptViewer.BackColor = System.Drawing.Color.White;
+                    rptViewer.Page.Culture = "en-US";
+                    rptViewer.Page.UICulture = "en-US";
                     //rptViewer.Parent.ResolveClientUrl.
-
+                    rptViewer.Page.Culture = "en-US";
+                    rptViewer.Page.UICulture = "en-US";
                     if (ReportName == "Ghar Sankalan Tapashil")
                     {
                         ReportParameter[] param = new ReportParameter[7];
