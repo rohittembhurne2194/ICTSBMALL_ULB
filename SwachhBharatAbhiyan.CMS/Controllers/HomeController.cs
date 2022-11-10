@@ -31,7 +31,8 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
 
 
         public ActionResult Index()
-             if (SessionHandler.Current.AppId != 0)
+        {
+            if (SessionHandler.Current.AppId != 0)
             {
                 Session["AppName"] = SessionHandler.Current.AppName;
                 ViewBag.lat = SessionHandler.Current.Latitude;
