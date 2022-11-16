@@ -55,12 +55,12 @@ namespace SwachhBharatAbhiyan.CMS
                     string urlReportServer = "";
 
                     //Live Server
-                     urlReportServer = "http://202.65.157.253:85/ReportServer";
-                     rptViewer.ServerReport.ReportServerCredentials = new ReportServerCredentials("Administrator", "Telec0m#B!9V", "202.65.157.253");
+                    urlReportServer = "http://202.65.157.253:85/ReportServer";
+                    rptViewer.ServerReport.ReportServerCredentials = new ReportServerCredentials("Administrator", "Telec0m#B!9V", "202.65.157.253");
                     //ICTSBM Server
-                 //   urlReportServer = "http://114.143.244.133:86/ReportServer";
-               //     rptViewer.ServerReport.ReportServerCredentials = new ReportServerCredentials("Administrator", "Telec0m#B!9V", "114.143.244.133");
-                  //  string urlReportServer = "http://COMP-7/ReportServer";
+                    //   urlReportServer = "http://183.177.126.114:82/ReportServer";
+                    //   rptViewer.ServerReport.ReportServerCredentials = new ReportServerCredentials("Administrator", "Telec0m#B!9V", "183.177.126.114");
+                    ////   string urlReportServer = "http://COMP-7/ReportServer";
                     //rptViewer.ServerReport.ReportServerCredentials = new ReportServerCredentials("Administrator", "Pass@123", "192.168.100.7");
 
 
