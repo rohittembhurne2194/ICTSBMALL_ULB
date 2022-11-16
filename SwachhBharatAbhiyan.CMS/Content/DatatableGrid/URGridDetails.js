@@ -69,7 +69,7 @@
             {
                 "render": function (data, type, full, meta) {
 
-                    if (full["type"] == 'SA') {
+                    if (full["type"] == 'SA' || full["type"] == 'A') {
                         return '<a  data-toggle="modal" class="tooltip1" style="cursor:pointer"   onclick="Edit(' + full["EmpId"] + ')"  ><i class="material-icons edit-icon">edit</i><span class="tooltiptext1">Edit</span> </a>';
 
                     }
@@ -87,7 +87,7 @@
 }
 
 function myFunction() {
-    alert("Admin ID Are Not Available To Edit");
+    alert("Super Admin ID Are Not Available To Edit");
 }
 
 function LoadNGrid() {
