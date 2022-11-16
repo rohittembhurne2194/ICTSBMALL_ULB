@@ -1335,27 +1335,28 @@ namespace SwachBharat.CMS.Bll.Services
         public List<EmployeeHouseCollectionInnerOuter> getEmployeeHouseCollectionInnerOuter()
         {
             List<EmployeeHouseCollectionInnerOuter> obj = new List<EmployeeHouseCollectionInnerOuter>();
-            int innerCount = 0;
-            using (var db = new DevChildSwachhBharatNagpurEntities(AppID))
-            {
-                var data = db.SP_EmployeeHouseCollectionCount().ToList();
-                foreach (var x in data)
-                {
-                    innerCount = getInnerCountByUserId(x.userId, x.TodayDate);
-                    obj.Add(new EmployeeHouseCollectionInnerOuter()
-                    {
-                        userId = x.userId,
-                        userName = x.userName,
-                        inTime = x.inTime,
-                        TotalCount = x.TotHouseCount,
-                        InnerCount = innerCount,
-                        OuterCount = x.TotHouseCount - innerCount,
-                        ToDate = x.TodayDate.ToString()
-                    });
+            //int innerCount = 0;
+            //using (var db = new DevChildSwachhBharatNagpurEntities(AppID))
+            //{
+            //    var data = db.SP_EmployeeHouseCollectionCount().ToList();
+            //    foreach (var x in data)
+            //    {
+            //        innerCount = getInnerCountByUserId(x.userId, x.TodayDate);
+            //        obj.Add(new EmployeeHouseCollectionInnerOuter()
+            //        {
+            //            userId = x.userId,
+            //            userName = x.userName,
+            //            inTime = x.inTime,
+            //            TotalCount = x.TotHouseCount,
+            //            InnerCount = innerCount,
+            //            OuterCount = x.TotHouseCount - innerCount,
+            //            ToDate = x.TodayDate.ToString()
+            //        });
 
-                }
-            }
-            return obj.OrderBy(c => c.userName).ToList();
+            //    }
+            //}
+            //return obj.OrderBy(c => c.userName).ToList();
+            return obj;
         }
 
         public int getInnerCountByUserId(int userId, DateTime? todayDate)

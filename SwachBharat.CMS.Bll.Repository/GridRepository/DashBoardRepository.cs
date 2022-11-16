@@ -7205,28 +7205,29 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
             List<GetEmpWiseHouseScan> obj = new List<GetEmpWiseHouseScan>();
             using (var db = new DevChildSwachhBharatNagpurEntities(appId))
             {
-                var data = db.SP_GetEmpWiseHouseScan().ToList();
+                //var data = db.SP_GetEmpWiseHouseScan().ToList();
 
-                foreach (var x in data)
-                {
-                    obj.Add(new GetEmpWiseHouseScan()
-                    {
-                       
-                        userId = x.userId,
-                        userName = x.userName,
-                        Totalhousecollection = x.Totalhousecollection,
-                        TotalHouseScanTime = x.TotalHouseScanTime,
-                        TotalMixed = x.TotalMixed,
-                        TotalSeg = x.TotalSeg,
-                        TotalNotColl = x.TotalNotColl,
-                        TotalNotSpecified = x.TotalNotSpecified,
-                        TotalDump = x.TotalDump,
-                        TotalDumpScanTime = x.TotalDumpScanTime,
-                        TotalHouseScanTimeHours = x.TotalHouseScanTimeHours,
-                        TotalDumpScanTimeHours = x.TotalDumpScanTimeHours,
-                    });
-                }
-                return obj.OrderBy(c => c.userName);
+                //foreach (var x in data)
+                //{
+                //    obj.Add(new GetEmpWiseHouseScan()
+                //    {
+
+                //        userId = x.userId,
+                //        userName = x.userName,
+                //        Totalhousecollection = x.Totalhousecollection,
+                //        TotalHouseScanTime = x.TotalHouseScanTime,
+                //        TotalMixed = x.TotalMixed,
+                //        TotalSeg = x.TotalSeg,
+                //        TotalNotColl = x.TotalNotColl,
+                //        TotalNotSpecified = x.TotalNotSpecified,
+                //        TotalDump = x.TotalDump,
+                //        TotalDumpScanTime = x.TotalDumpScanTime,
+                //        TotalHouseScanTimeHours = x.TotalHouseScanTimeHours,
+                //        TotalDumpScanTimeHours = x.TotalDumpScanTimeHours,
+                //    });
+                //}
+                //return obj.OrderBy(c => c.userName);
+                return obj;
             }
         }
 
