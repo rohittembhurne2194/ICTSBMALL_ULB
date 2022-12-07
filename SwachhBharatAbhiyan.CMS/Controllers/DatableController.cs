@@ -446,6 +446,10 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
                 case "DumpYardDetails":
                     gridRepository = new DumpYardCollectionGridRepository(0, searchString, fdate, tdate, userId, appId,param1,param2,param3);
                     return gridRepository;
+
+                case "BCDumpYardTrip":
+                    gridRepository = new DumpYardTripGridRepository(0, searchString, fdate, tdate, userId, appId, param1, param2, param3);
+                    return gridRepository;
                     break;
                 case "DumpYardSupervisorDetails":
                     gridRepository = new DumpYardSupervisorCollecGridRepository(0, searchString, fdate, tdate, userId, appId, param1, param2, param3);

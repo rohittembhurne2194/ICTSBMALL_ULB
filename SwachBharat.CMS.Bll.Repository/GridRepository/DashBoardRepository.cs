@@ -2888,6 +2888,95 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
             }
         }
 
+        public IEnumerable<ICTDumTripGridRow> GetDumpYardTripData(long wildcard, string SearchString, DateTime? fdate, DateTime? tdate, int userId, int appId, int? param1, int? param2, int? param3)
+        {
+            {
+                DevSwachhBharatMainEntities dbMain = new DevSwachhBharatMainEntities();
+                List<ICTDumTripGridRow> data = new List<ICTDumTripGridRow>();
+                var appDetails = dbMain.AppDetails.Where(x => x.AppId == appId).FirstOrDefault();
+               
+                using (DevChildSwachhBharatNagpurEntities db = new DevChildSwachhBharatNagpurEntities(appId))
+                {
+
+                    var data1 = (from t1 in db.TransDumpTDs
+                                 join t2 in db.UserMasters on t1.userId equals t2.userId
+                                 join dy in db.DumpYardDetails on t1.dyId equals dy.ReferanceId into dy
+                                 from t3 in dy.DefaultIfEmpty()
+                                 join zm in db.ZoneMasters on t3.zoneId equals zm.zoneId into zm
+                                 from t4 in zm.DefaultIfEmpty()
+                                 join wm in db.WardNumbers on t3.wardId equals wm.Id into wm
+                                 from t5 in wm.DefaultIfEmpty()
+                                 join tm in db.TeritoryMasters on t3.areaId equals tm.Id into tm
+                                 from t6 in tm.DefaultIfEmpty()
+                                 where (t3.zoneId == param1 || param1 == 0 || param1 == null) && (t5.Id == param2 || param2 == 0 || param2 == null) && (t6.Id == param3 || param3 == 0 || param3 == null)
+                                 select new
+                                 {
+                                     t1.TransBcId,
+                                     t1.bcTransId,
+                                     t1.transId,
+                                     t1.startDateTime,
+                                     t1.endDateTime,
+                                     t1.houseList,
+                                     t1.tripNo,
+                                     t1.dyId,
+                                     t1.userId,                                   
+                                     t1.vehicleNumber,                              
+                                     t3.dyAddress,
+                                     t1.totalGcWeight,
+                                     t1.totalDryWeight,
+                                     t1.totalWetWeight,
+                                     t2.userName,
+                                     t3.ReferanceId,
+                                     t3.dyName,
+                                     t3.zoneId,
+                                     t3.wardId,
+                                     t3.areaId,
+                                     WardName = t5.WardNo,
+                                     AreaName = t6.Area
+                                 }).ToList();
+
+                    if (userId > 0)
+
+                    {
+                        var model = data1.Where(c => c.userId == userId).ToList();
+
+                        data1 = model.ToList();
+                    }
+                    foreach (var x in data1)
+                    {
+                        data.Add(new ICTDumTripGridRow
+                        {
+                            TransBcId=x.TransBcId,
+                            bcTransId = x.bcTransId,
+                            transId = x.transId,
+                            startDateTime = x.startDateTime,
+                            endDateTime = x.endDateTime,
+                            houseList = x.houseList,
+                            tripNo = x.tripNo,
+                            userName=x.userName,
+                            totalGcWeight = x.totalGcWeight,
+                            totalDryWeight = x.totalDryWeight,
+                            totalWetWeight = x.totalWetWeight,
+                            vehicleNumber=x.vehicleNumber,
+                            dyId=x.dyId
+                       });                
+                    }
+                    if (!string.IsNullOrEmpty(SearchString))
+                    {
+                        var model = data.Where(c => ((string.IsNullOrEmpty(c.userName) ? " " : c.userName) + " " +
+                                      (string.IsNullOrEmpty(c.dyId) ? " " : c.dyId) + " " +
+                                      (string.IsNullOrEmpty(c.vehicleNumber) ? " " : c.vehicleNumber) + " " +
+                                      (string.IsNullOrEmpty(c.dyId) ? " " : c.dyId) + " " +
+                                      (string.IsNullOrEmpty(c.transId) ? " " : c.transId) + " " +
+                                      (string.IsNullOrEmpty(c.bcTransId) ? " " : c.bcTransId)).ToUpper().Contains(SearchString.ToUpper())).ToList();
+                        data = model.ToList();
+                    }
+                    return data.OrderByDescending(c => c.startDateTime).ToList();
+                }
+            }
+        }
+
+
         public IEnumerable<SBAGrabageCollectionGridRow> GetDumpYardSupervisorCollectionData(long wildcard, string SearchString, DateTime? fdate, DateTime? tdate, int userId, int appId, int? param1, int? param2, int? param3)
         {
             {

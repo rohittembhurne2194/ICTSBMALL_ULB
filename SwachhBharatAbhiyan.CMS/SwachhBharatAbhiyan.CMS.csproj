@@ -2030,6 +2030,7 @@
     <Content Include="Content\DatatableGrid\AttendenceDetailGrid.js" />
     <Content Include="Content\DatatableGrid\AttendenceGrid.js" />
     <Content Include="Content\DatatableGrid\AURGridDetails.js" />
+    <Content Include="Content\DatatableGrid\BCDumpTrip.js" />
     <Content Include="Content\DatatableGrid\Complaint.js" />
     <Content Include="Content\DatatableGrid\District.js" />
     <Content Include="Content\DatatableGrid\DumpPlantAttendenceGrid.js" />
@@ -3521,6 +3522,7 @@
     <Content Include="Views\MasterQR\QRBunchIndex.cshtml" />
     <Content Include="Views\MasterQR\AddMasterQRBunchDetails.cshtml" />
     <Content Include="Views\GarbageCollection\MenuBCDumpYardIndex.cshtml" />
+    <Content Include="Views\GarbageCollection\BCDumpYardIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
