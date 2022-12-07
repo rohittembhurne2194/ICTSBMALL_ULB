@@ -6981,7 +6981,7 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                 var data = (from t1 in mData
                             join t2 in cData on t1.SauchalayID equals t2.SauchalayID into ps
                             from t3 in ps.DefaultIfEmpty()
-                            select new { t1.SauchalayFeedback_ID, t1.ULB, t1.SauchalayID, t1.AppId, t1.Fullname, t1.MobileNo, t1.que1, t1.que2, t1.que3, t1.Rating, t1.Feedback, t1.Date, Address = (t3 == null ? string.Empty : t3.Address) }).ToList();
+                            select new { t1.SauchalayFeedback_ID, t1.ULB, t1.SauchalayID, t1.AppId, t1.Fullname, t1.MobileNo, t1.que1, t1.que2, t1.que3,t1.que5, t1.que6, t1.que7, t1.que8, t1.que9, t1.que10, t1.que11, t1.Rating, t1.Feedback, t1.Date, Address = (t3 == null ? string.Empty : t3.Address) }).ToList();
 
 
                 if (data != null)
@@ -7014,6 +7014,13 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                             que1 = x.que1,
                             que2 = x.que2,
                             que3 = x.que3,
+                            que5 = x.que5,
+                            que6 = x.que6,
+                            que7 = x.que7,
+                            que8 = x.que8,
+                            que9 = x.que9,
+                            que10 = x.que10,
+                            que11= x.que11,
                             Rating = x.Rating,
                             Feedback = x.Feedback,
                             Date = Convert.ToDateTime(x.Date).ToString("dd/MM/yyyy  hh:mm tt"),

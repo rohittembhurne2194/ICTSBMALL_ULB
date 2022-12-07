@@ -35,7 +35,6 @@ namespace SwachBharat.CMS.Dal.DataContexts
         public virtual DbSet<state_districts> state_districts { get; set; }
         public virtual DbSet<Subscription> Subscriptions { get; set; }
         public virtual DbSet<UserInApp> UserInApps { get; set; }
-        public virtual DbSet<Sauchalay_feedback> Sauchalay_feedback { get; set; }
         public virtual DbSet<Game_AnswerType> Game_AnswerType { get; set; }
         public virtual DbSet<Game_Slogan> Game_Slogan { get; set; }
         public virtual DbSet<GameDetail> GameDetails { get; set; }
@@ -52,6 +51,7 @@ namespace SwachBharat.CMS.Dal.DataContexts
         public virtual DbSet<AD_USER_MST_LIQUID> AD_USER_MST_LIQUID { get; set; }
         public virtual DbSet<AD_USER_MST_STREET> AD_USER_MST_STREET { get; set; }
         public virtual DbSet<CheckAppD> CheckAppDs { get; set; }
+        public virtual DbSet<Sauchalay_feedback> Sauchalay_feedback { get; set; }
     
         public virtual int SP_Admin_table()
         {

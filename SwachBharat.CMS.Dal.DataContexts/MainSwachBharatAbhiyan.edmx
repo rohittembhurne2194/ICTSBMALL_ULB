@@ -167,6 +167,9 @@
           <Property Name="Today_DumpScanCount" Type="int" />
           <Property Name="Total_DumpCount" Type="int" />
           <Property Name="AppLink" Type="nvarchar" MaxLength="500" />
+          <Property Name="Today_MixedCount" Type="int" />
+          <Property Name="Today_SegregatedCount" Type="int" />
+          <Property Name="Today_GarbageNRCount" Type="int" />
         </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -348,6 +351,13 @@
           <Property Name="Rating" Type="nvarchar" MaxLength="50" />
           <Property Name="Feedback" Type="nvarchar(max)" />
           <Property Name="Date" Type="datetime" />
+          <Property Name="que5" Type="nvarchar" MaxLength="50" />
+          <Property Name="que6" Type="nvarchar" MaxLength="50" />
+          <Property Name="que7" Type="nvarchar" MaxLength="50" />
+          <Property Name="que8" Type="nvarchar" MaxLength="50" />
+          <Property Name="que9" Type="nvarchar" MaxLength="50" />
+          <Property Name="que10" Type="nvarchar" MaxLength="50" />
+          <Property Name="que11" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="state_districts">
           <Key>
@@ -570,7 +580,6 @@
           <EntitySet Name="Subscriptions" EntityType="Self.Subscription" />
           <EntitySet Name="UserInApps" EntityType="Self.UserInApp" />
           <FunctionImport Name="SP_Admin_table" />
-          <EntitySet Name="Sauchalay_feedback" EntityType="DevSwachhBharatMainModel.Sauchalay_feedback" />
           <EntitySet Name="Game_AnswerType" EntityType="DevSwachhBharatMainModel.Game_AnswerType" />
           <EntitySet Name="Game_Slogan" EntityType="DevSwachhBharatMainModel.Game_Slogan" />
           <EntitySet Name="GameDetails" EntityType="DevSwachhBharatMainModel.GameDetail" />
@@ -608,24 +617,8 @@
           <EntitySet Name="AD_USER_MST_LIQUID" EntityType="DevSwachhBharatMainModel.AD_USER_MST_LIQUID" />
           <EntitySet Name="AD_USER_MST_STREET" EntityType="DevSwachhBharatMainModel.AD_USER_MST_STREET" />
           <EntitySet Name="CheckAppDs" EntityType="DevSwachhBharatMainModel.CheckAppD" />
+          <EntitySet Name="Sauchalay_feedback" EntityType="DevSwachhBharatMainModel.Sauchalay_feedback" />
         </EntityContainer>
-        <EntityType Name="Sauchalay_feedback">
-          <Key>
-            <PropertyRef Name="SauchalayFeedback_ID" />
-          </Key>
-          <Property Name="SauchalayFeedback_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ULB" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SauchalayID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AppId" Type="Int32" />
-          <Property Name="Fullname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MobileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="que1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="que2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="que3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Rating" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Feedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="Game_AnswerType">
           <Key>
             <PropertyRef Name="AnswerTypeId" />
@@ -876,6 +869,9 @@
           <Property Name="Today_DumpScanCount" Type="Int32" />
           <Property Name="Total_DumpCount" Type="Int32" />
           <Property Name="AppLink" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Today_MixedCount" Type="Int32" />
+          <Property Name="Today_SegregatedCount" Type="Int32" />
+          <Property Name="Today_GarbageNRCount" Type="Int32" />
         </EntityType>
         <EntityType Name="UR_Location">
           <Key>
@@ -999,6 +995,30 @@
           <Property Name="AppId" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" />
         </EntityType>
+        <EntityType Name="Sauchalay_feedback">
+          <Key>
+            <PropertyRef Name="SauchalayFeedback_ID" />
+          </Key>
+          <Property Name="SauchalayFeedback_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ULB" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SauchalayID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AppId" Type="Int32" />
+          <Property Name="Fullname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="que1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="que2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="que3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rating" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Feedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="que5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="que6" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="que7" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="que8" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="que9" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="que10" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="que11" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1085,24 +1105,6 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SP_Admin_table" FunctionName="DevSwachhBharatMainModel.Store.SP_Admin_table" />
-          <EntitySetMapping Name="Sauchalay_feedback">
-            <EntityTypeMapping TypeName="DevSwachhBharatMainModel.Sauchalay_feedback">
-              <MappingFragment StoreEntitySet="Sauchalay_feedback">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Feedback" ColumnName="Feedback" />
-                <ScalarProperty Name="Rating" ColumnName="Rating" />
-                <ScalarProperty Name="que3" ColumnName="que3" />
-                <ScalarProperty Name="que2" ColumnName="que2" />
-                <ScalarProperty Name="que1" ColumnName="que1" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
-                <ScalarProperty Name="AppId" ColumnName="AppId" />
-                <ScalarProperty Name="SauchalayID" ColumnName="SauchalayID" />
-                <ScalarProperty Name="ULB" ColumnName="ULB" />
-                <ScalarProperty Name="SauchalayFeedback_ID" ColumnName="SauchalayFeedback_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Game_AnswerType">
             <EntityTypeMapping TypeName="DevSwachhBharatMainModel.Game_AnswerType">
               <MappingFragment StoreEntitySet="Game_AnswerType">
@@ -1267,6 +1269,9 @@
           <EntitySetMapping Name="AppDetails">
             <EntityTypeMapping TypeName="DevSwachhBharatMainModel.AppDetail">
               <MappingFragment StoreEntitySet="AppDetails">
+                <ScalarProperty Name="Today_GarbageNRCount" ColumnName="Today_GarbageNRCount" />
+                <ScalarProperty Name="Today_SegregatedCount" ColumnName="Today_SegregatedCount" />
+                <ScalarProperty Name="Today_MixedCount" ColumnName="Today_MixedCount" />
                 <ScalarProperty Name="AppLink" ColumnName="AppLink" />
                 <ScalarProperty Name="Total_DumpCount" ColumnName="Total_DumpCount" />
                 <ScalarProperty Name="Today_DumpScanCount" ColumnName="Today_DumpScanCount" />
@@ -1470,6 +1475,31 @@
                 <ScalarProperty Name="IsCheked" ColumnName="IsCheked" />
                 <ScalarProperty Name="App_Name" ColumnName="App_Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sauchalay_feedback">
+            <EntityTypeMapping TypeName="DevSwachhBharatMainModel.Sauchalay_feedback">
+              <MappingFragment StoreEntitySet="Sauchalay_feedback">
+                <ScalarProperty Name="que11" ColumnName="que11" />
+                <ScalarProperty Name="que10" ColumnName="que10" />
+                <ScalarProperty Name="que9" ColumnName="que9" />
+                <ScalarProperty Name="que8" ColumnName="que8" />
+                <ScalarProperty Name="que7" ColumnName="que7" />
+                <ScalarProperty Name="que6" ColumnName="que6" />
+                <ScalarProperty Name="que5" ColumnName="que5" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="que3" ColumnName="que3" />
+                <ScalarProperty Name="que2" ColumnName="que2" />
+                <ScalarProperty Name="que1" ColumnName="que1" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="AppId" ColumnName="AppId" />
+                <ScalarProperty Name="SauchalayID" ColumnName="SauchalayID" />
+                <ScalarProperty Name="ULB" ColumnName="ULB" />
+                <ScalarProperty Name="SauchalayFeedback_ID" ColumnName="SauchalayFeedback_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

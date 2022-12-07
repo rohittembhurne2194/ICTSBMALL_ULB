@@ -88,5 +88,8 @@ namespace SwachBharat.CMS.Dal.DataContexts
         public Nullable<int> Today_DumpScanCount { get; set; }
         public Nullable<int> Total_DumpCount { get; set; }
         public string AppLink { get; set; }
+        public Nullable<int> Today_MixedCount { get; set; }
+        public Nullable<int> Today_SegregatedCount { get; set; }
+        public Nullable<int> Today_GarbageNRCount { get; set; }
     }
 }
