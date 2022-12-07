@@ -3520,6 +3520,7 @@
     <Content Include="Views\MasterQR\MenuQRBunchIndex.cshtml" />
     <Content Include="Views\MasterQR\QRBunchIndex.cshtml" />
     <Content Include="Views\MasterQR\AddMasterQRBunchDetails.cshtml" />
+    <Content Include="Views\GarbageCollection\MenuBCDumpYardIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

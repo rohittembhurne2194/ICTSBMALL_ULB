@@ -194,5 +194,27 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
                 return Redirect("/Account/Login");
         }
 
+
+        public ActionResult MenuBCDumpYardIndex()
+        {
+            if (SessionHandler.Current.AppId != 0)
+            {
+                return View();
+            }
+            else
+                return Redirect("/Account/Login");
+        }
+
+
+        public ActionResult BCDumpYardIndex()
+        {
+            if (SessionHandler.Current.AppId != 0)
+            {
+                var details = childRepository.GetDashBoardDetails();
+                return View(details);
+            }
+            else
+                return Redirect("/Account/Login");
+        }
     }
 }
