@@ -227,8 +227,6 @@ warning 6002: The table/view 'LIVEAdvanceAppynittyGhantaGadi.dbo.HouseList' does
           <Property Name="IsActive" Type="bit" />
           <Property Name="AreaId" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'LIVEAdvanceAppynittyGhantaGadi.dbo.HouseMaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="HouseMaster">
           <Key>
             <PropertyRef Name="houseId" />
@@ -981,6 +979,7 @@ warning 6002: The table/view 'LIVEAdvanceAppynittyGhantaGadi.dbo.Vw_MsgNotificat
           <EntitySet Name="GarbagePointDetails" EntityType="Self.GarbagePointDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GramCleaningComplient" EntityType="Self.GramCleaningComplient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HouseBunch" EntityType="Self.HouseBunch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HouseMaster" EntityType="Self.HouseMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LiquidWasteDetails" EntityType="Self.LiquidWasteDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MasterQR" EntityType="Self.MasterQR" Schema="dbo" store:Type="Tables" />
@@ -1016,35 +1015,6 @@ warning 6002: The table/view 'LIVEAdvanceAppynittyGhantaGadi.dbo.Vw_MsgNotificat
     [HouseList].[IsActive] AS [IsActive], 
     [HouseList].[AreaId] AS [AreaId]
     FROM [dbo].[HouseList] AS [HouseList]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="HouseMaster" EntityType="Self.HouseMaster" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [HouseMaster].[houseId] AS [houseId], 
-    [HouseMaster].[houseNumber] AS [houseNumber], 
-    [HouseMaster].[houseOwner] AS [houseOwner], 
-    [HouseMaster].[houseOwnerMar] AS [houseOwnerMar], 
-    [HouseMaster].[houseOwnerMobile] AS [houseOwnerMobile], 
-    [HouseMaster].[houseAddress] AS [houseAddress], 
-    [HouseMaster].[houseLat] AS [houseLat], 
-    [HouseMaster].[houseLong] AS [houseLong], 
-    [HouseMaster].[houseQRCode] AS [houseQRCode], 
-    [HouseMaster].[ZoneId] AS [ZoneId], 
-    [HouseMaster].[AreaId] AS [AreaId], 
-    [HouseMaster].[WardNo] AS [WardNo], 
-    [HouseMaster].[ReferanceId] AS [ReferanceId], 
-    [HouseMaster].[modified] AS [modified], 
-    [HouseMaster].[userId] AS [userId], 
-    [HouseMaster].[FCMID] AS [FCMID], 
-    [HouseMaster].[lastModifiedEntry] AS [lastModifiedEntry], 
-    [HouseMaster].[RFIDTagId] AS [RFIDTagId], 
-    [HouseMaster].[WasteType] AS [WasteType], 
-    [HouseMaster].[QRCodeImage] AS [QRCodeImage], 
-    [HouseMaster].[OccupancyStatus] AS [OccupancyStatus], 
-    [HouseMaster].[Property_Type] AS [Property_Type], 
-    [HouseMaster].[QRStatus] AS [QRStatus], 
-    [HouseMaster].[QRStatusDate] AS [QRStatusDate], 
-    [HouseMaster].[BinaryQrCodeImage] AS [BinaryQrCodeImage]
-    FROM [dbo].[HouseMaster] AS [HouseMaster]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="MonthlyAttedance" EntityType="Self.MonthlyAttedance" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
