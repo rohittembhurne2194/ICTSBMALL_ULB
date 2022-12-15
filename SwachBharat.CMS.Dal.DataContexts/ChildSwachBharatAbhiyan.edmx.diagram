@@ -51,8 +51,8 @@
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.Vw_MsgNotification" Width="1.5" PointX="0.75" PointY="18.75" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.DumpTripDetailM" Width="1.5" PointX="3.375" PointY="18.75" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.DumpTripDetail" Width="1.5" PointX="22.375" PointY="9.75" />
-        <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.TransDumpTD" Width="1.5" PointX="19.375" PointY="22.75" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.HouseMaster" Width="1.5" PointX="21.375" PointY="22.75" />
+        <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.TransDumpTD" Width="1.5" PointX="3.375" PointY="23.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

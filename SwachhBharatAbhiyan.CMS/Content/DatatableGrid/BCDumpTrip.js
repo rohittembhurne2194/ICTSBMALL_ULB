@@ -19,17 +19,7 @@
 
     var table = $("#demoGrid").DataTable({
 
-        //"initComplete": function (settings, json) {
-
-        //    if ($("#asdf").text() == "mangalwedhawaste@ulb.com!" || $("#asdf").text() == "appynittywaste@ulb.com!") {
-        //        table.columns([8]).visible(false);
-        //        table.columns([10]).visible(false);
-        //        table.columns([11]).visible(false);
-        //        $(table.column(7).header()).text('Dump Yard Image');
-        //    }
-
-        //},
-
+    
         "sDom": "ltipr",
         "order": [[0, "desc"]],
      //   "processing": true, // for show progress bar
@@ -55,7 +45,31 @@
                     "targets": [1],
                     "visible": false,
                     "searchable": false
-                }
+                },
+
+                {
+                    "targets": [12],
+
+                    "visible": true,
+
+                    "render": function (data, type, full, meta) {
+
+                     
+
+                        if (full["TStatus"] == "0") {
+                            return "<div class='circle' style='height: 20px;width: 20px;background-color: #f44336;border-radius: 50%;    vertical-align: middle;display: inline-flex;'></div> (Failed !)";
+                        }
+                        else if (full["TStatus"] == "1") {
+                            return "<div class='circle' style='height: 20px;width: 20px;background-color: #388e3c;border-radius: 50%;vertical-align: middle;display: inline-flex;'></div> (Success)";
+
+                        }
+                        else {
+                            return "<div class='circle' style='height: 20px;width: 20px;background-color: #0086c3;border-radius: 50%;vertical-align: middle;display: inline-flex;'></div> (In Process)";
+
+                        }
+
+                    },
+                },
             ],
 
         "columns": [
@@ -81,7 +95,9 @@
 
                     return data;
                 }
-            }
+            },
+
+            { "data": "TStatus", "name": "TStatus", "autoWidth": false },
         ]
     });
 });

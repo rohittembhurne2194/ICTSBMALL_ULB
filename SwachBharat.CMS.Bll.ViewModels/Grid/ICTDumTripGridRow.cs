@@ -23,5 +23,7 @@ namespace SwachBharat.CMS.Bll.ViewModels.Grid
         public Nullable<decimal> totalDryWeight { get; set; }
         public Nullable<decimal> totalWetWeight { get; set; }
         public string bcTransId { get; set; }
+        public bool ? TStatus { get; set; }
+
     }
 }

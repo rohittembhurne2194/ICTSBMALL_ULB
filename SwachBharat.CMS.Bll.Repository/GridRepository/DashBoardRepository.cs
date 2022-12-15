@@ -2932,7 +2932,8 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                                      t3.wardId,
                                      t3.areaId,
                                      WardName = t5.WardNo,
-                                     AreaName = t6.Area
+                                     AreaName = t6.Area,
+                                     TStatus= t1.TStatus
                                  }).ToList();
 
                     if (userId > 0)
@@ -2946,20 +2947,21 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                     {
                         data.Add(new ICTDumTripGridRow
                         {
-                            TransBcId=x.TransBcId,
+                            TransBcId = x.TransBcId,
                             bcTransId = x.bcTransId,
                             transId = x.transId,
                             startDateTime = Convert.ToDateTime(x.startDateTime).ToString("dd/MM/yyyy hh:mm tt"),
                             endDateTime = Convert.ToDateTime(x.endDateTime).ToString("dd/MM/yyyy hh:mm tt"),
                             houseList = x.houseList,
                             tripNo = x.tripNo,
-                            userName=x.userName,
+                            userName = x.userName,
                             totalGcWeight = x.totalGcWeight,
                             totalDryWeight = x.totalDryWeight,
                             totalWetWeight = x.totalWetWeight,
-                            vehicleNumber=x.vehicleNumber,
-                            dyId=x.dyId
-                       });                
+                            vehicleNumber = x.vehicleNumber,
+                            dyId = x.dyId,
+                            TStatus = x.TStatus
+                        }) ;                
                     }
                     if (!string.IsNullOrEmpty(SearchString))
                     {
