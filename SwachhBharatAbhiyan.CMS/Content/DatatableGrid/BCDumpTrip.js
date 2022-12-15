@@ -84,8 +84,6 @@
             { "data": "totalGcWeight", "name": "totalGcWeight", "autoWidth": false },
             { "data": "totalDryWeight", "name": "totalDryWeight", "autoWidth": false },
             { "data": "totalWetWeight", "name": "totalWetWeight", "autoWidth": false },
-         /*   { "data": "bcTransId", "name": "bcTransId", "autoWidth": false },*/
-           /* { "render": function (data, type, full, meta) { return '<a href= full["bcTransId"]  >View Transaction </a>'; }, "width": "10%" },*/
             {
                 "data": "bcTransId",
                 "render": function (data, type, row, meta) {
