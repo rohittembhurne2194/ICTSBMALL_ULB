@@ -21,6 +21,7 @@ namespace SwachBharat.CMS.Dal.DataContexts
                 : base(SwachBharatAppConnection.GetConnectionString(AppId))
         {
         }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -814,15 +815,6 @@ namespace SwachBharat.CMS.Dal.DataContexts
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CalcMinRouteDist_Result>("SP_CalcMinRouteDist", routeParameter, compDistParameter);
         }
     
-        public virtual ObjectResult<SP_HouseOnMapDetailsForEmpBitMap_Result> SP_HouseOnMapDetailsForEmpBitMap(string empType)
-        {
-            var empTypeParameter = empType != null ?
-                new ObjectParameter("EmpType", empType) :
-                new ObjectParameter("EmpType", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_HouseOnMapDetailsForEmpBitMap_Result>("SP_HouseOnMapDetailsForEmpBitMap", empTypeParameter);
-        }
-    
         public virtual ObjectResult<string> Remaining_QRList(Nullable<int> masterId)
         {
             var masterIdParameter = masterId.HasValue ?
@@ -830,6 +822,15 @@ namespace SwachBharat.CMS.Dal.DataContexts
                 new ObjectParameter("masterId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Remaining_QRList", masterIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_HouseOnMapDetailsForEmpBitMap_Result> SP_HouseOnMapDetailsForEmpBitMap(string empType)
+        {
+            var empTypeParameter = empType != null ?
+                new ObjectParameter("EmpType", empType) :
+                new ObjectParameter("EmpType", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_HouseOnMapDetailsForEmpBitMap_Result>("SP_HouseOnMapDetailsForEmpBitMap", empTypeParameter);
         }
     
         public virtual ObjectResult<MasterQRBunchDetails_Result> MasterQRBunchDetails()

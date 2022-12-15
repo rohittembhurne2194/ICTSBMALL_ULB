@@ -15,7 +15,7 @@ namespace SwachBharat.CMS.Dal.DataContexts
     {
         public Nullable<int> userId { get; set; }
         public int houseId { get; set; }
-        public Nullable<int> dyId { get; set; }
+        public int dyId { get; set; }
         public string ReferanceId { get; set; }
         public string houseNumber { get; set; }
         public string houseOwner { get; set; }
