@@ -12,8 +12,8 @@ namespace SwachBharat.CMS.Bll.ViewModels.Grid
 
         public int TransBcId { get; set; }
         public string transId { get; set; }
-        public Nullable<System.DateTime> startDateTime { get; set; }
-        public Nullable<System.DateTime> endDateTime { get; set; }
+        public string startDateTime { get; set; }
+        public string endDateTime { get; set; }
         public string userName { get; set; }
         public string dyId { get; set; }
         public string houseList { get; set; }

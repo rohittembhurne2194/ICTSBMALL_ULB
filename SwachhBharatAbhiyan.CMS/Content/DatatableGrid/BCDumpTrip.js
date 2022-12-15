@@ -19,20 +19,20 @@
 
     var table = $("#demoGrid").DataTable({
 
-        "initComplete": function (settings, json) {
+        //"initComplete": function (settings, json) {
 
-            if ($("#asdf").text() == "mangalwedhawaste@ulb.com!" || $("#asdf").text() == "appynittywaste@ulb.com!") {
-                table.columns([8]).visible(false);
-                table.columns([10]).visible(false);
-                table.columns([11]).visible(false);
-                $(table.column(7).header()).text('Dump Yard Image');
-            }
+        //    if ($("#asdf").text() == "mangalwedhawaste@ulb.com!" || $("#asdf").text() == "appynittywaste@ulb.com!") {
+        //        table.columns([8]).visible(false);
+        //        table.columns([10]).visible(false);
+        //        table.columns([11]).visible(false);
+        //        $(table.column(7).header()).text('Dump Yard Image');
+        //    }
 
-        },
+        //},
 
         "sDom": "ltipr",
-        "order": [[12, "desc"]],
-        "processing": true, // for show progress bar
+        "order": [[0, "desc"]],
+     //   "processing": true, // for show progress bar
         "serverSide": true, // for process server side
         "filter": true, // this is for disable filter (search box)
         "orderMulti": false, // for disable multiple column at once
@@ -50,11 +50,17 @@
                 "visible": false,
                 "searchable": false
             }
-           
+                ,
+                {
+                    "targets": [1],
+                    "visible": false,
+                    "searchable": false
+                }
             ],
 
         "columns": [
-            { "data": "TransBcId", "name": "TransBcId", "autoWidth": false },         
+            { "data": "TransBcId", "name": "TransBcId", "autoWidth": false },
+            { "data": "bcTransId", "name": "bcTransId", "autoWidth": false },
             { "data": "startDateTime", "name": "startDateTime", "autoWidth": false },
             { "data": "endDateTime", "name": "endDateTime", "autoWidth": false },
             { "data": "dyId", "name": "dyId", "autoWidth": false },
@@ -64,15 +70,25 @@
             { "data": "totalGcWeight", "name": "totalGcWeight", "autoWidth": false },
             { "data": "totalDryWeight", "name": "totalDryWeight", "autoWidth": false },
             { "data": "totalWetWeight", "name": "totalWetWeight", "autoWidth": false },
-            { "data": "bcTransId", "name": "bcTransId", "autoWidth": false },
-           
+         /*   { "data": "bcTransId", "name": "bcTransId", "autoWidth": false },*/
+           /* { "render": function (data, type, full, meta) { return '<a href= full["bcTransId"]  >View Transaction </a>'; }, "width": "10%" },*/
+            {
+                "data": "bcTransId",
+                "render": function (data, type, row, meta) {
+                    if (type === 'display') {
+                        data = '<a target="_blank" href="https://mumbai.polygonscan.com/tx/' + data + '">View Transaction</a>';
+                    }
 
+                    return data;
+                }
+            }
         ]
     });
 });
 
-function DownloadQRCode(Id) {
-    window.location.href = "/GarbagePoint/Export?Id=" + Id;
+function ViewBT(bcTransId) {
+    debugger;
+    window.location.href = "https://mumbai.polygonscan.com/tx/" + bcTransId;
 };
 
 function noImageNotification() {
