@@ -48,7 +48,7 @@
                 },
 
                 {
-                    "targets": [12],
+                    "targets": [13],
 
                     "visible": true,
 
@@ -78,6 +78,7 @@
             { "data": "startDateTime", "name": "startDateTime", "autoWidth": false },
             { "data": "endDateTime", "name": "endDateTime", "autoWidth": false },
             { "data": "dyId", "name": "dyId", "autoWidth": false },
+            { "data": "houseList", "name": "houseList", "autoWidth": false },
             { "data": "userName", "name": "userName", "autoWidth": false },
             { "data": "vehicleNumber", "name": "vehicleNumber","autoWidth": false },
             { "data": "tripNo", "name": "tripNo", "autoWidth": false },
@@ -104,7 +105,9 @@ function ViewBT(bcTransId) {
     debugger;
     window.location.href = "https://mumbai.polygonscan.com/tx/" + bcTransId;
 };
-
+$('.edit').click(function () {
+    $('#editModal').modal('show');
+});
 function noImageNotification() {
     document.getElementById("snackbar").innerHTML = "Image not uploaded...";
     var x = document.getElementById("snackbar");
@@ -131,6 +134,7 @@ function showInventoriesGrid() {
 }
 
 function Search() {
+    debugger;
     var txt_fdate, txt_tdate, Client, UserId;
     var name = [];
     var arr = [$('#txt_fdate').val(), $('#txt_tdate').val()];

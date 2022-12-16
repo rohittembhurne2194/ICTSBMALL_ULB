@@ -63,18 +63,18 @@
                 <select id="selectnumber" class="form-control form-control form-control-sm"></select>
             </div>
             <!--<div class="col-sm-2">-->
-                @*<label>कर्मचारी निवडा / Select Employee</label>*@
-                <!--<label>Select Zone</label>
+            @*<label>कर्मचारी निवडा / Select Employee</label>*@
+            <!--<label>Select Zone</label>
                 <select id="ZoneId" class="form-control form-control form-control-sm"></select>
             </div>
             <div class="col-sm-2">-->
-                @*<label>कर्मचारी निवडा / Select Employee</label>*@
-                <!--<label>Select Ward/Prabhag</label>
+            @*<label>कर्मचारी निवडा / Select Employee</label>*@
+            <!--<label>Select Ward/Prabhag</label>
                 <select id="WardNo" class="form-control form-control form-control-sm"></select>
             </div>
             <div class="col-sm-2">-->
-                @*<label>कर्मचारी निवडा / Select Employee</label>*@
-                <!--<label>Select Area</label>
+            @*<label>कर्मचारी निवडा / Select Employee</label>*@
+            <!--<label>Select Area</label>
                 <select id="AreaId" class="form-control form-control form-control-sm"></select>
             </div>-->
         </div>
@@ -94,13 +94,14 @@
 
             <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
                 <thead>
-                 
+
                     <tr>
                         <th>TransBcId</th>
                         <th> BlockChain TransId </th>
                         <th> Start DateTime</th>
                         <th> End DateTime</th>
                         <th> Dump Yard Id</th>
+                        <th> House List</th>
                         <th>Employee</th>
                         <th> Vehicle Number </th>
                         <th> Trip No </th>
@@ -114,6 +115,26 @@
                     </tr>
                 </thead>
             </table>
+        </div>
+    </div>
+
+    <div class="modal" id="editModal" tabindex="-1" role="dialog" hidden="hidden">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -147,6 +168,7 @@
 </body>
 </html>
 <script>
+    debugger;
     var date = new Date();
 
     var day = date.getDate();

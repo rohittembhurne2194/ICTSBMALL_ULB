@@ -2933,7 +2933,7 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                                      t3.areaId,
                                      WardName = t5.WardNo,
                                      AreaName = t6.Area,
-                                     TStatus= t1.TStatus
+                                      t1.TStatus,                                  
                                  }).ToList();
 
                     if (userId > 0)

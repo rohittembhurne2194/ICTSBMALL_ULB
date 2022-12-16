@@ -20,7 +20,7 @@ namespace SwachBharat.CMS.Dal.DataContexts
         public Nullable<System.DateTime> endDateTime { get; set; }
         public Nullable<int> userId { get; set; }
         public string dyId { get; set; }
-        public string houseList { get; set; }
+        public string  houseList { get; set; }
         public Nullable<int> tripNo { get; set; }
         public string vehicleNumber { get; set; }
         public Nullable<decimal> totalGcWeight { get; set; }
