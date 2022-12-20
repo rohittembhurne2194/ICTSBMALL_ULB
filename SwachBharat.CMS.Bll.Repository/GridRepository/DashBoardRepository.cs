@@ -2934,7 +2934,7 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                                      WardName = t5.WardNo,
                                      AreaName = t6.Area,
                                       t1.TStatus,                                  
-                                 }).ToList();
+                                 }).Where(c=>c.startDateTime>=fdate && c.endDateTime<=tdate).ToList();
 
                     if (userId > 0)
 
@@ -2970,6 +2970,7 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                                       (string.IsNullOrEmpty(c.vehicleNumber) ? " " : c.vehicleNumber) + " " +
                                       (string.IsNullOrEmpty(c.dyId) ? " " : c.dyId) + " " +
                                       (string.IsNullOrEmpty(c.transId) ? " " : c.transId) + " " +
+                                       (string.IsNullOrEmpty(c.houseList) ? " " : c.houseList) + " " +
                                       (string.IsNullOrEmpty(c.bcTransId) ? " " : c.bcTransId)).ToUpper().Contains(SearchString.ToUpper())).ToList();
                         data = model.ToList();
                     }

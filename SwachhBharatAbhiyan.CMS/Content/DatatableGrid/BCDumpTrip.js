@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     var UserId = $('#selectnumber').val();
-
+  
     $.ajax({
         type: "post",
         url: "/Location/UserList",
@@ -78,7 +78,7 @@
             { "data": "startDateTime", "name": "startDateTime", "autoWidth": false },
             { "data": "endDateTime", "name": "endDateTime", "autoWidth": false },
             { "data": "dyId", "name": "dyId", "autoWidth": false },
-              { "data": "houseList", "name": "houseList", "autoWidth": false },
+            /*  { "data": "houseList", "name": "houseList", "autoWidth": false },*/
           
             { "render": function (data, type, full, meta) { return '<input  class="btn btn-sm btn-primary filter-button-style btnhlist" type="button"  value="View HouseList" />'; } },
             { "data": "userName", "name": "userName", "autoWidth": false },
@@ -109,6 +109,27 @@
         jQuery("#dateData").text(data.houseList);
         $('#myModal_Image').modal('show');
     });
+    //debugger;
+    //$.ajax({
+      
+    //    url: "http://124.153.94.110:1010/api/GisHouseDetails/all",
+    //    type: 'GET',
+    //    dataType: 'json',
+    //    beforeSend: function (xhr) {
+    //        xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic2hpcmRpd2FzdGVAdWxiLmNvbSIsIkFwcElkIjoiMzEzMSIsImp0aSI6IjNkN2Q5NzU0LWEzYzQtNDQ3OC05M2NkLWU4ODZhYmQ1NmZiZiIsImV4cCI6MTcwMjk4MTc0NCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzNTUiLCJhdWQiOiJVc2VyIn0.Lm5xQlKeuivM4mDN8g1ccw3Bc0lu_lVP7pbdQNZsZt0');
+    //    },
+    //    headers: {
+    //        'AppId': "3131"
+    //    },
+    //    contentType: 'application/json; charset=utf-8',
+    //    success: function (result) {
+    //        // CallBack(result);
+    //    },
+    //    error: function (error) {
+
+    //    }
+    //});
+
 });
 
 
@@ -160,9 +181,9 @@ function Search() {
     txt_fdate = arr[0];
     txt_tdate = arr[1];
     UserId = $('#selectnumber').val();
-    ZoneId = $('#ZoneId').val();
-    WardId = $('#WardNo').val();
-    AreaId = $('#AreaId').val();
+    ZoneId =0;
+    WardId = 0;
+    AreaId = 0;
     Client = " ";
     NesEvent = " ";
     var Product = "";
