@@ -25,5 +25,9 @@ namespace SwachBharat.CMS.Bll.ViewModels.Grid
         public string bcTransId { get; set; }
         public bool ? TStatus { get; set; }
 
+        public string tHr { get; set; }
+        public string tNh { get; set; }
+        
+
     }
 }

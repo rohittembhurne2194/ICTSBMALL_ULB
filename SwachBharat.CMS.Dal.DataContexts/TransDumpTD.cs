@@ -20,7 +20,7 @@ namespace SwachBharat.CMS.Dal.DataContexts
         public Nullable<System.DateTime> endDateTime { get; set; }
         public Nullable<int> userId { get; set; }
         public string dyId { get; set; }
-        public string  houseList { get; set; }
+        public string houseList { get; set; }
         public Nullable<int> tripNo { get; set; }
         public string vehicleNumber { get; set; }
         public Nullable<decimal> totalGcWeight { get; set; }
@@ -28,5 +28,12 @@ namespace SwachBharat.CMS.Dal.DataContexts
         public Nullable<decimal> totalWetWeight { get; set; }
         public string bcTransId { get; set; }
         public Nullable<bool> TStatus { get; set; }
+        public Nullable<long> bcStartDateTime { get; set; }
+        public Nullable<long> bcEndDateTime { get; set; }
+        public Nullable<decimal> bcTotalGcWeight { get; set; }
+        public Nullable<decimal> bcTotalDryWeight { get; set; }
+        public Nullable<decimal> bcTotalWetWeight { get; set; }
+        public Nullable<System.TimeSpan> tHr { get; set; }
+        public Nullable<int> tNh { get; set; }
     }
 }

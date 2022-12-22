@@ -535,6 +535,13 @@ warning 6002: The table/view 'LIVEAdvanceAppynittyGhantaGadi.dbo.MonthlyAttedanc
           <Property Name="totalWetWeight" Type="decimal" Precision="18" Scale="4" />
           <Property Name="bcTransId" Type="nvarchar" MaxLength="500" />
           <Property Name="TStatus" Type="bit" />
+          <Property Name="bcStartDateTime" Type="bigint" />
+          <Property Name="bcEndDateTime" Type="bigint" />
+          <Property Name="bcTotalGcWeight" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="bcTotalDryWeight" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="bcTotalWetWeight" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="tHr" Type="time" Precision="7" />
+          <Property Name="tNh" Type="int" />
         </EntityType>
         <EntityType Name="UserMaster">
           <Key>
@@ -2962,6 +2969,13 @@ warning 6002: The table/view 'LIVEAdvanceAppynittyGhantaGadi.dbo.Vw_MsgNotificat
           <Property Name="totalWetWeight" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="bcTransId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="TStatus" Type="Boolean" />
+          <Property Name="bcStartDateTime" Type="Int64" />
+          <Property Name="bcEndDateTime" Type="Int64" />
+          <Property Name="bcTotalGcWeight" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="bcTotalDryWeight" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="bcTotalWetWeight" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="tHr" Type="Time" Precision="7" />
+          <Property Name="tNh" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -4603,6 +4617,13 @@ warning 6002: The table/view 'LIVEAdvanceAppynittyGhantaGadi.dbo.Vw_MsgNotificat
           <EntitySetMapping Name="TransDumpTDs">
             <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.TransDumpTD">
               <MappingFragment StoreEntitySet="TransDumpTD">
+                <ScalarProperty Name="tNh" ColumnName="tNh" />
+                <ScalarProperty Name="tHr" ColumnName="tHr" />
+                <ScalarProperty Name="bcTotalWetWeight" ColumnName="bcTotalWetWeight" />
+                <ScalarProperty Name="bcTotalDryWeight" ColumnName="bcTotalDryWeight" />
+                <ScalarProperty Name="bcTotalGcWeight" ColumnName="bcTotalGcWeight" />
+                <ScalarProperty Name="bcEndDateTime" ColumnName="bcEndDateTime" />
+                <ScalarProperty Name="bcStartDateTime" ColumnName="bcStartDateTime" />
                 <ScalarProperty Name="TStatus" ColumnName="TStatus" />
                 <ScalarProperty Name="bcTransId" ColumnName="bcTransId" />
                 <ScalarProperty Name="totalWetWeight" ColumnName="totalWetWeight" />

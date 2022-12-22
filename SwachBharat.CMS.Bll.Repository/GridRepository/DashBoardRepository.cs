@@ -2933,7 +2933,15 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                                      t3.areaId,
                                      WardName = t5.WardNo,
                                      AreaName = t6.Area,
-                                      t1.TStatus,                                  
+                                      t1.TStatus,   
+                                      t1.tNh,
+                                      t1.tHr,
+                                      t1.bcEndDateTime,
+                                      t1.bcStartDateTime,
+                                      t1.bcTotalDryWeight,
+                                      t1.bcTotalGcWeight,
+                                      t1.bcTotalWetWeight,
+                                     
                                  }).Where(c=>c.startDateTime>=fdate && c.endDateTime<=tdate).ToList();
 
                     if (userId > 0)
@@ -2960,7 +2968,9 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                             totalWetWeight = x.totalWetWeight,
                             vehicleNumber = x.vehicleNumber,
                             dyId = x.dyId,
-                            TStatus = x.TStatus
+                            TStatus = x.TStatus,
+                            tHr = Convert.ToString(x.tHr),
+                            tNh = Convert.ToString(x.tNh)
                         }) ;                
                     }
                     if (!string.IsNullOrEmpty(SearchString))
