@@ -48,7 +48,7 @@
             },
 
             {
-                "targets": [13],
+                "targets": [14],
 
                 "visible": true,
 
@@ -84,6 +84,9 @@
             { "data": "userName", "name": "userName", "autoWidth": false },
             { "data": "vehicleNumber", "name": "vehicleNumber","autoWidth": false },
             { "data": "tripNo", "name": "tripNo", "autoWidth": false },
+            { "data": "tNh", "name": "tNh", "autoWidth": false },
+            { "data": "tHr", "name": "tHr", "autoWidth": false },
+
             { "data": "totalGcWeight", "name": "totalGcWeight", "autoWidth": false },
             { "data": "totalDryWeight", "name": "totalDryWeight", "autoWidth": false },
             { "data": "totalWetWeight", "name": "totalWetWeight", "autoWidth": false },
