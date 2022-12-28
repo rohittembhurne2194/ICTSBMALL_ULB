@@ -2932,8 +2932,17 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                                      t3.wardId,
                                      t3.areaId,
                                      WardName = t5.WardNo,
-                                     AreaName = t6.Area
-                                 }).ToList();
+                                     AreaName = t6.Area,
+                                      t1.TStatus,   
+                                      t1.tNh,
+                                      t1.tHr,
+                                      t1.bcEndDateTime,
+                                      t1.bcStartDateTime,
+                                      t1.bcTotalDryWeight,
+                                      t1.bcTotalGcWeight,
+                                      t1.bcTotalWetWeight,
+                                     
+                                 }).Where(c=>c.startDateTime>=fdate && c.endDateTime<=tdate).ToList();
 
                     if (userId > 0)
 
@@ -2946,20 +2955,23 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                     {
                         data.Add(new ICTDumTripGridRow
                         {
-                            TransBcId=x.TransBcId,
+                            TransBcId = x.TransBcId,
                             bcTransId = x.bcTransId,
                             transId = x.transId,
-                            startDateTime = x.startDateTime,
-                            endDateTime = x.endDateTime,
+                            startDateTime = Convert.ToDateTime(x.startDateTime).ToString("dd/MM/yyyy hh:mm tt"),
+                            endDateTime = Convert.ToDateTime(x.endDateTime).ToString("dd/MM/yyyy hh:mm tt"),
                             houseList = x.houseList,
                             tripNo = x.tripNo,
-                            userName=x.userName,
+                            userName = x.userName,
                             totalGcWeight = x.totalGcWeight,
                             totalDryWeight = x.totalDryWeight,
                             totalWetWeight = x.totalWetWeight,
-                            vehicleNumber=x.vehicleNumber,
-                            dyId=x.dyId
-                       });                
+                            vehicleNumber = x.vehicleNumber,
+                            dyId = x.dyId,
+                            TStatus = x.TStatus,
+                            tHr = Convert.ToString(x.tHr),
+                            tNh = Convert.ToString(x.tNh)
+                        }) ;                
                     }
                     if (!string.IsNullOrEmpty(SearchString))
                     {
@@ -2968,6 +2980,7 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                                       (string.IsNullOrEmpty(c.vehicleNumber) ? " " : c.vehicleNumber) + " " +
                                       (string.IsNullOrEmpty(c.dyId) ? " " : c.dyId) + " " +
                                       (string.IsNullOrEmpty(c.transId) ? " " : c.transId) + " " +
+                                       (string.IsNullOrEmpty(c.houseList) ? " " : c.houseList) + " " +
                                       (string.IsNullOrEmpty(c.bcTransId) ? " " : c.bcTransId)).ToUpper().Contains(SearchString.ToUpper())).ToList();
                         data = model.ToList();
                     }

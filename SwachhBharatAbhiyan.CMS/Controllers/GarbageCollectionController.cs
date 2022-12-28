@@ -207,7 +207,7 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
 
 
         public ActionResult BCDumpYardIndex()
-        {
+         {
             if (SessionHandler.Current.AppId != 0)
             {
                 var details = childRepository.GetDashBoardDetails();
