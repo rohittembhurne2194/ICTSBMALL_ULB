@@ -2624,7 +2624,7 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                             Long = x.Long,
                             Address = checkNull(x.locAddresss).Replace("Unnamed Road,", ""),
                             gpAfterImage = (x.gpAfterImage == "" || x.gpAfterImage is null ? "/Images/default_not_upload.png" : x.gpAfterImage.Trim()),
-                            gpBeforImage = (x.gpBeforImage == "" || x.gpAfterImage is null ? "/Images/default_not_upload.png" : x.gpBeforImage.Trim())
+                            gpBeforImage = (x.gpBeforImage == "" || x.gpBeforImage is null ? "/Images/default_not_upload.png" : x.gpBeforImage.Trim())
 
                         });
 
@@ -2737,7 +2737,7 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                             Long = x.Long,
                             Address = checkNull(x.locAddresss).Replace("Unnamed Road,", ""),
                             gpAfterImage = (x.gpAfterImage == "" || x.gpAfterImage is null ? "/Images/default_not_upload.png" : x.gpAfterImage.Trim()),
-                            gpBeforImage = (x.gpBeforImage == "" || x.gpAfterImage is null ? "/Images/default_not_upload.png" : x.gpBeforImage.Trim())
+                            gpBeforImage = (x.gpBeforImage == "" || x.gpBeforImage is null ? "/Images/default_not_upload.png" : x.gpBeforImage.Trim())
 
                         });
 
@@ -2861,7 +2861,7 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                             Long = x.Long,
                             Address = checkNull(x.dyAddress).Replace("Unnamed Road,", ""),
                             gpAfterImage = (x.gpAfterImage == "" || x.gpAfterImage == null ? "/Images/default_not_upload.png" : x.gpAfterImage.Trim()),
-                            gpBeforImage = (x.gpBeforImage == "" || x.gpAfterImage == null ? "/Images/default_not_upload.png" : x.gpBeforImage.Trim())
+                            gpBeforImage = (x.gpBeforImage == "" || x.gpBeforImage == null ? "/Images/default_not_upload.png" : x.gpBeforImage.Trim())
                         });
 
                         foreach (var item in data)
@@ -3074,7 +3074,7 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                             Long = x.Long,
                             Address = checkNull(x.dyAddress).Replace("Unnamed Road,", ""),
                             gpAfterImage = (x.gpAfterImage == "" || x.gpAfterImage == null ? "/Images/default_not_upload.png" : x.gpAfterImage.Trim()),
-                            gpBeforImage = (x.gpBeforImage == "" || x.gpAfterImage == null ? "/Images/default_not_upload.png" : x.gpBeforImage.Trim())
+                            gpBeforImage = (x.gpBeforImage == "" || x.gpBeforImage == null ? "/Images/default_not_upload.png" : x.gpBeforImage.Trim())
                         });
 
                         foreach (var item in data)
@@ -3193,7 +3193,7 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                             Long = x.Long,
                             Address = checkNull(x.locAddresss).Replace("Unnamed Road,", ""),
                             gpAfterImage = (x.gpAfterImage == "" || x.gpAfterImage == null ? "/Images/default_not_upload.png" : x.gpAfterImage.Trim()),
-                            gpBeforImage = (x.gpBeforImage == "" || x.gpAfterImage == null ? "/Images/default_not_upload.png" : x.gpBeforImage.Trim())
+                            gpBeforImage = (x.gpBeforImage == "" || x.gpBeforImage == null ? "/Images/default_not_upload.png" : x.gpBeforImage.Trim())
                         });
 
                         foreach (var item in data)
@@ -3313,7 +3313,7 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                             Long = x.Long,
                             Address = checkNull(x.locAddresss).Replace("Unnamed Road,", ""),
                             gpAfterImage = (x.gpAfterImage == "" || x.gpAfterImage == null ? "/Images/default_not_upload.png" : x.gpAfterImage.Trim()),
-                            gpBeforImage = (x.gpBeforImage == "" || x.gpAfterImage == null ? "/Images/default_not_upload.png" : x.gpBeforImage.Trim())
+                            gpBeforImage = (x.gpBeforImage == "" || x.gpBeforImage == null ? "/Images/default_not_upload.png" : x.gpBeforImage.Trim())
                         });
 
                         foreach (var item in data)
