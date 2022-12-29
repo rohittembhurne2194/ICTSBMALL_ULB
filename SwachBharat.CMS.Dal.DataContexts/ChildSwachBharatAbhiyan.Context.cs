@@ -18,9 +18,10 @@ namespace SwachBharat.CMS.Dal.DataContexts
     public partial class DevChildSwachhBharatNagpurEntities : DbContext
     {
         public DevChildSwachhBharatNagpurEntities(int AppId)
-               : base(SwachBharatAppConnection.GetConnectionString(AppId))
+                : base(SwachBharatAppConnection.GetConnectionString(AppId))
         {
         }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -46,17 +47,13 @@ namespace SwachBharat.CMS.Dal.DataContexts
         public virtual DbSet<SS_1_7_ANSWER> SS_1_7_ANSWER { get; set; }
         public virtual DbSet<WM_Garbage_Sales> WM_Garbage_Sales { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
-        public virtual DbSet<Vw_MsgNotification> Vw_MsgNotification { get; set; }
-        public virtual DbSet<MonthlyAttedance> MonthlyAttedances { get; set; }
         public virtual DbSet<StreetSweepingBeat> StreetSweepingBeats { get; set; }
-        public virtual DbSet<HouseMaster> HouseMasters { get; set; }
         public virtual DbSet<VW_HSGetHouseDetails> VW_HSGetHouseDetails { get; set; }
         public virtual DbSet<VW_HSGetDumpyardDetails> VW_HSGetDumpyardDetails { get; set; }
         public virtual DbSet<VW_HSGetLiquidDetails> VW_HSGetLiquidDetails { get; set; }
         public virtual DbSet<VW_HSGetStreetDetails> VW_HSGetStreetDetails { get; set; }
         public virtual DbSet<EmpBeatMap> EmpBeatMaps { get; set; }
         public virtual DbSet<Vehical_QR_Master> Vehical_QR_Master { get; set; }
-        public virtual DbSet<VehicleRegistration> VehicleRegistrations { get; set; }
         public virtual DbSet<GarbageCollectionDetail> GarbageCollectionDetails { get; set; }
         public virtual DbSet<SauchalayAddress> SauchalayAddresses { get; set; }
         public virtual DbSet<EmpShift> EmpShifts { get; set; }
@@ -67,6 +64,15 @@ namespace SwachBharat.CMS.Dal.DataContexts
         public virtual DbSet<DumpYardDetail> DumpYardDetails { get; set; }
         public virtual DbSet<LiquidWasteDetail> LiquidWasteDetails { get; set; }
         public virtual DbSet<StreetSweepingDetail> StreetSweepingDetails { get; set; }
+        public virtual DbSet<HouseBunch> HouseBunches { get; set; }
+        public virtual DbSet<MasterQRBunch> MasterQRBunches { get; set; }
+        public virtual DbSet<VehicleRegistration> VehicleRegistrations { get; set; }
+        public virtual DbSet<MonthlyAttedance> MonthlyAttedances { get; set; }
+        public virtual DbSet<Vw_MsgNotification> Vw_MsgNotification { get; set; }
+        public virtual DbSet<DumpTripDetailM> DumpTripDetailMs { get; set; }
+        public virtual DbSet<DumpTripDetail> DumpTripDetails { get; set; }
+        public virtual DbSet<HouseMaster> HouseMasters { get; set; }
+        public virtual DbSet<TransDumpTD> TransDumpTDs { get; set; }
     
         public virtual ObjectResult<GetAttendenceDetailsTotal_Result> GetAttendenceDetailsTotal(Nullable<int> userId, Nullable<int> year, Nullable<int> month)
         {
@@ -810,6 +816,15 @@ namespace SwachBharat.CMS.Dal.DataContexts
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CalcMinRouteDist_Result>("SP_CalcMinRouteDist", routeParameter, compDistParameter);
         }
     
+        public virtual ObjectResult<string> Remaining_QRList(Nullable<int> masterId)
+        {
+            var masterIdParameter = masterId.HasValue ?
+                new ObjectParameter("masterId", masterId) :
+                new ObjectParameter("masterId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Remaining_QRList", masterIdParameter);
+        }
+    
         public virtual ObjectResult<SP_HouseOnMapDetailsForEmpBitMap_Result> SP_HouseOnMapDetailsForEmpBitMap(string empType)
         {
             var empTypeParameter = empType != null ?
@@ -817,6 +832,11 @@ namespace SwachBharat.CMS.Dal.DataContexts
                 new ObjectParameter("EmpType", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_HouseOnMapDetailsForEmpBitMap_Result>("SP_HouseOnMapDetailsForEmpBitMap", empTypeParameter);
+        }
+    
+        public virtual ObjectResult<MasterQRBunchDetails_Result> MasterQRBunchDetails()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MasterQRBunchDetails_Result>("MasterQRBunchDetails");
         }
     }
 }

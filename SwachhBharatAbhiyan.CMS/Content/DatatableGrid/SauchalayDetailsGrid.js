@@ -15,24 +15,31 @@
         },
 
         "columnDefs":
-        [{
-            "targets": [0],
-            "visible": false,
-            "searchable": false
-        }],
+            [{
+                "targets": [0],
+                "visible": false,
+                "searchable": false
+            }],
 
         "columns": [
-              { "data": "SauchalayFeedback_ID", "name": "SauchalayFeedback_ID", "autoWidth": false },
-              { "data": "Date", "name": "Date", "autoWidth": false },
-              { "data": "SauchalayID", "name": "SauchalayID", "autoWidth": false },
-              { "data": "Fullname", "name": "Fullname", "autoWidth": false },
-              { "data": "Address", "name": "Address", "autoWidth": false },
-              { "data": "MobileNo", "name": "MobileNo", "autoWidth": false },
-              { "data": "que1", "name": "que1", "autoWidth": false },
-              { "data": "que2", "name": "que2", "autoWidth": false },
-              { "data": "que3", "name": "que3", "autoWidth": false },
-              { "data": "Rating", "name": "Rating", "autoWidth": false },
-              { "data": "Feedback", "name": "Feedback", "autoWidth": false },
+            { "data": "SauchalayFeedback_ID", "name": "SauchalayFeedback_ID", "autoWidth": false },
+            { "data": "Date", "name": "Date", "autoWidth": false },
+            { "data": "SauchalayID", "name": "SauchalayID", "autoWidth": false },
+            { "data": "Fullname", "name": "Fullname", "autoWidth": false },
+            { "data": "Address", "name": "Address", "autoWidth": false },
+            { "data": "MobileNo", "name": "MobileNo", "autoWidth": false },
+            { "data": "que1", "name": "que1", "autoWidth": false },
+            { "data": "que2", "name": "que2", "autoWidth": false },
+            { "data": "que3", "name": "que3", "autoWidth": false },
+            { "data": "que5", "name": "que4", "autoWidth": false },
+            { "data": "que6", "name": "que5", "autoWidth": false },
+            { "data": "que7", "name": "que6", "autoWidth": false },
+            { "data": "que8", "name": "que7", "autoWidth": false },
+            { "data": "que9", "name": "que8", "autoWidth": false },
+            { "data": "que10", "name": "que9", "autoWidth": false },
+            { "data": "que11", "name": "que10", "autoWidth": false },
+            { "data": "Rating", "name": "Rating", "autoWidth": false },
+            { "data": "Feedback", "name": "Feedback", "autoWidth": false },
 
 
 
@@ -83,7 +90,7 @@ function Search() {
     NesEvent = " ";
     var Product = "";
     var catProduct = "";
-    var value = txt_fdate + "," + txt_tdate + "," +","+ $("#s").val();//txt_fdate + "," + txt_tdate + "," + UserId + "," + Client + "," + NesEvent + "," + Product + "," + catProduct + "," + 1;
+    var value = txt_fdate + "," + txt_tdate + "," + "," + $("#s").val();//txt_fdate + "," + txt_tdate + "," + UserId + "," + Client + "," + NesEvent + "," + Product + "," + catProduct + "," + 1;
     // alert(value );
     oTable = $('#demoGrid').DataTable();
     oTable.search(value).draw();

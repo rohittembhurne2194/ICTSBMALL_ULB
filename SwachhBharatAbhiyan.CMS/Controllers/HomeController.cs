@@ -38,7 +38,7 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
                 ViewBag.lat = SessionHandler.Current.Latitude;
                 ViewBag.lang = SessionHandler.Current.Logitude;
                 ViewBag.YoccFeddbackLink = SessionHandler.Current.YoccFeddbackLink;
-            
+              
                 var details = childRepository.GetDashBoardDetails();
                 return View(details);
             }

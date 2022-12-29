@@ -17,7 +17,7 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
 
 
         public string GetJqGridJson(string INSERT_ID, string draw, string start, string length, string rn, DateTime? fdate = null, DateTime? tdate = null, int userId = 0, string clientName = null, int? param1 = null, int? param2 = null, int? param3 = null, int? param5 = null, int? param6 = null, string smonth="", string emonth="", string syear="", string eyear="")
-        {
+       {
             if (Convert.ToInt32(length) == 5)
             {
                 length = "10";
@@ -446,6 +446,10 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
                 case "DumpYardDetails":
                     gridRepository = new DumpYardCollectionGridRepository(0, searchString, fdate, tdate, userId, appId,param1,param2,param3);
                     return gridRepository;
+
+                case "BCDumpYardTrip":
+                    gridRepository = new DumpYardTripGridRepository(0, searchString, fdate, tdate, userId, appId, param1, param2, param3);
+                    return gridRepository;
                     break;
                 case "DumpYardSupervisorDetails":
                     gridRepository = new DumpYardSupervisorCollecGridRepository(0, searchString, fdate, tdate, userId, appId, param1, param2, param3);
@@ -619,8 +623,20 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
                     gridRepository = new StreetSweepBeatGrid(0, searchString, appId);
                     return gridRepository;
                     break;
+                case "HouseBunchDetail":
+                    gridRepository = new HouseBunchGridRepository(0, searchString, appId);
+                    return gridRepository;
+                    break;
+                case "MasterQRBunchDetailA":
+                    gridRepository = new MasterQRBunchDetailsGridRepository(0, searchString, "1", appId);
+                    return gridRepository;
+                    break;
+                case "MasterQRBunchDetailNA":
+                    gridRepository = new MasterQRBunchDetailsGridRepository(0, searchString, "0", appId);
+                    return gridRepository;
+                    break;
             }
-            
+
             return null;
         }
 

@@ -18,6 +18,7 @@ using SwachBharat.CMS.Bll.ViewModels.MainModel;
 using SwachBharat.CMS.Bll.ViewModels.ChildModel.Model;
 using System.Configuration;
 using System.Data.SqlClient;
+using SwachBharat.CMS.Dal.DataContexts;
 
 namespace SwachhBharatAbhiyan.CMS.Controllers
 {
@@ -27,8 +28,8 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private IMainRepository mainrepository;
+        DevSwachhBharatMainEntities dbMain = new DevSwachhBharatMainEntities();
 
-       
         public AccountController()
         {
            // AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
@@ -70,13 +71,27 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> Login(string returnUrl, string Type=null)
         {
+            DevSwachhBharatMainEntities dbmain = new DevSwachhBharatMainEntities();
+            var apikey = dbmain.GoogleAPIDetails.Select(a => a.GoogleAPI).FirstOrDefault();
+            Session["apikey"] = apikey;
             if (returnUrl !=null)
             {
+
                 if (Type == "W")
                 {
                     LoginViewModel model = new LoginViewModel();
+                    var psw = dbMain.AspNetUsers.Where(c => c.Email == returnUrl).Select(c => c.PasswordString).FirstOrDefault();
+                    if (psw == null)
+                    {
+                        model.Password = "Admin#123";
+                    }
+                    else
+                    {
+                        model.Password = psw;
+                    }
+                    
                     model.Email = returnUrl;
-                    model.Password = "Admin#123";
+                    //model.Password = "Admin#123";
                     model.Type = Type;
                     // This doesn't count login failures towards account lockout
                     // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -120,10 +135,20 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
                 {
 
                     LoginViewModel model = new LoginViewModel();
-                    
                     EmployeeVM Result = new EmployeeVM();
+
+                    var psw = dbMain.AspNetUsers.Where(c => c.Email == returnUrl).Select(c => c.PasswordString).FirstOrDefault();
+                    if (psw == null)
+                    {
+                        Result.ADUM_PASSWORD = "Admin#123";
+                    }
+                    else
+                    {
+                        Result.ADUM_PASSWORD = psw;
+                    }
+
                     Result.ADUM_LOGIN_ID = returnUrl;
-                    Result.ADUM_PASSWORD = "Admin#123";
+                   // Result.ADUM_PASSWORD = "Admin#123";
                     Result = mainrepository.Login(Result);
 
                     switch (Result.status)
@@ -159,8 +184,19 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
                     LoginViewModel model = new LoginViewModel();
 
                     EmployeeVM Result = new EmployeeVM();
+
+                    var psw = dbMain.AspNetUsers.Where(c => c.Email == returnUrl).Select(c => c.PasswordString).FirstOrDefault();
+                    if (psw == null)
+                    {
+                        Result.ADUM_PASSWORD = "Admin#123";
+                    }
+                    else
+                    {
+                        Result.ADUM_PASSWORD = psw;
+                    }
+
                     Result.ADUM_LOGIN_ID = returnUrl;
-                    Result.ADUM_PASSWORD = "Admin#123";
+                    //Result.ADUM_PASSWORD = "Admin#123";
                     Result = mainrepository.LoginStreet(Result);
                     //var UserDetails = await UserManager.FindAsync(model.Email, model.Password);
                     switch (Result.status)
@@ -500,6 +536,7 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
+
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByEmailAsync(model.Email);

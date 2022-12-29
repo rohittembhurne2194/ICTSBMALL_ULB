@@ -790,6 +790,28 @@ namespace SwachBharat.CMS.Bll.Repository.ChildRepository
             StreetSweepVM dd = screenService.SaveStreetBeatDetails(data);
             return dd;
         }
+
+        public HouseQRBunchVM GetHouseBunch(int teamId)
+        {
+            return screenService.GetHouseBunch(teamId);
+        }
+        public void SaveHouseBunch(HouseQRBunchVM housebunch)
+        {
+            if (housebunch.bunchId <= 0)
+            {
+                housebunch.bunchId = 0;
+            }
+            screenService.SaveHouseBunchDetails(housebunch);
+        }
+        public MasterQRDetailsVM GetMasterQRBunchById(int teamId)
+        {
+            return screenService.GetMasterQRBunchDetails(teamId);
+        }
+        public void SaveMasterQrBunchDetails(MasterQRDetailsVM type)
+        {
+
+            screenService.SaveMasterQRBunchDetails(type);
+        }
     }
 }
 

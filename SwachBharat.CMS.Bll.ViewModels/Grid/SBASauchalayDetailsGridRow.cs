@@ -21,5 +21,15 @@ namespace SwachBharat.CMS.Bll.ViewModels.Grid
         public string Feedback { get; set; }
         public string Date { get; set; }
         public string Address { get; set; }
+
+        public string que4 { get; set; }
+        public string que5 { get; set; }
+        public string que6 { get; set; }
+        public string que7 { get; set; }
+        public string que8 { get; set; }
+        public string que9 { get; set; }
+        public string que10 { get; set; }
+        public string que11 { get; set; }
+        
     }
 }

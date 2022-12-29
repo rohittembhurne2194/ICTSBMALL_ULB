@@ -369,9 +369,14 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
         {
             if (SessionHandler.Current.AppId != 0)
             {
+                SBALocationMapViewVM obj = new SBALocationMapViewVM();
+                EmpBeatMapVM empBeatMap = childRepository.GetEmpBeatMap(ebmId);
+                List<SBALHouseLocationMapView> objLoc = new List<SBALHouseLocationMapView>();
+                objLoc = childRepository.GetAllHouseLocationForEmpBitMap(Emptype, ebmId);
 
-                List<SBALHouseLocationMapView> obj = new List<SBALHouseLocationMapView>();
-                obj = childRepository.GetAllHouseLocationForEmpBitMap(Emptype, ebmId);
+                obj.lstUserLocation = objLoc;
+                obj.poly = empBeatMap.ebmLatLong;
+
                 // return Json(obj);
                 //if (houseid != null && houseid != "null" && houseid != "-1")
                 //{

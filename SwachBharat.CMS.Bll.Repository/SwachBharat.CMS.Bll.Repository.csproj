@@ -102,6 +102,7 @@
     <Compile Include="GridRepository\Grid\DumpYardCollectionGridRepository.cs" />
     <Compile Include="GridRepository\Grid\DumpYardGridRepository.cs" />
     <Compile Include="GridRepository\Grid\DumpYardSupervisorCollecGridRepository.cs" />
+    <Compile Include="GridRepository\Grid\DumpYardTripGridRepository.cs" />
     <Compile Include="GridRepository\Grid\EmloyeeGridRepository.cs" />
     <Compile Include="GridRepository\Grid\EmpBeatMapsGridRepository.cs" />
     <Compile Include="GridRepository\Grid\EmpolyeeSummaryGridRepository.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="GridRepository\Grid\GarbageCountGridRepository.cs" />
     <Compile Include="GridRepository\Grid\HGarbageCotectionGridRepository.cs" />
     <Compile Include="GridRepository\Grid\GarbagePointGridRepository.cs" />
+    <Compile Include="GridRepository\Grid\HouseBunchGridRepository.cs" />
     <Compile Include="GridRepository\Grid\HouseDetailsGridRepository.cs" />
     <Compile Include="GridRepository\Grid\HouseScanifyGridRepository.cs" />
     <Compile Include="GridRepository\Grid\HSAttendanceGridRepository.cs" />
@@ -127,6 +129,7 @@
     <Compile Include="GridRepository\Grid\LiquidWasteGridRepository.cs" />
     <Compile Include="GridRepository\Grid\LiquidZoneGridRepository.cs" />
     <Compile Include="GridRepository\Grid\LocationGridRepository.cs" />
+    <Compile Include="GridRepository\Grid\MasterQRBunchDetailsGridRepository.cs" />
     <Compile Include="GridRepository\Grid\MasterQRDetailsGridRepository.cs" />
     <Compile Include="GridRepository\Grid\MonthlyAttendeceGridRepository.cs" />
     <Compile Include="GridRepository\Grid\OnePointeightEditGridRepository.cs" />

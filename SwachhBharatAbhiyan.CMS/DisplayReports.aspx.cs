@@ -53,21 +53,28 @@ namespace SwachhBharatAbhiyan.CMS
                     //string urlReportServer = "http://192.168.100.123/ReportServer";
                     //string urlReportServer = "http://192.168.100.123/ReportServer";
                     string urlReportServer = "";
-                   
-                    
-                    urlReportServer = "http://202.65.157.253:85/ReportServer";
-                        //string urlReportServer = "http://COMP-7/ReportServer";
-                        //rptViewer.ServerReport.ReportServerCredentials = new ReportServerCredentials("Administrator", "Pass@123", "192.168.100.7");
-                    rptViewer.ServerReport.ReportServerCredentials = new ReportServerCredentials("Administrator", "Telec0m#B!9V", "202.65.157.253");
-                  
-                    rptViewer.ProcessingMode = ProcessingMode.Remote;
 
+                    //Live Server
+                    urlReportServer = "http://202.65.157.253:85/ReportServer";
+                    rptViewer.ServerReport.ReportServerCredentials = new ReportServerCredentials("Administrator", "Telec0m#B!9V", "202.65.157.253");
+                    //ICTSBM Server
+                    //   urlReportServer = "http://183.177.126.114:82/ReportServer";
+                    //   rptViewer.ServerReport.ReportServerCredentials = new ReportServerCredentials("Administrator", "Telec0m#B!9V", "183.177.126.114");
+                    ////   string urlReportServer = "http://COMP-7/ReportServer";
+                    //rptViewer.ServerReport.ReportServerCredentials = new ReportServerCredentials("Administrator", "Pass@123", "192.168.100.7");
+
+
+                    rptViewer.ProcessingMode = ProcessingMode.Remote;
+              
                     rptViewer.ServerReport.ReportServerUrl = new Uri(urlReportServer);
                     rptViewer.ServerReport.ReportPath = "/ICTSBM_BI_REPORT_NEW/" + ReportName;
                     rptViewer.ShowToolBar = true;
                     rptViewer.BackColor = System.Drawing.Color.White;
+                    rptViewer.Page.Culture = "en-US";
+                    rptViewer.Page.UICulture = "en-US";
                     //rptViewer.Parent.ResolveClientUrl.
-
+                    rptViewer.Page.Culture = "en-US";
+                    rptViewer.Page.UICulture = "en-US";
                     if (ReportName == "Ghar Sankalan Tapashil")
                     {
                         ReportParameter[] param = new ReportParameter[7];

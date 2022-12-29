@@ -1335,27 +1335,28 @@ namespace SwachBharat.CMS.Bll.Services
         public List<EmployeeHouseCollectionInnerOuter> getEmployeeHouseCollectionInnerOuter()
         {
             List<EmployeeHouseCollectionInnerOuter> obj = new List<EmployeeHouseCollectionInnerOuter>();
-            int innerCount = 0;
-            using (var db = new DevChildSwachhBharatNagpurEntities(AppID))
-            {
-                var data = db.SP_EmployeeHouseCollectionCount().ToList();
-                foreach (var x in data)
-                {
-                    innerCount = getInnerCountByUserId(x.userId, x.TodayDate);
-                    obj.Add(new EmployeeHouseCollectionInnerOuter()
-                    {
-                        userId = x.userId,
-                        userName = x.userName,
-                        inTime = x.inTime,
-                        TotalCount = x.TotHouseCount,
-                        InnerCount = innerCount,
-                        OuterCount = x.TotHouseCount - innerCount,
-                        ToDate = x.TodayDate.ToString()
-                    });
+            //int innerCount = 0;
+            //using (var db = new DevChildSwachhBharatNagpurEntities(AppID))
+            //{
+            //    var data = db.SP_EmployeeHouseCollectionCount().ToList();
+            //    foreach (var x in data)
+            //    {
+            //        innerCount = getInnerCountByUserId(x.userId, x.TodayDate);
+            //        obj.Add(new EmployeeHouseCollectionInnerOuter()
+            //        {
+            //            userId = x.userId,
+            //            userName = x.userName,
+            //            inTime = x.inTime,
+            //            TotalCount = x.TotHouseCount,
+            //            InnerCount = innerCount,
+            //            OuterCount = x.TotHouseCount - innerCount,
+            //            ToDate = x.TodayDate.ToString()
+            //        });
 
-                }
-            }
-            return obj.OrderBy(c => c.userName).ToList();
+            //    }
+            //}
+            //return obj.OrderBy(c => c.userName).ToList();
+            return obj;
         }
 
         public int getInnerCountByUserId(int userId, DateTime? todayDate)
@@ -2924,7 +2925,7 @@ namespace SwachBharat.CMS.Bll.Services
             List<coordinates> subList = new List<coordinates>();
 
             string baseURL = "https://maps.googleapis.com/maps/api/directions/xml";
-            string apiKey = "AIzaSyBnR8YLcfpwSLWXGO6JR3wFPY133r086DI";
+            string apiKey = "AIzaSyB7w-l0RWEUVqhXyshtsgdkqJDNxaKQ5lY";
             //var tasks = new List<List<coordinates>>();
 
 
@@ -9770,6 +9771,345 @@ namespace SwachBharat.CMS.Bll.Services
 
             }
             return lstShifts;
+        }
+        public void SaveHouseBunchDetails(HouseQRBunchVM data)
+        {
+            try
+            {
+                using (var db = new DevChildSwachhBharatNagpurEntities(AppID))
+                {
+                    if (data.bunchId > 0)
+                    {
+                        var model = db.HouseBunches.Where(x => x.bunchId == data.bunchId).FirstOrDefault();
+                        if (model != null)
+                        {
+                            model.bunchId = data.bunchId;
+                            model.bunchname = data.bunchName;
+                            db.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        var housebunch = FillHouseBunchDataModel(data);
+                        if (housebunch.bunchname != null)
+                        {
+                            db.HouseBunches.Add(housebunch);
+                            db.SaveChanges();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public MasterQRDetailsVM GetMasterQRBunchDetails(int teamId)
+        {
+            try
+            {
+                DevSwachhBharatMainEntities dbMain = new DevSwachhBharatMainEntities();
+
+                var db = new DevChildSwachhBharatNagpurEntities(AppID);
+                var appDetails = dbMain.AppDetails.Where(x => x.AppId == AppID).FirstOrDefault();
+
+
+                string ThumbnaiUrlCMS = appDetails.baseImageUrlCMS + appDetails.basePath + appDetails.UserProfile + "/";
+
+                MasterQRDetailsVM master = new MasterQRDetailsVM();
+
+
+                var Details = db.MasterQRBunches.Where(x => x.MasterId == teamId).FirstOrDefault();
+                //if (houseId > 0)
+                //{
+                //    Details = db.MasterQRBunches.Where(x => x.MasterId == teamId & x.HouseBunchId == houseId).FirstOrDefault();
+
+                //}
+                if (Details != null)
+                {
+                    master = FillMasterQRBunchDetailsViewModel(Details);
+
+                    var ReQRList = db.Remaining_QRList(teamId).FirstOrDefault();
+
+                    string r = ReQRList.ToString();
+                    string[] values_new = Array.ConvertAll(r.Split(','), p => p.Trim());
+
+                    var excluding = values_new;
+
+                    // master.CheckHlist = db.HouseLists.Where(x => x.IsActive == true).OrderBy(x => x.ReferanceId).ToList<HouseList>();
+                    master.CheckHlist = db.HouseLists.Where(x => x.IsActive == true && !excluding.Contains(x.ReferanceId)).OrderBy(x => x.HouseId).ToList<HouseList>();
+
+
+
+                    // master.CheckAppDs = (List<HouseMaster>)db.HouseMasters.Where(x => x.ReferanceId != null).Select(x => new { x.ReferanceId, x.houseId });
+
+                    if (master.QRList != null)
+                    {
+                        string s = master.QRList;
+                        string[] values = s.Split(',');
+
+                        var including = values;
+
+                        master.SelectedHouseList = db.HouseLists.Where(x => including.Contains(x.ReferanceId)).OrderBy(x => x.HouseId).ToList<HouseList>();
+
+
+
+                        for (int i = 0; i < values.Length; i++)
+                        {
+                            char[] MyChar = { 'H', 'P', 'S', 'B', 'A' };
+                            values[i] = values[i].Trim(MyChar);
+
+
+                            int u = 0;
+                            if (values[i] != "")
+                            {
+                                u = Convert.ToInt32(values[i]);
+                                int number = 1000;
+                                u = u - number;
+                            }
+                            string state1 = "";
+                            foreach (var v in master.CheckHlist)
+                            {
+                                if (v.HouseId == u)
+                                {
+
+                                    v.IsCheked = true;
+
+
+
+                                }
+                            }
+                        }
+
+                    }
+                    master.BunchList = ListBunch(teamId);
+                    return master;
+                }
+                else
+                {
+
+                    var areaid = db.HouseLists.FirstOrDefault();
+                    if (areaid == null)
+                    {
+                        var AreaId = 0;
+                        var including = "";
+
+                        var ReQRList = db.Remaining_QRList(0).FirstOrDefault();
+
+                        string r = ReQRList.ToString();
+                        string[] values_new = Array.ConvertAll(r.Split(','), p => p.Trim());
+
+                        var excluding = values_new;
+
+                        //master.CheckHlist = db.HouseLists.Where(x => x.IsActive == true & x.AreaId > 0).OrderBy(x => x.HouseId).ToList<HouseList>();
+                        master.CheckHlist = db.HouseLists.Where(x => x.IsActive == true && !excluding.Contains(x.ReferanceId)).OrderBy(x => x.HouseId).ToList<HouseList>();
+                        master.SelectedHouseList = db.HouseLists.Where(x => including.Contains(x.ReferanceId)).OrderBy(x => x.HouseId).ToList<HouseList>();
+                        // master.CheckAppDs = (List<HouseMaster>)db.HouseMasters.Where(x => x.ReferanceId != null).Select(x => new { x.ReferanceId, x.houseId });
+                        master.BunchList = ListBunch(teamId);
+                        return master;
+                    }
+                    else
+                    {
+                        var AreaId = areaid.AreaId;
+                        var including = "";
+
+                        var ReQRList = db.Remaining_QRList(0).FirstOrDefault();
+
+                        string r = ReQRList.ToString();
+                        //string[] values_new = r.Split(',');
+
+                        string[] values_new = Array.ConvertAll(r.Split(','), p => p.Trim());
+
+                        var excluding = values_new;
+                        // master.CheckHlist = db.HouseLists.Where(x => x.IsActive == true & x.AreaId == AreaId).OrderBy(x => x.HouseId).ToList<HouseList>();
+                        master.CheckHlist = db.HouseLists.Where(x => x.IsActive == true && !excluding.Contains(x.ReferanceId)).OrderBy(x => x.HouseId).ToList<HouseList>();
+                        master.SelectedHouseList = db.HouseLists.Where(x => including.Contains(x.ReferanceId)).OrderBy(x => x.HouseId).ToList<HouseList>();
+                        // master.CheckAppDs = (List<HouseMaster>)db.HouseMasters.Where(x => x.ReferanceId != null).Select(x => new { x.ReferanceId, x.houseId });
+                        master.BunchList = ListBunch(teamId);
+                        return master;
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public void SaveMasterQRBunchDetails(MasterQRDetailsVM data)
+        {
+            try
+            {
+                using (var db = new DevChildSwachhBharatNagpurEntities(AppID))
+                {
+                    if (data.masterId > 0)
+                    {
+                        var model = db.MasterQRBunches.Where(x => x.MasterId == data.masterId).FirstOrDefault();
+                        if (model != null)
+                        {
+
+                            model.MasterId = data.masterId;
+                            model.HouseBunchId = data.HouseBunchId;
+                            model.ISActive = data.isActive;
+                            string state1 = "";
+                            foreach (var s in data.CheckHlist)
+                            {
+                                if (s.IsCheked == true)
+                                {
+
+                                    state1 += s.ReferanceId + ",";
+
+                                }
+                            }
+                            model.QRList = state1;
+                            db.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        if (!db.MasterQRBunches.Any(x => x.HouseBunchId == data.HouseBunchId))
+                        {
+                            var type = FillMasterQRBunchDataModel(data);
+
+                            //arr[CheckAppD] myArray = data.CheckAppDs.ToArray();
+
+                            string state1 = "";
+                            foreach (var s in data.CheckHlist)
+                            {
+                                if (s.IsCheked == true)
+                                {
+
+                                    state1 += s.ReferanceId + ",";
+
+                                }
+                            }
+
+                            type.QRList = state1;
+
+                            db.MasterQRBunches.Add(type);
+                            db.SaveChanges();
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+
+        }
+        private MasterQRBunch FillMasterQRBunchDataModel(MasterQRDetailsVM data)
+        {
+            MasterQRBunch model = new MasterQRBunch();
+            model.MasterId = data.masterId;
+            model.HouseBunchId = data.HouseBunchId;
+            model.ISActive = data.isActive;
+            return model;
+        }
+
+        public List<SelectListItem> ListBunch(int teamId)
+        {
+            var House = new List<SelectListItem>();
+            SelectListItem itemAdd = new SelectListItem() { Text = "--Select Bunch--", Value = "0" };
+
+            try
+            {
+
+                if (teamId > 0)
+                {
+
+                    House = db.HouseBunches.ToList()
+                       .Select(x => new SelectListItem
+                       {
+                           Text = x.bunchname,
+                           Value = x.bunchId.ToString()
+                       }).OrderBy(t => t.Text).ToList();
+
+                    House.Insert(0, itemAdd);
+                }
+                else
+                {
+                    House = db.HouseBunches.Where(p => db.MasterQRBunches.All(x => x.HouseBunchId != p.bunchId)).ToList()
+                       .Select(x => new SelectListItem
+                       {
+                           Text = x.bunchname,
+                           Value = x.bunchId.ToString()
+                       }).OrderBy(t => t.Text).ToList();
+
+                    House.Insert(0, itemAdd);
+                }
+
+            }
+            catch (Exception ex) { throw ex; }
+
+            return House;
+        }
+
+        private MasterQRDetailsVM FillMasterQRBunchDetailsViewModel(MasterQRBunch data)
+        {
+
+            MasterQRDetailsVM model = new MasterQRDetailsVM();
+            model.masterId = data.MasterId;
+            model.HouseBunchId = data.HouseBunchId;
+            model.QRList = data.QRList;
+            model.isActive = data.ISActive;
+
+
+            return model;
+        }
+
+        private HouseBunch FillHouseBunchDataModel(HouseQRBunchVM data)
+        {
+
+            HouseBunch model = new HouseBunch();
+
+            var modelt = db.HouseBunches.Where(x => x.bunchname == data.bunchName).FirstOrDefault();
+
+            if (modelt == null)
+            {
+                model.bunchId = data.bunchId;
+                model.bunchname = data.bunchName;
+
+                return model;
+            }
+
+            return model;
+        }
+
+        public HouseQRBunchVM GetHouseBunch(int teamId)
+        {
+            try
+            {
+                using (var db = new DevChildSwachhBharatNagpurEntities(AppID))
+                {
+                    var Details = db.HouseBunches.Where(x => x.bunchId == teamId).FirstOrDefault();
+                    if (Details != null)
+                    {
+                        HouseQRBunchVM housebunch = FillHouseBunchViewModel(Details);
+
+                        return housebunch;
+                    }
+                    else
+                    {
+                        HouseQRBunchVM housebunch = new HouseQRBunchVM();
+                        return housebunch;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        private HouseQRBunchVM FillHouseBunchViewModel(HouseBunch data)
+        {
+            HouseQRBunchVM model = new HouseQRBunchVM();
+            model.bunchId = data.bunchId;
+            model.bunchName = data.bunchname;
+            return model;
         }
     }
 }

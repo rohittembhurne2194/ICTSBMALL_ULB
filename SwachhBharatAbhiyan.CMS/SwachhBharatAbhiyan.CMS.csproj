@@ -1768,6 +1768,7 @@
     <Content Include="Content\DatatableGrid\AttendenceDetailGrid.js" />
     <Content Include="Content\DatatableGrid\AttendenceGrid.js" />
     <Content Include="Content\DatatableGrid\AURGridDetails.js" />
+    <Content Include="Content\DatatableGrid\BCDumpTrip.js" />
     <Content Include="Content\DatatableGrid\Complaint.js" />
     <Content Include="Content\DatatableGrid\District.js" />
     <Content Include="Content\DatatableGrid\DumpPlantAttendenceGrid.js" />
@@ -1781,6 +1782,7 @@
     <Content Include="Content\DatatableGrid\EmpShiftDetailsGrid.js" />
     <Content Include="Content\DatatableGrid\GarbageCountGrid.js" />
     <Content Include="Content\DatatableGrid\GarbagePointGrid.js" />
+    <Content Include="Content\DatatableGrid\HouseBunchGrid.js" />
     <Content Include="Content\DatatableGrid\HouseScanify.js" />
     <Content Include="Content\DatatableGrid\HouseScanifyUR.js" />
     <Content Include="Content\DatatableGrid\HSAttendenceGrid.js" />
@@ -1794,6 +1796,7 @@
     <Content Include="Content\DatatableGrid\InfotainmentResult.js" />
     <Content Include="Content\DatatableGrid\League.js" />
     <Content Include="Content\DatatableGrid\Log.js" />
+    <Content Include="Content\DatatableGrid\MasterQRBunchDetailsGrid.js" />
     <Content Include="Content\DatatableGrid\MasterQRDetailsGrid.js" />
     <Content Include="Content\DatatableGrid\MonthlyAttendenceGrid.js" />
     <Content Include="Content\DatatableGrid\OnepointeightEditGrid.js" />
@@ -3237,6 +3240,14 @@
     <Content Include="Views\MasterQR\AddMasterQRDetails.cshtml" />
     <Content Include="Views\Report\CTPTReport.cshtml" />
     <Content Include="Views\Report\CTPTFeedbackReport.cshtml" />
+    <Content Include="Views\MainMaster\MenuHouseQRBunchIndex.cshtml" />
+    <Content Include="Views\MainMaster\HouseQRBunchIndex.cshtml" />
+    <Content Include="Views\MainMaster\AddHouseQRBunchDetails.cshtml" />
+    <Content Include="Views\MasterQR\MenuQRBunchIndex.cshtml" />
+    <Content Include="Views\MasterQR\QRBunchIndex.cshtml" />
+    <Content Include="Views\MasterQR\AddMasterQRBunchDetails.cshtml" />
+    <Content Include="Views\GarbageCollection\MenuBCDumpYardIndex.cshtml" />
+    <Content Include="Views\GarbageCollection\BCDumpYardIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3324,7 +3335,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>34543</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:34543/</IISUrl>
+          <IISUrl>http://localhost:3454/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>http://202.65.157.254:6570/</CustomServerUrl>

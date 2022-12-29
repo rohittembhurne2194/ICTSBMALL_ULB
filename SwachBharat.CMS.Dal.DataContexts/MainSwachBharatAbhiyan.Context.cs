@@ -35,22 +35,23 @@ namespace SwachBharat.CMS.Dal.DataContexts
         public virtual DbSet<state_districts> state_districts { get; set; }
         public virtual DbSet<Subscription> Subscriptions { get; set; }
         public virtual DbSet<UserInApp> UserInApps { get; set; }
-        public virtual DbSet<Sauchalay_feedback> Sauchalay_feedback { get; set; }
         public virtual DbSet<Game_AnswerType> Game_AnswerType { get; set; }
         public virtual DbSet<Game_Slogan> Game_Slogan { get; set; }
         public virtual DbSet<GameDetail> GameDetails { get; set; }
         public virtual DbSet<GameMaster> GameMasters { get; set; }
         public virtual DbSet<GamePlayerDetail> GamePlayerDetails { get; set; }
-        public virtual DbSet<AD_USER_MST_LIQUID> AD_USER_MST_LIQUID { get; set; }
-        public virtual DbSet<AD_USER_MST_STREET> AD_USER_MST_STREET { get; set; }
         public virtual DbSet<EmployeeMaster> EmployeeMasters { get; set; }
-        public virtual DbSet<CheckAppD> CheckAppDs { get; set; }
         public virtual DbSet<AEmployeeMaster> AEmployeeMasters { get; set; }
-        public virtual DbSet<tehsil> tehsils { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<AppDetail> AppDetails { get; set; }
         public virtual DbSet<UR_Location> UR_Location { get; set; }
         public virtual DbSet<HSUR_Daily_Attendance> HSUR_Daily_Attendance { get; set; }
+        public virtual DbSet<GoogleAPIDetail> GoogleAPIDetails { get; set; }
+        public virtual DbSet<tehsil> tehsils { get; set; }
+        public virtual DbSet<AD_USER_MST_LIQUID> AD_USER_MST_LIQUID { get; set; }
+        public virtual DbSet<AD_USER_MST_STREET> AD_USER_MST_STREET { get; set; }
+        public virtual DbSet<CheckAppD> CheckAppDs { get; set; }
+        public virtual DbSet<Sauchalay_feedback> Sauchalay_feedback { get; set; }
     
         public virtual int SP_Admin_table()
         {

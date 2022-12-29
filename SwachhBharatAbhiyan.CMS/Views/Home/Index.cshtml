@@ -519,7 +519,7 @@
                             <div style="position:relative;top: 94%;z-index: 1; background-color:#fff;height:12px;width:62px;padding-top:10px">
 
                             </div>
-                            <div id="chartContainerTarget2" style="height: 250px; width: 100%;position:absolute">
+                            <div id="chartContainerTarget20" style="height: 250px; width: 100%;position:absolute">
                             </div>
 
                         </div>
@@ -538,7 +538,7 @@
                             <div style="position:relative;top: 94%;z-index: 1; background-color:#fff;height:12px;width:62px;padding-top:10px">
 
                             </div>
-                            <div id="chartContainerTarget2" style="height: 250px; width: 100%;position:absolute">
+                            <div id="chartContainerTarget20" style="height: 250px; width: 100%;position:absolute">
                             </div>
 
                         </div>
@@ -745,10 +745,11 @@
 <script>
     document.addEventListener('contextmenu', event => event.preventDefault());
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnR8YLcfpwSLWXGO6JR3wFPY133r086DI&callback=myMap" type="text/javascript"></script>
+@*<script async defer src="https://maps.googleapis.com/maps/api/js?key=@Session["apikey"]&callback=myMap" type="text/javascript"></script>*@
 
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=@Session["apikey"]&callback=myMap" type="text/javascript"></script>
 @*Paid API*@
-@*<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnR8YLcfpwSLWXGO6JR3wFPY133r086DI&callback=myMap" type="text/javascript"></script>*@
+@*<script async defer src="https://maps.googleapis.com/maps/api/js?key=@Session["apikey"]&callback=myMap" type="text/javascript"></script>*@
 
 <!-- Dashboard Header Section    -->
 <script src="~/Content/Custom/HomeIndex.js"></script>

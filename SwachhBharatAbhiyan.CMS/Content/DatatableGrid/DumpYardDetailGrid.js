@@ -21,7 +21,7 @@
 
         "initComplete": function (settings, json) {
             
-            if ($("#asdf").text() == "mangalwedhawaste@ulb.com!" || $("#asdf").text() == "appynittywaste@ulb.com!") {
+            if ($("#asdf").text() == "mangalwedhawaste@ulb.com!" || $("#asdf").text() == "appynittywaste@ulb.com1!") {
                 table.columns([8]).visible(false);
                 table.columns([10]).visible(false);
                 table.columns([11]).visible(false);

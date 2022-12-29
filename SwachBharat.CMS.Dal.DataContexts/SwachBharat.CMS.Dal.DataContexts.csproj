@@ -146,6 +146,12 @@
     <Compile Include="Daily_Attendance.cs">
       <DependentUpon>ChildSwachBharatAbhiyan.tt</DependentUpon>
     </Compile>
+    <Compile Include="DumpTripDetail.cs">
+      <DependentUpon>ChildSwachBharatAbhiyan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DumpTripDetailM.cs">
+      <DependentUpon>ChildSwachBharatAbhiyan.tt</DependentUpon>
+    </Compile>
     <Compile Include="DumpYardDetail.cs">
       <DependentUpon>ChildSwachBharatAbhiyan.tt</DependentUpon>
     </Compile>
@@ -185,7 +191,13 @@
     <Compile Include="GetVehicleDetails_Result.cs">
       <DependentUpon>ChildSwachBharatAbhiyan.tt</DependentUpon>
     </Compile>
+    <Compile Include="GoogleAPIDetail.cs">
+      <DependentUpon>MainSwachBharatAbhiyan.tt</DependentUpon>
+    </Compile>
     <Compile Include="GramCleaningComplient.cs">
+      <DependentUpon>ChildSwachBharatAbhiyan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HouseBunch.cs">
       <DependentUpon>ChildSwachBharatAbhiyan.tt</DependentUpon>
     </Compile>
     <Compile Include="houseCollection_Result.cs">
@@ -243,6 +255,12 @@
       <DependentUpon>MainSwachBharatAbhiyan.edmx</DependentUpon>
     </Compile>
     <Compile Include="MasterQR.cs">
+      <DependentUpon>ChildSwachBharatAbhiyan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MasterQRBunch.cs">
+      <DependentUpon>ChildSwachBharatAbhiyan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MasterQRBunchDetails_Result.cs">
       <DependentUpon>ChildSwachBharatAbhiyan.tt</DependentUpon>
     </Compile>
     <Compile Include="MasterQRDetails_Result.cs">
@@ -473,6 +491,9 @@
       <DependentUpon>MainSwachBharatAbhiyan.tt</DependentUpon>
     </Compile>
     <Compile Include="TeritoryMaster.cs">
+      <DependentUpon>ChildSwachBharatAbhiyan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransDumpTD.cs">
       <DependentUpon>ChildSwachBharatAbhiyan.tt</DependentUpon>
     </Compile>
     <Compile Include="UR_Location.cs">

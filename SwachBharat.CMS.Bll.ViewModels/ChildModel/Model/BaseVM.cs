@@ -33,6 +33,7 @@ namespace SwachBharat.CMS.Bll.ViewModels.ChildModel.Model
 
         public List<SelectListItem> HouseList { get; set; }
 
+        public List<SelectListItem> BunchList { get; set; }
 
     }
 
