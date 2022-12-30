@@ -309,6 +309,12 @@
             </div>
 
             <div class="col-sm-4">
+                <label>&nbsp;</label>
+                <div class="card" style="width: auto; border:1px solid #ff7676;margin-top:3px">
+                    <div class="card-body" style="padding:8px">
+                        <p class="text-center" style="font-size:14px;margin:0px"><b>Total House :</b> <span id="filtercount"></span></p>
+                    </div>
+                </div>
             </div>
             <div class="col-sm-3">
                 <div class="controls">
@@ -462,6 +468,7 @@
                 success: function (data) {
                     $("#wait").css("display", "none");
                     $("#googleMap").css("display", "block");
+                    $("#filtercount").text(data.filter(function (value) { return value.houseId != 0; }).length);
                     if (data.length == 0)
                         $('#\\#myModal').modal('show');
                     

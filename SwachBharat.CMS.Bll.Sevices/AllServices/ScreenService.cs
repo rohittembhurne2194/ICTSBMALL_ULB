@@ -4186,13 +4186,13 @@ namespace SwachBharat.CMS.Bll.Services
 
         public List<SBALHouseLocationMapView> GetAllHouseLocation(string date, int userid, int areaid, int wardNo, string SearchString, int? GarbageType, int FilterType, string Emptype)
         {
-
             List<SBALHouseLocationMapView> houseLocation = new List<SBALHouseLocationMapView>();
             var zoneId = 0;
             DateTime dt1 = DateTime.ParseExact(date, "d/M/yyyy", CultureInfo.InvariantCulture);
             if (Emptype == null)
             {
                 var data = db.SP_HouseOnMapDetails(Convert.ToDateTime(dt1), userid == -1 ? 0 : userid, zoneId, areaid, wardNo, GarbageType, FilterType).ToList();
+
                 foreach (var x in data)
                 {
 

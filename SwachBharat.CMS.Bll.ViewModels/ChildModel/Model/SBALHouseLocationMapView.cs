@@ -37,6 +37,8 @@ namespace SwachBharat.CMS.Bll.ViewModels.ChildModel.Model
         public int areaId { get; set; }
         public int BeatId { get; set; }
         public bool IsIn { get; set; }
+
+        public int totalfilter { get; set; }
     }
     public class SBALHouseLocationMapView1
     {
