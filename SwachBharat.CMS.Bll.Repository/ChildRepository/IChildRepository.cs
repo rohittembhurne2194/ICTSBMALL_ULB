@@ -53,6 +53,8 @@ namespace SwachBharat.CMS.Bll.Repository.ChildRepository
 
 
         HouseDetailsVM GetHouseById(int teamId);
+        SurveyDetailVM GetSurveyById(int teamId);
+
         MasterQRDetailsVM GetMasterQRById(int teamId , string houseId);
         VehicalRegDetailsVM GetVehicalRegById(int teamId);
 
@@ -60,6 +62,7 @@ namespace SwachBharat.CMS.Bll.Repository.ChildRepository
         SBALUserLocationMapView GetDumpByIdforMap(int teamId, int daId, string EmpType);
         SBALUserLocationMapView GetLiquidByIdforMap(int teamId, int daId,string EmpType);
         HouseDetailsVM SaveHouse(HouseDetailsVM data);
+        SurveyDetailVM SaveSurvey(SurveyDetailVM survey);
         VehicalRegDetailsVM SaveVehicalReg(VehicalRegDetailsVM data);
 
         void SaveEmpBeatMap(EmpBeatMapVM data);
@@ -159,6 +162,7 @@ namespace SwachBharat.CMS.Bll.Repository.ChildRepository
         SBAHSLiquidDetailsGrid GetLiquidDetailsById(int liquidId);
         SBAHSStreetDetailsGrid GetStreetDetailsById(int streetId);
 
+        SBASurveyFormDetailsGrid GetSurveyFormDetailsById(int houseId);
 
         void SaveUREmployee(UREmployeeDetailsVM employee);
 

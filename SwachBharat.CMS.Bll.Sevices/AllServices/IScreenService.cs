@@ -47,12 +47,15 @@ namespace SwachBharat.CMS.Bll.Services
         void DeletWardNumberDetails(int teamId);
 
         HouseDetailsVM GetHouseDetails(int teamId);
+        SurveyDetailVM GetSurveyById(int teamId);
+
         MasterQRDetailsVM GetMasterQRDetails(int teamId , string houseId);
         VehicalRegDetailsVM GetVehicalRegDetails(int teamId);
         SBALUserLocationMapView GetHouseByIdforMap(int teamId,int daId);
         SBALUserLocationMapView GetLiquidByIdforMap(int teamId, int daId,string EmpType);
         SBALUserLocationMapView GetDumpByIdforMap(int teamId, int daId,string EmpType);
         HouseDetailsVM SaveHouseDetails(HouseDetailsVM data);
+        SurveyDetailVM SaveSurvey(SurveyDetailVM survey);
         VehicalRegDetailsVM SaveVehicalRegDetails(VehicalRegDetailsVM data);
 
         void SaveEmpBeatMap(EmpBeatMapVM data);
@@ -146,6 +149,7 @@ namespace SwachBharat.CMS.Bll.Services
         SBAHSDumpyardDetailsGrid GetDumpDetailsById(int dumpId);
         SBAHSLiquidDetailsGrid GetLiquidDetailsById(int liquidId);
         SBAHSStreetDetailsGrid GetStreetDetailsById(int streetId);
+        SBASurveyFormDetailsGrid GetSurveyFormDetailsById(int houseId);
 
         void SaveUREmployeeDetails(UREmployeeDetailsVM employee);
 

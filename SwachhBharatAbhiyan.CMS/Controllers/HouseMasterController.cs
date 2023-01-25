@@ -21,6 +21,7 @@ using SwachBharat.CMS.Dal.DataContexts;
 using GramPanchayat.API.Bll.ViewModels.ChildModel.Model;
 using System.Collections.Generic;
 using System.Globalization;
+using SwachBharat.CMS.Bll.ViewModels.Grid;
 
 namespace SwachhBharatAbhiyan.CMS.Controllers
 {
@@ -700,6 +701,20 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
             else
                 return Redirect("/Account/Login");
 
+        }
+
+        public ActionResult GetSurveyFormDetailsById(int houseId)
+        {
+            SBASurveyFormDetailsGrid obj = new SBASurveyFormDetailsGrid();
+            if (SessionHandler.Current.AppId != 0)
+            {
+                childRepository = new ChildRepository(SessionHandler.Current.AppId);
+                //SBALUserLocationMapView obj = new SBALUserLocationMapView();
+
+                obj = childRepository.GetSurveyFormDetailsById(houseId);
+
+            }
+            return Json(obj, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult Save2(string name, string number, string ReferanceId, string mobile, string Area, string Ward)

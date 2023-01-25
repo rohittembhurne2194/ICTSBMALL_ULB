@@ -271,6 +271,56 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
             else
                 return Redirect("/Account/Login");
         }
+        public ActionResult SurveyDetails()
+        {
+            int appid = SessionHandler.Current.AppId;
+            if (SessionHandler.Current.AppId != 0)
+            {
+                ViewBag.AppId = appid;
+                return View();
+            }
+            else
+                return Redirect("/Account/Login");
+        }
+
+        public ActionResult AddSurveyDetails(int teamId = -2)
+        {
+            if (SessionHandler.Current.AppId != 0)
+            {
+                int appId = SessionHandler.Current.AppId;
+
+                childRepository = new ChildRepository(appId);
+
+                SurveyDetailVM house = childRepository.GetSurveyById(teamId);
+
+
+                return View(house);
+
+
+            }
+            else
+                return Redirect("/Account/Login");
+        }
+        [HttpPost]
+        public ActionResult AddSurveyDetails(SurveyDetailVM survey)
+        {
+            if (SessionHandler.Current.AppId != 0)
+            {
+                int appId = SessionHandler.Current.AppId;
+
+                childRepository = new ChildRepository(appId);
+
+                SurveyDetailVM house = childRepository.SaveSurvey(survey);
+
+
+                return Redirect("/HouseScanifyEmp/SurveyDetails");
+
+
+            }
+            else
+                return Redirect("/Account/Login");
+
+        }
 
         [HttpPost]
         [AllowAnonymous]

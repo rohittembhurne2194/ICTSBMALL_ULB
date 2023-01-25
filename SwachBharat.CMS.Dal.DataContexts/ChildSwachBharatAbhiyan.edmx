@@ -508,6 +508,53 @@ warning 6002: The table/view 'LIVEAdvanceAppynittyGhantaGadi.dbo.MonthlyAttedanc
           <Property Name="BinaryQrCodeImage" Type="varbinary(max)" />
           <Property Name="DataEntryDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="SurveyFormDetails">
+          <Key>
+            <PropertyRef Name="houseId" />
+          </Key>
+          <Property Name="svId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="houseId" Type="int" Nullable="false" />
+          <Property Name="ReferanceId" Type="nvarchar" MaxLength="250" />
+          <Property Name="houseLat" Type="nvarchar" MaxLength="500" />
+          <Property Name="houseLong" Type="nvarchar" MaxLength="550" />
+          <Property Name="name" Type="nvarchar" MaxLength="500" />
+          <Property Name="mobileNumber" Type="nvarchar" MaxLength="250" />
+          <Property Name="age" Type="int" />
+          <Property Name="dateOfBirth" Type="date" />
+          <Property Name="gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="bloodGroup" Type="nvarchar" MaxLength="50" />
+          <Property Name="qualification" Type="nvarchar" MaxLength="50" />
+          <Property Name="occupation" Type="nvarchar" MaxLength="50" />
+          <Property Name="maritalStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="marriageDate" Type="date" />
+          <Property Name="livingStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="totalMember" Type="int" />
+          <Property Name="willingStart" Type="bit" />
+          <Property Name="memberJobOtherCity" Type="bit" />
+          <Property Name="noOfVehicle" Type="int" />
+          <Property Name="vehicleType" Type="nvarchar" MaxLength="250" />
+          <Property Name="twoWheelerQty" Type="int" />
+          <Property Name="threeWheelerQty" Type="int" />
+          <Property Name="fourWheelerQty" Type="int" />
+          <Property Name="noPeopleVote" Type="int" />
+          <Property Name="socialMedia" Type="nvarchar" MaxLength="250" />
+          <Property Name="onlineShopping" Type="nvarchar" MaxLength="250" />
+          <Property Name="paymentModePrefer" Type="nvarchar" MaxLength="250" />
+          <Property Name="onlinePayApp" Type="nvarchar" MaxLength="250" />
+          <Property Name="insurance" Type="nvarchar" MaxLength="250" />
+          <Property Name="underInsurer" Type="bit" />
+          <Property Name="ayushmanBeneficiary" Type="bit" />
+          <Property Name="boosterShot" Type="bit" />
+          <Property Name="memberDivyang" Type="bit" />
+          <Property Name="createUserId" Type="int" />
+          <Property Name="createDate" Type="datetime" />
+          <Property Name="updateUserId" Type="int" />
+          <Property Name="updateDate" Type="datetime" />
+          <Property Name="resourcesAvailable" Type="nvarchar" MaxLength="250" />
+          <Property Name="totalAdults" Type="int" />
+          <Property Name="totalChildren" Type="int" />
+          <Property Name="totalSrCitizen" Type="int" />
+        </EntityType>
         <EntityType Name="TeritoryMaster">
           <Key>
             <PropertyRef Name="Id" />
@@ -537,11 +584,17 @@ warning 6002: The table/view 'LIVEAdvanceAppynittyGhantaGadi.dbo.MonthlyAttedanc
           <Property Name="TStatus" Type="bit" />
           <Property Name="bcStartDateTime" Type="bigint" />
           <Property Name="bcEndDateTime" Type="bigint" />
-          <Property Name="bcTotalGcWeight" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="bcTotalDryWeight" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="bcTotalWetWeight" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="bcTotalGcWeight" Type="bigint" />
+          <Property Name="bcTotalDryWeight" Type="bigint" />
+          <Property Name="bcTotalWetWeight" Type="bigint" />
           <Property Name="tHr" Type="time" Precision="7" />
           <Property Name="tNh" Type="int" />
+          <Property Name="UsTotalGcWeight" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="UsTotalDryWeight" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="UsTotalWetWeight" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="TotalGcWeightKg" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="TotalDryWeightKg" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="TotalWetWeightKg" Type="decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="UserMaster">
           <Key>
@@ -1005,6 +1058,7 @@ warning 6002: The table/view 'LIVEAdvanceAppynittyGhantaGadi.dbo.Vw_MsgNotificat
           <EntitySet Name="SS_1_7_ANSWER" EntityType="Self.SS_1_7_ANSWER" Schema="dbo" Table="SS_1.7_ANSWER" store:Type="Tables" />
           <EntitySet Name="StreetSweepingBeat" EntityType="Self.StreetSweepingBeat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StreetSweepingDetails" EntityType="Self.StreetSweepingDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SurveyFormDetails" EntityType="Self.SurveyFormDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TeritoryMaster" EntityType="Self.TeritoryMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransDumpTD" EntityType="Self.TransDumpTD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
@@ -1424,6 +1478,7 @@ warning 6002: The table/view 'LIVEAdvanceAppynittyGhantaGadi.dbo.Vw_MsgNotificat
           <Parameter Name="EmpType" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="MasterQRBunchDetails" ReturnType="Collection(DevSwachhBharatNagpurModel.MasterQRBunchDetails_Result)" />
+          <EntitySet Name="SurveyFormDetails" EntityType="DevSwachhBharatNagpurModel.SurveyFormDetail" />
           <EntitySet Name="TransDumpTDs" EntityType="DevSwachhBharatNagpurModel.TransDumpTD" />
          
         </EntityContainer>
@@ -2951,6 +3006,53 @@ warning 6002: The table/view 'LIVEAdvanceAppynittyGhantaGadi.dbo.Vw_MsgNotificat
           <Property Type="Int64" Name="TotalCount" Nullable="true" />
           <Property Type="Boolean" Name="ISActive" Nullable="true" />
         </ComplexType>
+        <EntityType Name="SurveyFormDetail">
+          <Key>
+            <PropertyRef Name="houseId" />
+          </Key>
+          <Property Name="svId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="houseId" Type="Int32" Nullable="false" />
+          <Property Name="ReferanceId" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="houseLat" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="houseLong" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="mobileNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="age" Type="Int32" />
+          <Property Name="dateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="bloodGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="occupation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="maritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="marriageDate" Type="DateTime" Precision="0" />
+          <Property Name="livingStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="totalMember" Type="Int32" />
+          <Property Name="willingStart" Type="Boolean" />
+          <Property Name="memberJobOtherCity" Type="Boolean" />
+          <Property Name="noOfVehicle" Type="Int32" />
+          <Property Name="vehicleType" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="twoWheelerQty" Type="Int32" />
+          <Property Name="threeWheelerQty" Type="Int32" />
+          <Property Name="fourWheelerQty" Type="Int32" />
+          <Property Name="noPeopleVote" Type="Int32" />
+          <Property Name="socialMedia" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="onlineShopping" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="paymentModePrefer" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="onlinePayApp" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="insurance" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="underInsurer" Type="Boolean" />
+          <Property Name="ayushmanBeneficiary" Type="Boolean" />
+          <Property Name="boosterShot" Type="Boolean" />
+          <Property Name="memberDivyang" Type="Boolean" />
+          <Property Name="createUserId" Type="Int32" />
+          <Property Name="createDate" Type="DateTime" Precision="3" />
+          <Property Name="updateUserId" Type="Int32" />
+          <Property Name="updateDate" Type="DateTime" Precision="3" />
+          <Property Name="resourcesAvailable" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="totalAdults" Type="Int32" />
+          <Property Name="totalChildren" Type="Int32" />
+          <Property Name="totalSrCitizen" Type="Int32" />
+        </EntityType>
         <EntityType Name="TransDumpTD">
           <Key>
             <PropertyRef Name="TransBcId" />
@@ -2971,11 +3073,17 @@ warning 6002: The table/view 'LIVEAdvanceAppynittyGhantaGadi.dbo.Vw_MsgNotificat
           <Property Name="TStatus" Type="Boolean" />
           <Property Name="bcStartDateTime" Type="Int64" />
           <Property Name="bcEndDateTime" Type="Int64" />
-          <Property Name="bcTotalGcWeight" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="bcTotalDryWeight" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="bcTotalWetWeight" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="bcTotalGcWeight" Type="Int64" />
+          <Property Name="bcTotalDryWeight" Type="Int64" />
+          <Property Name="bcTotalWetWeight" Type="Int64" />
           <Property Name="tHr" Type="Time" Precision="7" />
           <Property Name="tNh" Type="Int32" />
+          <Property Name="UsTotalGcWeight" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="UsTotalDryWeight" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="UsTotalWetWeight" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="TotalGcWeightKg" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="TotalDryWeightKg" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="TotalWetWeightKg" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -4614,9 +4722,63 @@ warning 6002: The table/view 'LIVEAdvanceAppynittyGhantaGadi.dbo.Vw_MsgNotificat
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="SurveyFormDetails">
+            <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.SurveyFormDetail">
+              <MappingFragment StoreEntitySet="SurveyFormDetails">
+                <ScalarProperty Name="totalSrCitizen" ColumnName="totalSrCitizen" />
+                <ScalarProperty Name="totalChildren" ColumnName="totalChildren" />
+                <ScalarProperty Name="totalAdults" ColumnName="totalAdults" />
+                <ScalarProperty Name="resourcesAvailable" ColumnName="resourcesAvailable" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+                <ScalarProperty Name="updateUserId" ColumnName="updateUserId" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="createUserId" ColumnName="createUserId" />
+                <ScalarProperty Name="memberDivyang" ColumnName="memberDivyang" />
+                <ScalarProperty Name="boosterShot" ColumnName="boosterShot" />
+                <ScalarProperty Name="ayushmanBeneficiary" ColumnName="ayushmanBeneficiary" />
+                <ScalarProperty Name="underInsurer" ColumnName="underInsurer" />
+                <ScalarProperty Name="insurance" ColumnName="insurance" />
+                <ScalarProperty Name="onlinePayApp" ColumnName="onlinePayApp" />
+                <ScalarProperty Name="paymentModePrefer" ColumnName="paymentModePrefer" />
+                <ScalarProperty Name="onlineShopping" ColumnName="onlineShopping" />
+                <ScalarProperty Name="socialMedia" ColumnName="socialMedia" />
+                <ScalarProperty Name="noPeopleVote" ColumnName="noPeopleVote" />
+                <ScalarProperty Name="fourWheelerQty" ColumnName="fourWheelerQty" />
+                <ScalarProperty Name="threeWheelerQty" ColumnName="threeWheelerQty" />
+                <ScalarProperty Name="twoWheelerQty" ColumnName="twoWheelerQty" />
+                <ScalarProperty Name="vehicleType" ColumnName="vehicleType" />
+                <ScalarProperty Name="noOfVehicle" ColumnName="noOfVehicle" />
+                <ScalarProperty Name="memberJobOtherCity" ColumnName="memberJobOtherCity" />
+                <ScalarProperty Name="willingStart" ColumnName="willingStart" />
+                <ScalarProperty Name="totalMember" ColumnName="totalMember" />
+                <ScalarProperty Name="livingStatus" ColumnName="livingStatus" />
+                <ScalarProperty Name="marriageDate" ColumnName="marriageDate" />
+                <ScalarProperty Name="maritalStatus" ColumnName="maritalStatus" />
+                <ScalarProperty Name="occupation" ColumnName="occupation" />
+                <ScalarProperty Name="qualification" ColumnName="qualification" />
+                <ScalarProperty Name="bloodGroup" ColumnName="bloodGroup" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="mobileNumber" ColumnName="mobileNumber" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="houseLong" ColumnName="houseLong" />
+                <ScalarProperty Name="houseLat" ColumnName="houseLat" />
+                <ScalarProperty Name="ReferanceId" ColumnName="ReferanceId" />
+                <ScalarProperty Name="houseId" ColumnName="houseId" />
+                <ScalarProperty Name="svId" ColumnName="svId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TransDumpTDs">
             <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.TransDumpTD">
               <MappingFragment StoreEntitySet="TransDumpTD">
+                <ScalarProperty Name="TotalWetWeightKg" ColumnName="TotalWetWeightKg" />
+                <ScalarProperty Name="TotalDryWeightKg" ColumnName="TotalDryWeightKg" />
+                <ScalarProperty Name="TotalGcWeightKg" ColumnName="TotalGcWeightKg" />
+                <ScalarProperty Name="UsTotalWetWeight" ColumnName="UsTotalWetWeight" />
+                <ScalarProperty Name="UsTotalDryWeight" ColumnName="UsTotalDryWeight" />
+                <ScalarProperty Name="UsTotalGcWeight" ColumnName="UsTotalGcWeight" />
                 <ScalarProperty Name="tNh" ColumnName="tNh" />
                 <ScalarProperty Name="tHr" ColumnName="tHr" />
                 <ScalarProperty Name="bcTotalWetWeight" ColumnName="bcTotalWetWeight" />
