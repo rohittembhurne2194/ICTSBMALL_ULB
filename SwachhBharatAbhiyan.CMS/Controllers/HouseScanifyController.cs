@@ -278,6 +278,10 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
                 return Redirect("/Account/Login");
 
         }
+
+
+
+
         private void AddSession(int AppID)
         {
             try

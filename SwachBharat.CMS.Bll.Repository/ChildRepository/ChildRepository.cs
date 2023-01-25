@@ -159,6 +159,12 @@ namespace SwachBharat.CMS.Bll.Repository.ChildRepository
             return screenService.GetHouseDetails(teamId);
         }
 
+        public SurveyDetailVM GetSurveyById(int teamId)
+        {
+
+            return screenService.GetSurveyById(teamId);
+        }
+
         public MasterQRDetailsVM GetMasterQRById(int teamId , string houseId)
         {
             return screenService.GetMasterQRDetails(teamId , houseId);
@@ -191,6 +197,13 @@ namespace SwachBharat.CMS.Bll.Repository.ChildRepository
             }
             HouseDetailsVM dd =screenService.SaveHouseDetails(data);
             return dd;
+        }
+
+        public SurveyDetailVM SaveSurvey(SurveyDetailVM survey)
+        {
+            SurveyDetailVM data = screenService.SaveSurvey(survey);
+            return data;
+                 
         }
         public VehicalRegDetailsVM SaveVehicalReg(VehicalRegDetailsVM data)
         {
@@ -507,6 +520,10 @@ namespace SwachBharat.CMS.Bll.Repository.ChildRepository
         public SBAHSStreetDetailsGrid GetStreetDetailsById(int streetId)
         {
             return screenService.GetStreetDetailsById(streetId);
+        }
+        public SBASurveyFormDetailsGrid GetSurveyFormDetailsById(int houseId)
+        {
+            return screenService.GetSurveyFormDetailsById(houseId);
         }
         public void SaveUREmployee(UREmployeeDetailsVM employee)
         {

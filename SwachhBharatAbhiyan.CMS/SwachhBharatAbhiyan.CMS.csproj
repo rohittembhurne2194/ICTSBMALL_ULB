@@ -1790,6 +1790,7 @@
     <Content Include="Content\DatatableGrid\HSHouseDetailsGrid.js" />
     <Content Include="Content\DatatableGrid\HSLiquidDetailsGrid.js" />
     <Content Include="Content\DatatableGrid\HSStreetDetailsGrid.js" />
+    <Content Include="Content\DatatableGrid\HSSurveyGrid.js" />
     <Content Include="Content\DatatableGrid\HSURAttendanceGrid.js" />
     <Content Include="Content\DatatableGrid\IdelGrid.js" />
     <Content Include="Content\DatatableGrid\InfotainmentGrid.js" />
@@ -3248,6 +3249,8 @@
     <Content Include="Views\MasterQR\AddMasterQRBunchDetails.cshtml" />
     <Content Include="Views\GarbageCollection\MenuBCDumpYardIndex.cshtml" />
     <Content Include="Views\GarbageCollection\BCDumpYardIndex.cshtml" />
+    <Content Include="Views\HouseScanifyEmp\SurveyDetails.cshtml" />
+    <Content Include="Views\HouseScanifyEmp\AddSurveyDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
