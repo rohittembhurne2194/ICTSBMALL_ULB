@@ -5990,13 +5990,14 @@ namespace SwachBharat.CMS.Bll.Services
         }
         private string GetPaymentAppStr(List<paymentApp> lstPaymentApp)
         {
-
+            string[] payAppArr = new[] { "Bhim", "Paytm", "PhonePe", "GooglePay", "PersonalBanking", "Other" };
+            string[] payAppDispArr = new[] { "Bhim", "Paytm", "PhonePe", "Google Pay", "Personal Banking", "Other" };
             //string[] socialMediaArr = new[] { "Facebook", "Twitter", "Instagram", "Whatsapp", "Linkedin", "Snapchat", "Other" };
             List<string> lstPay = new List<string>();
             foreach (var pay in lstPaymentApp)
             {
                 if (pay.IsSelected)
-                    lstPay.Add(pay.paymentAppName);
+                    lstPay.Add(payAppArr[Array.IndexOf(payAppDispArr,pay.paymentAppName)]);
             }
             return string.Join(",", lstPay); 
         }
