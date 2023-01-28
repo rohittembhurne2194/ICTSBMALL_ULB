@@ -679,6 +679,16 @@
 
 
 </script>
+<script>
+    var numbers = /^[0-9]+$/;
+    $('#mobileNumber').keypress(function (e) {
+        if (e.which < 48 || e.which > 57) {
+            e.preventDefault();
+        }
+    });
+    
+
+</script>
 <script src="~/Content/graph-assets/js/custom.js"></script>
 <script src="~/Content/css/datepicker/js/datepicker.js"></script>
 <script type="text/javascript">
