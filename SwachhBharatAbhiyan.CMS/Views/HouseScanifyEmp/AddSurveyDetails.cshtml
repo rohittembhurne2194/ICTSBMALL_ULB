@@ -148,7 +148,7 @@
                                 <div class="col-md-4" style="margin-bottom: 1%;">
                                     <div class="form-group">
                                         @*@Html.Label("घर क्रमांक / House Number")*@
-                                        @Html.Label("Gender", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        @Html.Label("Gender", new { style = "font-weight: bold;text-transform: capitalize" }) <b> :</b><br />
                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                         @Html.RadioButtonFor(model => model.gender, "Male") Male
                                         @Html.RadioButtonFor(model => model.gender, "Female") Female
@@ -188,7 +188,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         @*@Html.Label("घर क्रमांक / House Number")*@
-                                        @Html.Label("Qualification", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        @Html.Label("Qualification", new { style = "font-weight: bold;text-transform: capitalize" }) <b> :</b><br />
                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                         @Html.RadioButtonFor(model => model.qualification, "Under Graduate") Under Graduate
                                         @Html.RadioButtonFor(model => model.qualification, "Graduate", new { style = "margin-left:12px" }) Graduate
@@ -201,7 +201,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         @*@Html.Label("घर क्रमांक / House Number")*@
-                                        @Html.Label("Occupation", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        @Html.Label("Occupation", new { style = "font-weight: bold;text-transform: capitalize" }) <b> :</b><br />
                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                         @Html.RadioButtonFor(model => model.occupation, "Service") Service
                                         @Html.RadioButtonFor(model => model.occupation, "Business", new { style = "margin-left:12px" }) Business

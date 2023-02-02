@@ -5833,8 +5833,8 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                         //strBoosterShot = x.boosterShot.HasValue ? (Convert.ToBoolean(x.boosterShot) ? "Yes" : "No") : "",
                         //memberDivyang = x.memberDivyang,
                         //strMemberDivyang = x.memberDivyang.HasValue ? (Convert.ToBoolean(x.memberDivyang) ? "Yes" : "No") : "",
-                        //createUserId = x.createUserId,
-                        //createUserName = db.QrEmployeeMasters.Where(e => e.qrEmpId == x.createUserId).Select(e => e.qrEmpName).FirstOrDefault(),
+                        createUserId = x.createUserId,
+                        createUserName = db.QrEmployeeMasters.Where(e => e.qrEmpId == x.createUserId).Select(e => e.qrEmpName).FirstOrDefault(),
                         //createDate = x.createDate,
                         //strCreateDate = x.createDate.HasValue ? Convert.ToDateTime(x.createDate).ToString("dd/MM/yyyy hh:mm tt") : "",
                         //updateUserId = x.updateUserId,
@@ -5852,7 +5852,12 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                     });
                 }
 
-                
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    obj = obj.Where(c => ((string.IsNullOrEmpty(c.name) ? " " : c.name) + " " + (string.IsNullOrEmpty(c.ReferanceId) ? " " : c.ReferanceId) + " " + (string.IsNullOrEmpty(c.createUserName) ? " " : c.createUserName)).ToUpper().Contains(SearchString.ToUpper())
+                     ).ToList();
+
+                }
                 return obj.OrderBy(c => c.houseId).ToList();
             }
         }

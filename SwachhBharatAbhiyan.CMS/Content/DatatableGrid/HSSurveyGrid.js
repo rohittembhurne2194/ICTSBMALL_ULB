@@ -69,6 +69,7 @@
             { "data": "houseId", "name": "houseId", "autoWidth": true },
             { "data": "ReferanceId", "name": "ReferanceId", "autoWidth": true },
             { "data": "name", "name": "name", "autoWidth": true },
+            { "data": "createUserName", "name": "createUserName", "autoWidth": true },
             {
                 "render": function (data, type, full, meta) {
                     return '<a  data-toggle="modal" class="tooltip1" style="cursor:pointer" onclick="EditSurvey(' + full["houseId"] + ')"><span class="material-symbols-outlined">overview</span ><span class="tooltiptext1">View Survey</span> </a>'; }, "width": "10%" },
