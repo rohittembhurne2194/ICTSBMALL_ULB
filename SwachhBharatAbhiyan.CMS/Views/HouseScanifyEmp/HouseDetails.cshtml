@@ -768,7 +768,7 @@
                         $("input[name=QRStatusHouse][value=0]").prop('checked', false);
                     }
                     if (data.Remark == null || data.Remark == "null") {
-                        $("#NewRemark").val(data.Remark);
+                        $("#NewRemark").val("");
                         $("#Remark").hide();
                         $("#NewRemark").show();
                         $("#ChangeRemark").hide();
@@ -968,7 +968,7 @@
                         $("input[name=QRStatusHouse][value=0]").prop('checked', false);
                     }
                     if (data.Remark == null || data.Remark == "null") {
-                        $("#NewRemark").val(data.Remark);
+                        $("#NewRemark").val("");
                         $("#Remark").hide();
                         $("#NewRemark").show();
                         $("#ChangeRemark").hide();
@@ -1203,7 +1203,7 @@
         $("#longHouse").text(long);
         debugger
         if (Remark == null || Remark == "null") {
-            $("#NewRemark").text(Remark);
+            $("#NewRemark").val("");
             $("#Remark").hide();
             $("#NewRemark").show();
             $("#ChangeRemark").hide();
