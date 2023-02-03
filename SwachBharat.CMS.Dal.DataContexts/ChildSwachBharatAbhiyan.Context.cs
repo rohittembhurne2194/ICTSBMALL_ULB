@@ -18,7 +18,7 @@ namespace SwachBharat.CMS.Dal.DataContexts
     public partial class DevChildSwachhBharatNagpurEntities : DbContext
     {
         public DevChildSwachhBharatNagpurEntities(int AppId)
-               : base(SwachBharatAppConnection.GetConnectionString(AppId))
+      : base(SwachBharatAppConnection.GetConnectionString(AppId))
         {
         }
 
@@ -61,9 +61,6 @@ namespace SwachBharat.CMS.Dal.DataContexts
         public virtual DbSet<MasterQR> MasterQRs { get; set; }
         public virtual DbSet<HouseList> HouseLists { get; set; }
         public virtual DbSet<Daily_Attendance> Daily_Attendance { get; set; }
-        public virtual DbSet<DumpYardDetail> DumpYardDetails { get; set; }
-        public virtual DbSet<LiquidWasteDetail> LiquidWasteDetails { get; set; }
-        public virtual DbSet<StreetSweepingDetail> StreetSweepingDetails { get; set; }
         public virtual DbSet<HouseBunch> HouseBunches { get; set; }
         public virtual DbSet<MasterQRBunch> MasterQRBunches { get; set; }
         public virtual DbSet<VehicleRegistration> VehicleRegistrations { get; set; }
@@ -71,9 +68,12 @@ namespace SwachBharat.CMS.Dal.DataContexts
         public virtual DbSet<Vw_MsgNotification> Vw_MsgNotification { get; set; }
         public virtual DbSet<DumpTripDetailM> DumpTripDetailMs { get; set; }
         public virtual DbSet<DumpTripDetail> DumpTripDetails { get; set; }
-        public virtual DbSet<HouseMaster> HouseMasters { get; set; }
         public virtual DbSet<SurveyFormDetail> SurveyFormDetails { get; set; }
         public virtual DbSet<TransDumpTD> TransDumpTDs { get; set; }
+        public virtual DbSet<DumpYardDetail> DumpYardDetails { get; set; }
+        public virtual DbSet<HouseMaster> HouseMasters { get; set; }
+        public virtual DbSet<LiquidWasteDetail> LiquidWasteDetails { get; set; }
+        public virtual DbSet<StreetSweepingDetail> StreetSweepingDetails { get; set; }
     
         public virtual ObjectResult<GetAttendenceDetailsTotal_Result> GetAttendenceDetailsTotal(Nullable<int> userId, Nullable<int> year, Nullable<int> month)
         {

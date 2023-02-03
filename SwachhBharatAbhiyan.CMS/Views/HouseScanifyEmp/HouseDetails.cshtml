@@ -395,8 +395,8 @@
                                 <h4 id="header_dataHouse" class="modal-title" style="padding-bottom:2rem;text-align:left;"></h4>
                                 <p> <b id="hide_date">Employee Name: </b><span id="dateDataHouse"></span></p>
                                 <p> <b id="hide_add">House Id: </b><span id="latlongDataHouse"></span></p>
-                                <p>  <b id="hide_add1">Date And Time: </b><span id="date1House"></span></p>
-                                <p>  <b id="hide_add2">Lat: </b><span id="latHouse"></span> <b id="hide_add3">Long: </b><span id="longHouse"></span></p>
+                                <p> <b id="hide_add1">Date And Time: </b><span id="date1House"></span></p>
+                                <p> <b id="hide_add2">Lat: </b><span id="latHouse"></span> <b id="hide_add3">Long: </b><span id="longHouse"></span></p>
                                 <p>
                                     <b>Status : </b><input type="radio" name="QRStatusHouse" value="1"> Approve
                                     <input type="radio" name="QRStatusHouse" value="0"> Reject
@@ -1089,6 +1089,7 @@
         var long = $(cel).find('.li_long').text();
         var houseId = $(cel).find('.li_houseId').text();
         var QRStatus = $(cel).find('.li_QRStatus').text();
+        var QRStatusRemark = $(cel).find('.li_QRStatusRemark').text();
 
         curHouseIdIndex = arrHouseIDs.indexOf(parseInt(houseId));
         //alert(curHouseIdIndex);
