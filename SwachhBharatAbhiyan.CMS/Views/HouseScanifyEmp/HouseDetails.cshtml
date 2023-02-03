@@ -768,7 +768,7 @@
                         $("input[name=QRStatusHouse][value=0]").prop('checked', false);
                     }
                     if (data.Remark == null || data.Remark == "null") {
-                        $("#NewRemark").text(data.Remark);
+                        $("#NewRemark").val(data.Remark);
                         $("#Remark").hide();
                         $("#NewRemark").show();
                         $("#ChangeRemark").hide();
@@ -778,46 +778,11 @@
                         $("#Remark").text(data.Remark);
                         $("#NewRemark").hide();
                         $("#Remark").show();
+
                         $("#ChangeRemark").show();
                         $("#ChangeRemark2").show();
 
-                        $('#ChangeRemark').change(function () {
-                            debugger
-                            if (this.checked) {
-                                var returnVal = confirm("Are you sure?");
-                                $(this).prop("checked", returnVal);
-                                $("#NewRemark").val(data.Remark);
-                                $("#Remark").hide();
-                                $("#NewRemark").show();
 
-                            }
-                            else {
-
-                                $("#Remark").text(data.Remark);
-                                $("#NewRemark").hide();
-                                $("#Remark").show();
-
-
-                                $('#ChangeRemark').change(function () {
-                                    debugger
-                                    if (this.checked) {
-                                        var returnVal = confirm("Are you sure?");
-                                        $(this).prop("checked", returnVal);
-                                        $("#NewRemark").val(data.Remark);
-                                        $("#Remark").hide();
-                                        $("#NewRemark").show();
-                                    }
-                                    else {
-                                        $('#ChangeRemark').val(this.checked);
-                                        $("#Remark").text(data.Remark);
-                                        $("#NewRemark").hide();
-                                        $("#Remark").show();
-                                    }
-
-                                });
-                            }
-
-                        });
                     }
                     
                 }
@@ -1019,23 +984,23 @@
 
                   
                     }
-                    $('#ChangeRemark').change(function () {
-                        debugger
-                        if (this.checked) {
-                            var returnVal = confirm("Are you sure?");
-                            $(this).prop("checked", returnVal);
-                            $("#NewRemark").val(data.Remark);
-                            $("#Remark").hide();
-                            $("#NewRemark").show();
-                        }
-                        else {
-                            $('#ChangeRemark').val(this.checked);
-                            $("#Remark").text(data.Remark);
-                            $("#NewRemark").hide();
-                            $("#Remark").show();
-                        }
+                    //$('#ChangeRemark').change(function () {
+                    //    debugger
+                    //    if (this.checked) {
+                    //        var returnVal = confirm("Are you sure?");
+                    //        $(this).prop("checked", returnVal);
+                    //        $("#NewRemark").val(data.Remark);
+                    //        $("#Remark").hide();
+                    //        $("#NewRemark").show();
+                    //    }
+                    //    else {
+                    //        $('#ChangeRemark').val(this.checked);
+                    //        $("#Remark").text(data.Remark);
+                    //        $("#NewRemark").hide();
+                    //        $("#Remark").show();
+                    //    }
 
-                    });
+                    //});
                 }
 
             }
