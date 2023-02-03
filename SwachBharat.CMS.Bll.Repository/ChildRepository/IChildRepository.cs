@@ -147,7 +147,7 @@ namespace SwachBharat.CMS.Bll.Repository.ChildRepository
         //Added By saurabh (04 June 2019)
         void SaveHSEmployee(HouseScanifyEmployeeDetailsVM employee);
 
-        void SaveHSQRStatusHouse(int houseId, string QRStatus);
+        void SaveHSQRStatusHouse(int houseId, string QRStatus, string Remark);
         void SaveQRStatusDump(int dumpId, string QRStatus);
         void SaveQRStatusLiquid(int liquidId, string QRStatus);
         void SaveQRStatusStreet(int streetId, string QRStatus);

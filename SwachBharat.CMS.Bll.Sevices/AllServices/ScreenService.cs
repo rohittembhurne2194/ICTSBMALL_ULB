@@ -7071,7 +7071,7 @@ namespace SwachBharat.CMS.Bll.Services
         }
 
 
-        public void SaveHSQRStatusHouse(int houseId, string QRStatus)
+        public void SaveHSQRStatusHouse(int houseId, string QRStatus, string Remark)
         {
             bool? bQRStatus = null;
             try
@@ -7097,6 +7097,7 @@ namespace SwachBharat.CMS.Bll.Services
                         if (model != null)
                         {
                             model.QRStatus = bQRStatus;
+                            model.Remark = Remark;
                             model.QRStatusDate = DateTime.Now;
                             db.SaveChanges();
                         }
@@ -7529,7 +7530,8 @@ namespace SwachBharat.CMS.Bll.Services
                     ReferanceId = x.ReferanceId,
                     modifiedDate = x.modified.HasValue ? Convert.ToDateTime(x.modified).ToString("dd/MM/yyyy hh:mm tt") : "",
                     QRStatusDate = x.QRStatusDate.HasValue ? Convert.ToDateTime(x.QRStatusDate).ToString("dd/MM/yyyy hh:mm tt") : "",
-                    QRStatus = x.QRStatus
+                    QRStatus = x.QRStatus,
+                    Remark = x.Remark
                 }).FirstOrDefault();
             }
             return data;

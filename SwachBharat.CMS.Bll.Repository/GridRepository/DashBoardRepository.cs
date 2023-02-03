@@ -6439,6 +6439,8 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                     QRStatusDate1 = x.QRStatusDate,
                     QRStatus = x.QRStatus,
                     totalRowCount = x.FilterTotalCount.HasValue ? Convert.ToInt32(x.FilterTotalCount) : 0,
+                    Remark = x.Remark,
+                    
                 }).ToList();
 
                 return data;

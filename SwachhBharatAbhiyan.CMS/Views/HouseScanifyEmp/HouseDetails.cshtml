@@ -401,7 +401,13 @@
                                     <b>Status : </b><input type="radio" name="QRStatusHouse" value="1"> Approve
                                     <input type="radio" name="QRStatusHouse" value="0"> Reject
                                 </p>
-
+                                <p>
+                                    <b>Remark</b>
+                                    <input type="text" name="Remark" id="NewRemark" required />
+                                    <span id="Remark"></span>
+                                    <input type="checkbox" id="ChangeRemark" name="ChangeRemark"/>
+                                    <label for="ChangeRemark" id="ChangeRemark2"> Change Remark</label>
+                                </p>
                                 <div class="text-center pt-1"><button type="button" class="btn btn-success save" id="btnHouseSave">Save</button></div>
                                 <p class="text-center pt-2"><b><span class="text-success" id="houseSave_pop"></span></b></p>
                             </div>
@@ -617,14 +623,35 @@
     var curDumpIdIndex = 0;
     var curLiquidIdIndex = 0;
     var curStreetIdIndex = 0;
+
+    //$(document).ready(function () {
+    //    //set initial state.
+    //    //$('#textbox1').val(this.checked);
+
+    //    $('#ChangeRemark').change(function () {
+    //        if (this.checked) {
+    //            var returnVal = confirm("Are you sure?");
+    //            $(this).prop("checked", returnVal);
+    //            $("#NewRemark").text(Remark);
+    //            $("#Remark").hide();
+    //            $("#NewRemark").show();
+    //        }
+    //        $('#ChangeRemark').val(this.checked);
+    //        $("#Remark").text(Remark);
+    //        $("#NewRemark").hide();
+    //        $("#Remark").show();
+    //    });
+    //});
+
     $("#btnHouseSave").click(function () {
-        debugger;
+        //debugger;
         var QRStatus = $("input[name='QRStatusHouse']:checked").val();
+        var Remark = $("input[name='Remark']").val();
         var houseId = $("#hdHouseId").val();
         var AppId = $('#appid').val();
         $.ajax({
             type: "post",
-            url: "/HouseScanifyEmp/SaveQRStatusHouse?appId=" + AppId + "&houseId=" + houseId + "&QRStatus=" + QRStatus,
+            url: "/HouseScanifyEmp/SaveQRStatusHouse?appId=" + AppId + "&houseId=" + houseId + "&QRStatus=" + QRStatus + "&Remark=" + Remark,
             data: {},
             datatype: "json",
             traditional: true,
@@ -740,7 +767,59 @@
                         $("input[name=QRStatusHouse][value=1]").prop('checked', false);
                         $("input[name=QRStatusHouse][value=0]").prop('checked', false);
                     }
+                    if (data.Remark == null || data.Remark == "null") {
+                        $("#NewRemark").text(data.Remark);
+                        $("#Remark").hide();
+                        $("#NewRemark").show();
+                        $("#ChangeRemark").hide();
+                        $("#ChangeRemark2").hide();
+                    }
+                    else {
+                        $("#Remark").text(data.Remark);
+                        $("#NewRemark").hide();
+                        $("#Remark").show();
+                        $("#ChangeRemark").show();
+                        $("#ChangeRemark2").show();
 
+                        $('#ChangeRemark').change(function () {
+                            debugger
+                            if (this.checked) {
+                                var returnVal = confirm("Are you sure?");
+                                $(this).prop("checked", returnVal);
+                                $("#NewRemark").val(data.Remark);
+                                $("#Remark").hide();
+                                $("#NewRemark").show();
+
+                            }
+                            else {
+
+                                $("#Remark").text(data.Remark);
+                                $("#NewRemark").hide();
+                                $("#Remark").show();
+
+
+                                $('#ChangeRemark').change(function () {
+                                    debugger
+                                    if (this.checked) {
+                                        var returnVal = confirm("Are you sure?");
+                                        $(this).prop("checked", returnVal);
+                                        $("#NewRemark").val(data.Remark);
+                                        $("#Remark").hide();
+                                        $("#NewRemark").show();
+                                    }
+                                    else {
+                                        $('#ChangeRemark').val(this.checked);
+                                        $("#Remark").text(data.Remark);
+                                        $("#NewRemark").hide();
+                                        $("#Remark").show();
+                                    }
+
+                                });
+                            }
+
+                        });
+                    }
+                    
                 }
 
             }
@@ -923,7 +1002,40 @@
                         $("input[name=QRStatusHouse][value=1]").prop('checked', false);
                         $("input[name=QRStatusHouse][value=0]").prop('checked', false);
                     }
+                    if (data.Remark == null || data.Remark == "null") {
+                        $("#NewRemark").val(data.Remark);
+                        $("#Remark").hide();
+                        $("#NewRemark").show();
+                        $("#ChangeRemark").hide();
+                        $("#ChangeRemark2").hide();
+                    }
+                    else {
+                        $("#Remark").text(data.Remark);
+                        $("#NewRemark").hide();
+                        $("#Remark").show();
 
+                        $("#ChangeRemark").show();
+                        $("#ChangeRemark2").show();
+
+                  
+                    }
+                    $('#ChangeRemark').change(function () {
+                        debugger
+                        if (this.checked) {
+                            var returnVal = confirm("Are you sure?");
+                            $(this).prop("checked", returnVal);
+                            $("#NewRemark").val(data.Remark);
+                            $("#Remark").hide();
+                            $("#NewRemark").show();
+                        }
+                        else {
+                            $('#ChangeRemark').val(this.checked);
+                            $("#Remark").text(data.Remark);
+                            $("#NewRemark").hide();
+                            $("#Remark").show();
+                        }
+
+                    });
                 }
 
             }
@@ -1077,7 +1189,7 @@
     function PopImagesHouse(cel) {
 
 
-        //debugger
+        debugger
         $('#myModal_Image_House').modal('toggle');
         var d1 = $(cel).find('.date_time').text();
         var addr = $(cel).find('.addr-length').text();
@@ -1089,7 +1201,7 @@
         var long = $(cel).find('.li_long').text();
         var houseId = $(cel).find('.li_houseId').text();
         var QRStatus = $(cel).find('.li_QRStatus').text();
-        var QRStatusRemark = $(cel).find('.li_QRStatusRemark').text();
+        var Remark = $(cel).find('.li_Remark').text();
 
         curHouseIdIndex = arrHouseIDs.indexOf(parseInt(houseId));
         //alert(curHouseIdIndex);
@@ -1124,7 +1236,44 @@
         $("#header_dataHouse").html(head);
         $("#latHouse").text(lat);
         $("#longHouse").text(long);
+        debugger
+        if (Remark == null || Remark == "null") {
+            $("#NewRemark").text(Remark);
+            $("#Remark").hide();
+            $("#NewRemark").show();
+            $("#ChangeRemark").hide();
+            $("#ChangeRemark2").hide();
+        }
+        else {
+            $("#Remark").text(Remark);
+            $("#NewRemark").hide();
+            $("#Remark").show();
+         
+            $("#ChangeRemark").show();
+            $("#ChangeRemark2").show();
 
+          
+        }
+      
+        $('#ChangeRemark').change(function () {
+            debugger
+            if (this.checked) {
+                var returnVal = confirm("Are you sure?");
+                $(this).prop("checked", returnVal);
+                $("#NewRemark").val(Remark);
+                $("#Remark").hide();
+                $("#NewRemark").show();
+            }
+            else {
+                $('#ChangeRemark').val(this.checked);
+                $("#Remark").text(Remark);
+                $("#NewRemark").hide();
+                $("#Remark").show();
+                $("#ChangeRemark").show();
+                $("#ChangeRemark2").show();
+            }
+
+        });
     }
 
 

@@ -694,12 +694,12 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
         }
 
 
-        public void SaveQRStatusHouse(int appId, int houseId, string QRStatus)
+        public void SaveQRStatusHouse(int appId, int houseId, string QRStatus, string Remark)
         {
             if (SessionHandler.Current.AppId != 0)
             {
                 childRepository = new ChildRepository(SessionHandler.Current.AppId);
-                childRepository.SaveHSQRStatusHouse(houseId, QRStatus);
+                childRepository.SaveHSQRStatusHouse(houseId, QRStatus, Remark);
             }
         }
 

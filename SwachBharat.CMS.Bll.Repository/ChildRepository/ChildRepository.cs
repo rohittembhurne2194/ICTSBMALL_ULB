@@ -471,9 +471,9 @@ namespace SwachBharat.CMS.Bll.Repository.ChildRepository
             screenService.SaveHSEmployeeDetails(employee);
         }
 
-        public void SaveHSQRStatusHouse(int houseId, string QRStatus)
+        public void SaveHSQRStatusHouse(int houseId, string QRStatus, string Remark)
         {
-            screenService.SaveHSQRStatusHouse(houseId, QRStatus);
+            screenService.SaveHSQRStatusHouse(houseId, QRStatus, Remark);
         }
         public void SaveQRStatusDump(int dumpId, string QRStatus)
         {

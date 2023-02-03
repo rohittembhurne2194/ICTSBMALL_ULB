@@ -134,7 +134,7 @@ namespace SwachBharat.CMS.Bll.Services
         //Added By Saurabh (04 June 2019)
         void SaveHSEmployeeDetails(HouseScanifyEmployeeDetailsVM employee);
 
-        void SaveHSQRStatusHouse(int houseId, string QRStatus);
+        void SaveHSQRStatusHouse(int houseId, string QRStatus, string Remark);
         void SaveQRStatusDump(int dumpId, string QRStatus);
         void SaveQRStatusLiquid(int liquidId, string QRStatus);
         void SaveQRStatusStreet(int streetId, string QRStatus);
