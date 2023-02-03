@@ -768,6 +768,7 @@
                         $("input[name=QRStatusHouse][value=0]").prop('checked', false);
                     }
                     debugger
+                    $('#ChangeRemark').prop('checked', false);
                     if (data.Remark == null || data.Remark == "null") {
                         $("#NewRemark").val("");
                         $("#Remark").hide();
@@ -969,6 +970,7 @@
                         $("input[name=QRStatusHouse][value=0]").prop('checked', false);
                     }
                     debugger
+                    $('#ChangeRemark').prop('checked', false);
                     if (data.Remark == null || data.Remark == "null") {
                         $("#NewRemark").val("");
                         $("#Remark").hide();
@@ -1221,7 +1223,7 @@
 
           
         }
-      
+        $('#ChangeRemark').prop('checked', false);
         $('#ChangeRemark').change(function () {
             debugger
             if (this.checked) {
@@ -1232,7 +1234,7 @@
                 $("#NewRemark").show();
             }
             else {
-                //$('#ChangeRemark').val(this.checked);
+                $('#ChangeRemark').val(this.checked);
                 $("#Remark").text(Remark);
                 $("#NewRemark").hide();
                 $("#Remark").show();
