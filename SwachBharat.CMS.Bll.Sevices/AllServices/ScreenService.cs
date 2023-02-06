@@ -7111,7 +7111,7 @@ namespace SwachBharat.CMS.Bll.Services
         }
 
 
-        public void SaveQRStatusDump(int dumpId, string QRStatus)
+        public void SaveQRStatusDump(int dumpId, string QRStatus, string Remark)
         {
             bool? bQRStatus = null;
             try
@@ -7137,6 +7137,7 @@ namespace SwachBharat.CMS.Bll.Services
                         if (model != null)
                         {
                             model.QRStatus = bQRStatus;
+                            model.Remark = Remark;
                             model.QRStatusDate = DateTime.Now;
                             db.SaveChanges();
                         }
@@ -7149,7 +7150,7 @@ namespace SwachBharat.CMS.Bll.Services
             }
         }
 
-        public void SaveQRStatusLiquid(int liquidId, string QRStatus)
+        public void SaveQRStatusLiquid(int liquidId, string QRStatus, string Remark)
         {
             bool? bQRStatus = null;
             try
@@ -7175,6 +7176,7 @@ namespace SwachBharat.CMS.Bll.Services
                         if (model != null)
                         {
                             model.QRStatus = bQRStatus;
+                            model.Remark = Remark;
                             model.QRStatusDate = DateTime.Now;
                             db.SaveChanges();
                         }
@@ -7188,7 +7190,7 @@ namespace SwachBharat.CMS.Bll.Services
         }
 
 
-        public void SaveQRStatusStreet(int streetId, string QRStatus)
+        public void SaveQRStatusStreet(int streetId, string QRStatus, string Remark)
         {
             bool? bQRStatus = null;
             try
@@ -7214,6 +7216,7 @@ namespace SwachBharat.CMS.Bll.Services
                         if (model != null)
                         {
                             model.QRStatus = bQRStatus;
+                            model.Remark = Remark;
                             model.QRStatusDate = DateTime.Now;
                             db.SaveChanges();
                         }
@@ -7560,7 +7563,8 @@ namespace SwachBharat.CMS.Bll.Services
                                            QRCodeImage = p.c.BinaryQrCodeImage,
                                            ReferanceId = p.c.ReferanceId,
                                            QRStatus = p.c.QRStatus,
-                                           QRStatusDate = p.c.QRStatusDate
+                                           QRStatusDate = p.c.QRStatusDate,
+                                           Remark = p.c.Remark
                                        }).Where(a => a.dumpId == dumpId && a.HouseLat != null && a.HouseLong != null).FirstOrDefault();
 
                 if (model != null)
@@ -7576,7 +7580,8 @@ namespace SwachBharat.CMS.Bll.Services
                         ReferanceId = model.ReferanceId,
                         modifiedDate = model.modifiedDate.HasValue ? Convert.ToDateTime(model.modifiedDate).ToString("dd/MM/yyyy hh:mm tt") : "",
                         QRStatusDate = model.QRStatusDate.HasValue ? Convert.ToDateTime(model.QRStatusDate).ToString("dd/MM/yyyy hh:mm tt") : "",
-                        QRStatus = model.QRStatus
+                        QRStatus = model.QRStatus,
+                        Remark = model.Remark
                     };
                 }
             }
@@ -7607,7 +7612,8 @@ namespace SwachBharat.CMS.Bll.Services
                                            QRCodeImage = p.c.BinaryQrCodeImage,
                                            ReferanceId = p.c.ReferanceId,
                                            QRStatus = p.c.QRStatus,
-                                           QRStatusDate = p.c.QRStatusDate
+                                           QRStatusDate = p.c.QRStatusDate,
+                                           Remark = p.c.Remark
                                        }).Where(a => a.liquid == liquidId).FirstOrDefault();
 
                 if (model != null)
@@ -7623,7 +7629,8 @@ namespace SwachBharat.CMS.Bll.Services
                         ReferanceId = model.ReferanceId,
                         modifiedDate = model.modifiedDate.HasValue ? Convert.ToDateTime(model.modifiedDate).ToString("dd/MM/yyyy hh:mm tt") : "",
                         QRStatusDate = model.QRStatusDate.HasValue ? Convert.ToDateTime(model.QRStatusDate).ToString("dd/MM/yyyy hh:mm tt") : "",
-                        QRStatus = model.QRStatus
+                        QRStatus = model.QRStatus,
+                        Remark = model.Remark
                     };
                 }
             }
@@ -7653,7 +7660,8 @@ namespace SwachBharat.CMS.Bll.Services
                                            QRCodeImage = p.c.BinaryQrCodeImage,
                                            ReferanceId = p.c.ReferanceId,
                                            QRStatus = p.c.QRStatus,
-                                           QRStatusDate = p.c.QRStatusDate
+                                           QRStatusDate = p.c.QRStatusDate,
+                                           Remark = p.c.Remark
                                        }).Where(a => a.liquid == streetId).FirstOrDefault();
 
                 if (model != null)
@@ -7669,7 +7677,8 @@ namespace SwachBharat.CMS.Bll.Services
                         ReferanceId = model.ReferanceId,
                         modifiedDate = model.modifiedDate.HasValue ? Convert.ToDateTime(model.modifiedDate).ToString("dd/MM/yyyy hh:mm tt") : "",
                         QRStatusDate = model.QRStatusDate.HasValue ? Convert.ToDateTime(model.QRStatusDate).ToString("dd/MM/yyyy hh:mm tt") : "",
-                        QRStatus = model.QRStatus
+                        QRStatus = model.QRStatus,
+                        Remark = model.Remark
                     };
                 }
             }

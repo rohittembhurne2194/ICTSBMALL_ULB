@@ -135,9 +135,9 @@ namespace SwachBharat.CMS.Bll.Services
         void SaveHSEmployeeDetails(HouseScanifyEmployeeDetailsVM employee);
 
         void SaveHSQRStatusHouse(int houseId, string QRStatus, string Remark);
-        void SaveQRStatusDump(int dumpId, string QRStatus);
-        void SaveQRStatusLiquid(int liquidId, string QRStatus);
-        void SaveQRStatusStreet(int streetId, string QRStatus);
+        void SaveQRStatusDump(int dumpId, string QRStatus, string Remark);
+        void SaveQRStatusLiquid(int liquidId, string QRStatus, string Remark);
+        void SaveQRStatusStreet(int streetId, string QRStatus, string Remark);
 
         List<int> GetHSHouseDetailsID(DateTime? fromDate, DateTime? toDate, int userId, string searchString, int QRStatus, string sortColumn, string sortOrder);
         List<int> GetHSDumpDetailsID(DateTime? fromDate, DateTime? toDate, int userId, string searchString, int QRStatus, string sortColumn, string sortOrder);

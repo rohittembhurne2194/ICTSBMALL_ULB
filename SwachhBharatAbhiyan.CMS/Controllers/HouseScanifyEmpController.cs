@@ -703,29 +703,29 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
             }
         }
 
-        public void SaveQRStatusDump(int appId, int dumpId, string QRStatus)
+        public void SaveQRStatusDump(int appId, int dumpId, string QRStatus, string Remark)
         {
             if (SessionHandler.Current.AppId != 0)
             {
                 childRepository = new ChildRepository(SessionHandler.Current.AppId);
-                childRepository.SaveQRStatusDump(dumpId, QRStatus);
+                childRepository.SaveQRStatusDump(dumpId, QRStatus, Remark);
             }
         }
-        public void SaveQRStatusLiquid(int appId, int liquidId, string QRStatus)
+        public void SaveQRStatusLiquid(int appId, int liquidId, string QRStatus, string Remark)
         {
             if (SessionHandler.Current.AppId != 0)
             {
                 childRepository = new ChildRepository(SessionHandler.Current.AppId);
-                childRepository.SaveQRStatusLiquid(liquidId, QRStatus);
+                childRepository.SaveQRStatusLiquid(liquidId, QRStatus, Remark);
             }
         }
 
-        public void SaveQRStatusStreet(int appId, int streetId, string QRStatus)
+        public void SaveQRStatusStreet(int appId, int streetId, string QRStatus, string Remark)
         {
             if (SessionHandler.Current.AppId != 0)
             {
                 childRepository = new ChildRepository(SessionHandler.Current.AppId);
-                childRepository.SaveQRStatusStreet(streetId, QRStatus);
+                childRepository.SaveQRStatusStreet(streetId, QRStatus, Remark);
             }
         }
 

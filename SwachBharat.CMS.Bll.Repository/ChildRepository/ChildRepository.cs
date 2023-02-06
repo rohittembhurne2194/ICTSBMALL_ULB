@@ -475,18 +475,18 @@ namespace SwachBharat.CMS.Bll.Repository.ChildRepository
         {
             screenService.SaveHSQRStatusHouse(houseId, QRStatus, Remark);
         }
-        public void SaveQRStatusDump(int dumpId, string QRStatus)
+        public void SaveQRStatusDump(int dumpId, string QRStatus, string Remark)
         {
-            screenService.SaveQRStatusDump(dumpId, QRStatus);
+            screenService.SaveQRStatusDump(dumpId, QRStatus, Remark);
         }
 
-        public void SaveQRStatusLiquid(int liquidId, string QRStatus)
+        public void SaveQRStatusLiquid(int liquidId, string QRStatus, string Remark)
         {
-            screenService.SaveQRStatusLiquid(liquidId, QRStatus);
+            screenService.SaveQRStatusLiquid(liquidId, QRStatus, Remark);
         }
-        public void SaveQRStatusStreet(int streetId, string QRStatus)
+        public void SaveQRStatusStreet(int streetId, string QRStatus, string Remark)
         {
-            screenService.SaveQRStatusStreet(streetId, QRStatus);
+            screenService.SaveQRStatusStreet(streetId, QRStatus, Remark);
         }
         public List<int> GetHSHouseDetailsID(DateTime? fromDate,DateTime? toDate,int userId,string searchString,int QRStatus,string sortColumn,string sortOrder)
         {
