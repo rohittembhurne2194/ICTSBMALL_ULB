@@ -123,7 +123,7 @@ $("#demoGrid3").dataTable().fnDestroy();
             name = arr[i].split("/");
             arr[i] = name[1] + "/" + name[0] + "/" + name[2];
         }
-        debugger;
+        //debugger;
         txt_fdate = arr[0];
         txt_tdate = arr[1];
         UserId = $('#selectnumber').val();
