@@ -395,13 +395,19 @@
                                 <h4 id="header_dataHouse" class="modal-title" style="padding-bottom:2rem;text-align:left;"></h4>
                                 <p> <b id="hide_date">Employee Name: </b><span id="dateDataHouse"></span></p>
                                 <p> <b id="hide_add">House Id: </b><span id="latlongDataHouse"></span></p>
-                                <p>  <b id="hide_add1">Date And Time: </b><span id="date1House"></span></p>
-                                <p>  <b id="hide_add2">Lat: </b><span id="latHouse"></span> <b id="hide_add3">Long: </b><span id="longHouse"></span></p>
+                                <p> <b id="hide_add1">Date And Time: </b><span id="date1House"></span></p>
+                                <p> <b id="hide_add2">Lat: </b><span id="latHouse"></span> <b id="hide_add3">Long: </b><span id="longHouse"></span></p>
                                 <p>
                                     <b>Status : </b><input type="radio" name="QRStatusHouse" value="1"> Approve
                                     <input type="radio" name="QRStatusHouse" value="0"> Reject
                                 </p>
-
+                                <p>
+                                    <b>Remark</b>
+                                    <input type="text" name="RemarkH" id="NewRemarkH" required /></br>
+                                    <span id="RemarkH"></span></br>
+                                    <input type="checkbox" id="ChangeRemarkH" name="ChangeRemarkH"/>
+                                    <label for="ChangeRemarkH" id="ChangeRemarkH2"> Change Remark</label>
+                                </p>
                                 <div class="text-center pt-1"><button type="button" class="btn btn-success save" id="btnHouseSave">Save</button></div>
                                 <p class="text-center pt-2"><b><span class="text-success" id="houseSave_pop"></span></b></p>
                             </div>
@@ -447,6 +453,13 @@
                                 <p>
                                     <b>Status : </b><input type="radio" name="QRStatusDump" value="1"> Approve
                                     <input type="radio" name="QRStatusDump" value="0"> Reject
+                                </p>
+                                <p>
+                                    <b>Remark</b>
+                                    <input type="text" name="RemarkD" id="NewRemarkD" required /></br>
+                                    <span id="RemarkD"></span></br>
+                                    <input type="checkbox" id="ChangeRemarkD" name="ChangeRemarkD" />
+                                    <label for="ChangeRemarkD" id="ChangeRemarkD2"> Change Remark</label>
                                 </p>
                                 <div class="text-center pt-1">
                                     <button type="button" class="btn btn-primary save" id="btnDumpSave">Save</button>
@@ -500,6 +513,13 @@
                                     <b>Status : </b><input type="radio" name="QRStatusLiquid" value="1"> Approve
                                     <input type="radio" name="QRStatusLiquid" value="0"> Reject
                                 </p>
+                                <p>
+                                    <b>Remark</b>
+                                    <input type="text" name="RemarkL" id="NewRemarkL" required /></br>
+                                    <span id="RemarkL"></span></br>
+                                    <input type="checkbox" id="ChangeRemarkL" name="ChangeRemarkL" />
+                                    <label for="ChangeRemarkL" id="ChangeRemarkL2"> Change Remark</label>
+                                </p>
                                 <div class="text-center pt-1"><button type="button" class="btn btn-primary save" id="btnLiquidSave">Save</button></div>
                                 <p class="text-center pt-2"><b><span class="text-success" id="LiquidSave_pop"></span></b></p>
 
@@ -549,6 +569,13 @@
                                 <p>
                                     <b>Status : </b><input type="radio" name="QRStatusStreet" value="1"> Approve
                                     <input type="radio" name="QRStatusStreet" value="0"> Reject
+                                </p>
+                                <p>
+                                    <b>Remark</b>
+                                    <input type="text" name="RemarkS" id="NewRemarkS" required /></br>
+                                    <span id="RemarkS"></span></br>
+                                    <input type="checkbox" id="ChangeRemarkS" name="ChangeRemarkS" />
+                                    <label for="ChangeRemarkS" id="ChangeRemarkS2"> Change Remark</label>
                                 </p>
                                 <div class="text-center pt-1">
                                     <button type="button" class="btn btn-primary save" id="btnStreetSave">Save</button>
@@ -617,14 +644,35 @@
     var curDumpIdIndex = 0;
     var curLiquidIdIndex = 0;
     var curStreetIdIndex = 0;
+
+    //$(document).ready(function () {
+    //    //set initial state.
+    //    //$('#textbox1').val(this.checked);
+
+    //    $('#ChangeRemark').change(function () {
+    //        if (this.checked) {
+    //            var returnVal = confirm("Are you sure?");
+    //            $(this).prop("checked", returnVal);
+    //            $("#NewRemark").text(Remark);
+    //            $("#Remark").hide();
+    //            $("#NewRemark").show();
+    //        }
+    //        $('#ChangeRemark').val(this.checked);
+    //        $("#Remark").text(Remark);
+    //        $("#NewRemark").hide();
+    //        $("#Remark").show();
+    //    });
+    //});
+
     $("#btnHouseSave").click(function () {
-        debugger;
+        //debugger;
         var QRStatus = $("input[name='QRStatusHouse']:checked").val();
+        var Remark = $("input[name='RemarkH']").val();
         var houseId = $("#hdHouseId").val();
         var AppId = $('#appid').val();
         $.ajax({
             type: "post",
-            url: "/HouseScanifyEmp/SaveQRStatusHouse?appId=" + AppId + "&houseId=" + houseId + "&QRStatus=" + QRStatus,
+            url: "/HouseScanifyEmp/SaveQRStatusHouse?appId=" + AppId + "&houseId=" + houseId + "&QRStatus=" + QRStatus + "&Remark=" + Remark,
             data: {},
             datatype: "json",
             traditional: true,
@@ -641,11 +689,12 @@
 
     $("#btnDumpSave").click(function () {
         var QRStatus = $("input[name='QRStatusDump']:checked").val();
+        var Remark = $("input[name='RemarkD']").val();
         var dumpId = $("#hdDumpId").val();
         var AppId = $('#appid').val();
         $.ajax({
             type: "post",
-            url: "/HouseScanifyEmp/SaveQRStatusDump?appId=" + AppId + "&dumpId=" + dumpId + "&QRStatus=" + QRStatus,
+            url: "/HouseScanifyEmp/SaveQRStatusDump?appId=" + AppId + "&dumpId=" + dumpId + "&QRStatus=" + QRStatus + "&Remark=" + Remark,
             data: {},
             datatype: "json",
             traditional: true,
@@ -662,11 +711,12 @@
 
     $("#btnLiquidSave").click(function () {
         var QRStatus = $("input[name='QRStatusLiquid']:checked").val();
+        var Remark = $("input[name='RemarkL']").val();
         var liquidId = $("#hdLiquidId").val();
         var AppId = $('#appid').val();
         $.ajax({
             type: "post",
-            url: "/HouseScanifyEmp/SaveQRStatusLiquid?appId=" + AppId + "&liquidId=" + liquidId + "&QRStatus=" + QRStatus,
+            url: "/HouseScanifyEmp/SaveQRStatusLiquid?appId=" + AppId + "&liquidId=" + liquidId + "&QRStatus=" + QRStatus + "&Remark=" + Remark,
             data: {},
             datatype: "json",
             traditional: true,
@@ -683,11 +733,12 @@
 
     $("#btnStreetSave").click(function () {
         var QRStatus = $("input[name='QRStatusStreet']:checked").val();
+        var Remark = $("input[name='RemarkS']").val();
         var streetId = $("#hdStreetId").val();
         var AppId = $('#appid').val();
         $.ajax({
             type: "post",
-            url: "/HouseScanifyEmp/SaveQRStatusStreet?appId=" + AppId + "&streetId=" + streetId + "&QRStatus=" + QRStatus,
+            url: "/HouseScanifyEmp/SaveQRStatusStreet?appId=" + AppId + "&streetId=" + streetId + "&QRStatus=" + QRStatus + "&Remark=" + Remark,
             data: {},
             datatype: "json",
             traditional: true,
@@ -740,7 +791,26 @@
                         $("input[name=QRStatusHouse][value=1]").prop('checked', false);
                         $("input[name=QRStatusHouse][value=0]").prop('checked', false);
                     }
+                   // debugger
+                    $('#ChangeRemarkH').prop('checked', false);
+                    if (data.Remark == null || data.Remark == "null") {
+                        $("#NewRemarkH").val("");
+                        $("#RemarkH").hide();
+                        $("#NewRemarkH").show();
+                        $("#ChangeRemarkH").hide();
+                        $("#ChangeRemarkH2").hide();
+                    }
+                    else {
+                        $("#RemarkH").text(data.Remark);
+                        $("#NewRemarkH").hide();
+                        $("#RemarkH").show();
 
+                        $("#ChangeRemarkH").show();
+                        $("#ChangeRemarkH2").show();
+
+
+                    }
+                    
                 }
 
             }
@@ -785,7 +855,24 @@
                         $("input[name=QRStatusDump][value=1]").prop('checked', false);
                         $("input[name=QRStatusDump][value=0]").prop('checked', false);
                     }
+                    $('#ChangeRemarkD').prop('checked', false);
+                    if (data.Remark == null || data.Remark == "null") {
+                        $("#NewRemarkD").val("");
+                        $("#RemarkD").hide();
+                        $("#NewRemarkD").show();
+                        $("#ChangeRemarkD").hide();
+                        $("#ChangeRemarkD2").hide();
+                    }
+                    else {
+                        $("#RemarkD").text(data.Remark);
+                        $("#NewRemarkD").hide();
+                        $("#RemarkD").show();
 
+                        $("#ChangeRemarkD").show();
+                        $("#ChangeRemarkD2").show();
+
+
+                    }
                 }
 
             }
@@ -830,7 +917,24 @@
                         $("input[name=QRStatusLiquid][value=1]").prop('checked', false);
                         $("input[name=QRStatusLiquid][value=0]").prop('checked', false);
                     }
+                    $('#ChangeRemarkL').prop('checked', false);
+                    if (data.Remark == null || data.Remark == "null") {
+                        $("#NewRemarkL").val("");
+                        $("#RemarkL").hide();
+                        $("#NewRemarkL").show();
+                        $("#ChangeRemarkL").hide();
+                        $("#ChangeRemarkL2").hide();
+                    }
+                    else {
+                        $("#RemarkL").text(data.Remark);
+                        $("#NewRemarkL").hide();
+                        $("#RemarkL").show();
 
+                        $("#ChangeRemarkL").show();
+                        $("#ChangeRemarkL2").show();
+
+
+                    }
                 }
 
             }
@@ -876,7 +980,24 @@
                         $("input[name=QRStatusStreet][value=1]").prop('checked', false);
                         $("input[name=QRStatusStreet][value=0]").prop('checked', false);
                     }
+                    $('#ChangeRemarkS').prop('checked', false);
+                    if (data.Remark == null || data.Remark == "null") {
+                        $("#NewRemarkS").val("");
+                        $("#RemarkS").hide();
+                        $("#NewRemarkS").show();
+                        $("#ChangeRemarkS").hide();
+                        $("#ChangeRemarkS2").hide();
+                    }
+                    else {
+                        $("#RemarkS").text(data.Remark);
+                        $("#NewRemarkS").hide();
+                        $("#RemarkS").show();
 
+                        $("#ChangeRemarkS").show();
+                        $("#ChangeRemarkS2").show();
+
+
+                    }
                 }
 
             }
@@ -886,7 +1007,7 @@
 
 
     $("#btnHouseNxt").click(function () {
-        debugger;
+        //debugger;
         curHouseIdIndex++;
         if (curHouseIdIndex >= arrHouseIDs.length) {
             curHouseIdIndex = 0;
@@ -923,7 +1044,26 @@
                         $("input[name=QRStatusHouse][value=1]").prop('checked', false);
                         $("input[name=QRStatusHouse][value=0]").prop('checked', false);
                     }
+                    //debugger
+                    $('#ChangeRemarkH').prop('checked', false);
+                    if (data.Remark == null || data.Remark == "null") {
+                        $("#NewRemarkH").val("");
+                        $("#RemarkH").hide();
+                        $("#NewRemarkH").show();
+                        $("#ChangeRemarkH").hide();
+                        $("#ChangeRemarkH2").hide();
+                    }
+                    else {
+                        $("#RemarkH").text(data.Remark);
+                        $("#NewRemarkH").hide();
+                        $("#RemarkH").show();
 
+                        $("#ChangeRemarkH").show();
+                        $("#ChangeRemarkH2").show();
+
+                  
+                    }
+               
                 }
 
             }
@@ -968,7 +1108,24 @@
                         $("input[name=QRStatusDump][value=1]").prop('checked', false);
                         $("input[name=QRStatusDump][value=0]").prop('checked', false);
                     }
+                    $('#ChangeRemarkD').prop('checked', false);
+                    if (data.Remark == null || data.Remark == "null") {
+                        $("#NewRemarkD").val("");
+                        $("#RemarkD").hide();
+                        $("#NewRemarkD").show();
+                        $("#ChangeRemarkD").hide();
+                        $("#ChangeRemarkD2").hide();
+                    }
+                    else {
+                        $("#RemarkD").text(data.Remark);
+                        $("#NewRemarkD").hide();
+                        $("#RemarkD").show();
 
+                        $("#ChangeRemarkD").show();
+                        $("#ChangeRemarkD2").show();
+
+
+                    }
                 }
 
 
@@ -1014,7 +1171,24 @@
                         $("input[name=QRStatusLiquid][value=1]").prop('checked', false);
                         $("input[name=QRStatusLiquid][value=0]").prop('checked', false);
                     }
+                    $('#ChangeRemarkL').prop('checked', false);
+                    if (data.Remark == null || data.Remark == "null") {
+                        $("#NewRemarkL").val("");
+                        $("#RemarkL").hide();
+                        $("#NewRemarkL").show();
+                        $("#ChangeRemarkL").hide();
+                        $("#ChangeRemarkL2").hide();
+                    }
+                    else {
+                        $("#RemarkL").text(data.Remark);
+                        $("#NewRemarkL").hide();
+                        $("#RemarkL").show();
 
+                        $("#ChangeRemarkL").show();
+                        $("#ChangeRemarkL2").show();
+
+
+                    }
 
                 }
 
@@ -1061,7 +1235,24 @@
                         $("input[name=QRStatusStreet][value=1]").prop('checked', false);
                         $("input[name=QRStatusStreet][value=0]").prop('checked', false);
                     }
+                    $('#ChangeRemarkS').prop('checked', false);
+                    if (data.Remark == null || data.Remark == "null") {
+                        $("#NewRemarkS").val("");
+                        $("#RemarkS").hide();
+                        $("#NewRemarkS").show();
+                        $("#ChangeRemarkS").hide();
+                        $("#ChangeRemarkS2").hide();
+                    }
+                    else {
+                        $("#RemarkS").text(data.Remark);
+                        $("#NewRemarkS").hide();
+                        $("#RemarkS").show();
 
+                        $("#ChangeRemarkS").show();
+                        $("#ChangeRemarkS2").show();
+
+
+                    }
 
 
                 }
@@ -1089,6 +1280,7 @@
         var long = $(cel).find('.li_long').text();
         var houseId = $(cel).find('.li_houseId').text();
         var QRStatus = $(cel).find('.li_QRStatus').text();
+        var Remark = $(cel).find('.li_Remark').text();
 
         curHouseIdIndex = arrHouseIDs.indexOf(parseInt(houseId));
         //alert(curHouseIdIndex);
@@ -1123,7 +1315,45 @@
         $("#header_dataHouse").html(head);
         $("#latHouse").text(lat);
         $("#longHouse").text(long);
+       // debugger
+        if (Remark == null || Remark == "null") {
+            $("#NewRemarkH").val("");
+            $("#RemarkH").hide();
+            $("#NewRemarkH").show();
+            $("#ChangeRemarkH").hide();
+            $("#ChangeRemarkH2").hide();
+        }
+        else {
+            $("#RemarkH").text(Remark);
+            $("#NewRemarkH").hide();
+            $("#RemarkH").show();
+         
+            $("#ChangeRemarkH").show();
+            $("#ChangeRemarkH2").show();
 
+          
+        }
+        $('#ChangeRemarkH').prop('checked', false);
+        $('#ChangeRemarkH').change(function () {
+            //debugger
+            if (this.checked) {
+                var returnVal = confirm("Are you sure?");
+                $(this).prop("checked", returnVal);
+                var re = document.getElementById("RemarkH").innerHTML
+                $("#NewRemarkH").val(re);
+                $("#RemarkH").hide();
+                $("#NewRemarkH").show();
+            }
+            else {
+                $('#ChangeRemarkH').val(this.checked);
+                $("#RemarkH").text(Remark);
+                $("#NewRemarkH").hide();
+                $("#RemarkH").show();
+                $("#ChangeRemarkH").show();
+                $("#ChangeRemarkH2").show();
+            }
+
+        });
     }
 
 
@@ -1142,6 +1372,7 @@
         var long = $(cel).find('.li_long').text();
         var houseId = $(cel).find('.li_houseId').text();
         var QRStatus = $(cel).find('.li_QRStatus').text();
+        var Remark = $(cel).find('.li_Remark').text();
 
         curDumpIdIndex = arrDumpIDs.indexOf(parseInt(houseId));
         //alert(curHouseIdIndex);
@@ -1176,7 +1407,44 @@
         $("#header_dataDump").html(head);
         $("#latDump").text(lat);
         $("#longDump").text(long);
+        if (Remark == null || Remark == "null") {
+            $("#NewRemarkD").val("");
+            $("#RemarkD").hide();
+            $("#NewRemarkD").show();
+            $("#ChangeRemarkD").hide();
+            $("#ChangeRemarkD2").hide();
+        }
+        else {
+            $("#RemarkD").text(Remark);
+            $("#NewRemarkD").hide();
+            $("#RemarkD").show();
 
+            $("#ChangeRemarkD").show();
+            $("#ChangeRemarkD2").show();
+
+
+        }
+        $('#ChangeRemarkD').prop('checked', false);
+        $('#ChangeRemarkD').change(function () {
+            //debugger
+            if (this.checked) {
+                var returnVal = confirm("Are you sure?");
+                $(this).prop("checked", returnVal);
+                var re = document.getElementById("RemarkD").innerHTML
+                $("#NewRemarkD").val(re);
+                $("#RemarkD").hide();
+                $("#NewRemarkD").show();
+            }
+            else {
+                $('#ChangeRemarkD').val(this.checked);
+                $("#RemarkD").text(Remark);
+                $("#NewRemarkD").hide();
+                $("#RemarkD").show();
+                $("#ChangeRemarkD").show();
+                $("#ChangeRemarkD2").show();
+            }
+
+        });
     }
 
     function PopImagesLiquid(cel) {
@@ -1194,6 +1462,7 @@
         var long = $(cel).find('.li_long').text();
         var houseId = $(cel).find('.li_houseId').text();
         var QRStatus = $(cel).find('.li_QRStatus').text();
+        var Remark = $(cel).find('.li_Remark').text();
 
         curLiquidIdIndex = arrLiquidIDs.indexOf(parseInt(houseId));
         //alert(curHouseIdIndex);
@@ -1229,6 +1498,44 @@
         $("#latLiquid").text(lat);
         $("#longLiquid").text(long);
 
+        if (Remark == null || Remark == "null") {
+            $("#NewRemarkL").val("");
+            $("#RemarkL").hide();
+            $("#NewRemarkL").show();
+            $("#ChangeRemarkL").hide();
+            $("#ChangeRemarkL2").hide();
+        }
+        else {
+            $("#RemarkL").text(Remark);
+            $("#NewRemarkL").hide();
+            $("#RemarkL").show();
+
+            $("#ChangeRemarkL").show();
+            $("#ChangeRemarkL2").show();
+
+
+        }
+        $('#ChangeRemarkL').prop('checked', false);
+        $('#ChangeRemarkL').change(function () {
+            //debugger
+            if (this.checked) {
+                var returnVal = confirm("Are you sure?");
+                $(this).prop("checked", returnVal);
+                var re = document.getElementById("RemarkL").innerHTML
+                $("#NewRemarkL").val(re);
+                $("#RemarkL").hide();
+                $("#NewRemarkL").show();
+            }
+            else {
+                $('#ChangeRemarkL').val(this.checked);
+                $("#RemarkL").text(Remark);
+                $("#NewRemarkL").hide();
+                $("#RemarkL").show();
+                $("#ChangeRemarkL").show();
+                $("#ChangeRemarkL2").show();
+            }
+
+        });
     }
 
     function PopImagesStreet(cel) {
@@ -1246,6 +1553,7 @@
         var long = $(cel).find('.li_long').text();
         var houseId = $(cel).find('.li_houseId').text();
         var QRStatus = $(cel).find('.li_QRStatus').text();
+        var Remark = $(cel).find('.li_Remark').text();
 
         curStreetIdIndex = arrStreetIDs.indexOf(parseInt(houseId));
         //alert(curHouseIdIndex);
@@ -1281,11 +1589,49 @@
         $("#latStreet").text(lat);
         $("#longStreet").text(long);
 
+        if (Remark == null || Remark == "null") {
+            $("#NewRemarkS").val("");
+            $("#RemarkS").hide();
+            $("#NewRemarkS").show();
+            $("#ChangeRemarkS").hide();
+            $("#ChangeRemarkS2").hide();
+        }
+        else {
+            $("#RemarkS").text(Remark);
+            $("#NewRemarkS").hide();
+            $("#RemarkS").show();
+
+            $("#ChangeRemarkS").show();
+            $("#ChangeRemarkS2").show();
+
+
+        }
+        $('#ChangeRemarkS').prop('checked', false);
+        $('#ChangeRemarkS').change(function () {
+            //debugger
+            if (this.checked) {
+                var returnVal = confirm("Are you sure?");
+                $(this).prop("checked", returnVal);
+                var re = document.getElementById("RemarkS").innerHTML
+                $("#NewRemarkS").val(re);
+                $("#RemarkS").hide();
+                $("#NewRemarkS").show();
+            }
+            else {
+                $('#ChangeRemarkS').val(this.checked);
+                $("#RemarkS").text(Remark);
+                $("#NewRemarkS").hide();
+                $("#RemarkS").show();
+                $("#ChangeRemarkS").show();
+                $("#ChangeRemarkS2").show();
+            }
+
+        });
     }
 
 
     function PopImages(cel) {
-        debugger
+        //debugger
         $('#myModal_Image').modal('toggle');
         var d1 = $(cel).find('.date_time').text();
         var addr = $(cel).find('.addr-length').text();

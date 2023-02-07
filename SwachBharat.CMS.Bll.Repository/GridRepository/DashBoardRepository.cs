@@ -6560,6 +6560,8 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                     QRStatusDate1 = x.QRStatusDate,
                     QRStatus = x.QRStatus,
                     totalRowCount = x.FilterTotalCount.HasValue ? Convert.ToInt32(x.FilterTotalCount) : 0,
+                    Remark = x.Remark,
+                    
                 }).ToList();
 
                 return data;
@@ -6959,7 +6961,8 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                                           QRCodeImage = p.c.BinaryQrCodeImage,
                                           ReferanceId = p.c.ReferanceId,
                                           QRStatus = p.c.QRStatus,
-                                          QRStatusDate = p.c.QRStatusDate
+                                          QRStatusDate = p.c.QRStatusDate,
+                                          Remark = p.c.Remark
                                       }).Where(c => ((bQRStatus == 1 && c.QRStatus == true) || (bQRStatus == 0 && c.QRStatus == false)  || bQRStatus == 3 && c.QRStatus == null && c.QRStatusDate == null || bQRStatus == null) && (c.modifiedDate >= fdate && c.modifiedDate <= tdate) && c.HouseLat != null && c.HouseLong != null).OrderBy(c => c.houseId).ToList();
 
                 if (fdate != null && tdate != null)
@@ -6996,6 +6999,7 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                     ReferanceId = x.ReferanceId,
                     modifiedDate = x.modifiedDate.HasValue ? Convert.ToDateTime(x.modifiedDate).ToString("dd/MM/yyyy hh:mm tt") : "",
                     QRStatus = x.QRStatus,
+                    Remark = x.Remark,
                     QRStatusDate = x.QRStatusDate.HasValue ? Convert.ToDateTime(x.QRStatusDate).ToString("dd/MM/yyyy hh:mm tt") : ""
                 }).ToList();
                 return data;
@@ -7053,7 +7057,8 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                                           QRCodeImage = p.c.BinaryQrCodeImage,
                                           ReferanceId = p.c.ReferanceId,
                                           QRStatus = p.c.QRStatus,
-                                          QRStatusDate = p.c.QRStatusDate
+                                          QRStatusDate = p.c.QRStatusDate,
+                                          Remark = p.c.Remark
                                       }).Where(c => ((bQRStatus == 1 && c.QRStatus == true) || (bQRStatus == 0 && c.QRStatus == false) || bQRStatus == 3 && c.QRStatus == null && c.QRStatusDate == null || bQRStatus == null) && (c.modifiedDate >= fdate && c.modifiedDate <= tdate) && c.HouseLat != null && c.HouseLong != null).OrderBy(c => c.houseId).ToList();
 
 
@@ -7092,6 +7097,7 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                     ReferanceId = x.ReferanceId,
                     modifiedDate = x.modifiedDate.HasValue ? Convert.ToDateTime(x.modifiedDate).ToString("dd/MM/yyyy hh:mm tt") : "",
                     QRStatus = x.QRStatus,
+                    Remark = x.Remark,
                     QRStatusDate = x.QRStatusDate.HasValue ? Convert.ToDateTime(x.QRStatusDate).ToString("dd/MM/yyyy hh:mm tt") : ""
                 }).ToList();
                 return data;
@@ -7149,7 +7155,8 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                                           QRCodeImage = p.c.BinaryQrCodeImage,
                                           ReferanceId = p.c.ReferanceId,
                                           QRStatus = p.c.QRStatus,
-                                          QRStatusDate = p.c.QRStatusDate
+                                          QRStatusDate = p.c.QRStatusDate,
+                                          Remark = p.c.Remark
                                       }).Where(c => ((bQRStatus == 1 && c.QRStatus == true) || (bQRStatus == 0 && c.QRStatus == false) || bQRStatus == 3 && c.QRStatus == null && c.QRStatusDate == null || bQRStatus == null) && (c.modifiedDate >= fdate && c.modifiedDate <= tdate) && c.HouseLat != null && c.HouseLong != null).OrderBy(c => c.houseId).ToList();
 
 
@@ -7188,6 +7195,7 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                     ReferanceId = x.ReferanceId,
                     modifiedDate = x.modifiedDate.HasValue ? Convert.ToDateTime(x.modifiedDate).ToString("dd/MM/yyyy hh:mm tt") : "",
                     QRStatus = x.QRStatus,
+                    Remark = x.Remark,
                     QRStatusDate = x.QRStatusDate.HasValue ? Convert.ToDateTime(x.QRStatusDate).ToString("dd/MM/yyyy hh:mm tt") : ""
                 }).ToList();
                 return data;

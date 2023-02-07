@@ -21,6 +21,6 @@ namespace SwachBharat.CMS.Bll.ViewModels.Grid
         public string QRStatusDate { get; set; }
 
         public byte[] BinaryQrCodeImage { get; set; }
-
+        public string Remark { get; set; }
     }
 }

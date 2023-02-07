@@ -39,5 +39,6 @@ namespace SwachBharat.CMS.Dal.DataContexts
         public Nullable<bool> QRStatus { get; set; }
         public Nullable<System.DateTime> QRStatusDate { get; set; }
         public byte[] BinaryQrCodeImage { get; set; }
+        public string Remark { get; set; }
     }
 }
