@@ -53,6 +53,8 @@ namespace SwachBharat.CMS.Bll.Repository.ChildRepository
 
 
         HouseDetailsVM GetHouseById(int teamId);
+        SurveyDetailVM GetSurveyById(int teamId);
+
         MasterQRDetailsVM GetMasterQRById(int teamId , string houseId);
         VehicalRegDetailsVM GetVehicalRegById(int teamId);
 
@@ -60,6 +62,7 @@ namespace SwachBharat.CMS.Bll.Repository.ChildRepository
         SBALUserLocationMapView GetDumpByIdforMap(int teamId, int daId, string EmpType);
         SBALUserLocationMapView GetLiquidByIdforMap(int teamId, int daId,string EmpType);
         HouseDetailsVM SaveHouse(HouseDetailsVM data);
+        SurveyDetailVM SaveSurvey(SurveyDetailVM survey);
         VehicalRegDetailsVM SaveVehicalReg(VehicalRegDetailsVM data);
 
         void SaveEmpBeatMap(EmpBeatMapVM data);
@@ -144,10 +147,10 @@ namespace SwachBharat.CMS.Bll.Repository.ChildRepository
         //Added By saurabh (04 June 2019)
         void SaveHSEmployee(HouseScanifyEmployeeDetailsVM employee);
 
-        void SaveHSQRStatusHouse(int houseId, string QRStatus);
-        void SaveQRStatusDump(int dumpId, string QRStatus);
-        void SaveQRStatusLiquid(int liquidId, string QRStatus);
-        void SaveQRStatusStreet(int streetId, string QRStatus);
+        void SaveHSQRStatusHouse(int houseId, string QRStatus, string Remark);
+        void SaveQRStatusDump(int dumpId, string QRStatus, string Remark);
+        void SaveQRStatusLiquid(int liquidId, string QRStatus, string Remark);
+        void SaveQRStatusStreet(int streetId, string QRStatus, string Remark);
 
         List<int> GetHSHouseDetailsID(DateTime? fromDate, DateTime? toDate, int userId, string searchString, int QRStatus, string sortColumn, string sortOrder);
         List<int> GetHSDumpDetailsID(DateTime? fromDate, DateTime? toDate, int userId, string searchString, int QRStatus, string sortColumn, string sortOrder);
@@ -159,6 +162,7 @@ namespace SwachBharat.CMS.Bll.Repository.ChildRepository
         SBAHSLiquidDetailsGrid GetLiquidDetailsById(int liquidId);
         SBAHSStreetDetailsGrid GetStreetDetailsById(int streetId);
 
+        SBASurveyFormDetailsGrid GetSurveyFormDetailsById(int houseId);
 
         void SaveUREmployee(UREmployeeDetailsVM employee);
 

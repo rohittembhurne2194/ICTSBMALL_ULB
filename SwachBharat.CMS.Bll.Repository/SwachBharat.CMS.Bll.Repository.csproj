@@ -118,6 +118,7 @@
     <Compile Include="GridRepository\Grid\HSHouseDetailsGridRepository.cs" />
     <Compile Include="GridRepository\Grid\HSLiquidDetailsGridRepository.cs" />
     <Compile Include="GridRepository\Grid\HSStreetDetailsGridRepository.cs" />
+    <Compile Include="GridRepository\Grid\HSSurveyGridRepository.cs" />
     <Compile Include="GridRepository\Grid\HSURAttendanceGridRepository.cs" />
     <Compile Include="GridRepository\Grid\IdelGridRepository.cs" />
     <Compile Include="GridRepository\Grid\InfotainmentGridRepository.cs" />

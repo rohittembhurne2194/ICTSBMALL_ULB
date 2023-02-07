@@ -804,6 +804,24 @@ namespace SwachBharat.CMS.Bll.Services
             }
         }
 
+        public SurveyDetailVM GetSurveyById(int teamId)
+        {
+            SurveyDetailVM survey = new SurveyDetailVM();
+            try
+            {
+                var details = db.SurveyFormDetails.Where(a => a.houseId == teamId).FirstOrDefault();
+                if (details != null)
+                {
+                    survey = FillSurveyDetailsViewModel(details);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            return survey;
+        }
         public MasterQRDetailsVM GetMasterQRDetails(int teamId, string houseId)
         {
             try
@@ -1290,6 +1308,85 @@ namespace SwachBharat.CMS.Bll.Services
                 return null;
             }
         }
+
+        public SurveyDetailVM SaveSurvey(SurveyDetailVM data)
+        {
+            try
+            {
+                using (var db = new DevChildSwachhBharatNagpurEntities(AppID))
+                {
+                    if (data.houseId > 0)
+                    {
+                        var model = db.SurveyFormDetails.Where(x => x.houseId == data.houseId).FirstOrDefault();
+                        if (model != null)
+                        {
+                            model.svId = data.svId;
+                            model.ReferanceId = data.ReferanceId;
+                            model.name = (string.IsNullOrEmpty(data.FirstName) ? "" : data.FirstName + " ") + (string.IsNullOrEmpty(data.MiddleName) ? "" : data.MiddleName + " ") + (string.IsNullOrEmpty(data.LastName) ? "" : data.LastName );
+                            model.mobileNumber = data.mobileNumber;
+                            DateTime dt;
+                            bool isDate = DateTime.TryParseExact(data.dateOfBirth,
+                                                   "dd/MM/yyyy",
+                                                   CultureInfo.InvariantCulture,
+                                                   DateTimeStyles.None,
+                                                   out dt);
+                            if (isDate)
+                                model.dateOfBirth = dt;
+                            else
+                                model.dateOfBirth = null;
+                            
+                            model.gender = data.gender;
+                            model.bloodGroup = data.bloodGroup;
+                            model.qualification = data.qualification;
+                            model.occupation = data.occupation;
+                            model.maritalStatus = data.maritalStatus;
+                            model.livingStatus = data.livingStatus;
+                            model.totalMember = data.totalMember;
+                            model.totalAdults = data.totalAdults;
+                            model.totalChildren = data.totalChildren;
+                            model.totalSrCitizen = data.totalSrCitizen;
+                            model.willingStart = data.willingStart;
+                            model.resourcesAvailable = data.resourcesAvailable;
+                            model.memberJobOtherCity = data.memberJobOtherCity;
+                            model.noOfVehicle = data.noOfVehicle;
+                            model.twoWheelerQty = data.twoWheelerQty;
+                            model.fourWheelerQty = data.fourWheelerQty;
+                            model.noPeopleVote = data.noPeopleVote;
+                            model.socialMedia = GetSocialMediaStr(data.socialMedialst);
+                            model.onlineShopping = GetShopAppStr(data.shopApplst);
+                            model.onlinePayApp = GetPaymentAppStr(data.payApplst);
+                            model.insurance = data.insurance;
+                            model.underInsurer = data.underInsurer;
+                            model.ayushmanBeneficiary = data.ayushmanBeneficiary;
+                            model.boosterShot = data.boosterShot;
+                            model.memberDivyang = data.memberDivyang;
+                            model.updateDate = DateTime.Now;
+
+                            db.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        //var id = db.HouseMasters.OrderByDescending(x => x.houseId).Select(x => x.houseId).FirstOrDefault();
+                        //int number = 1000;
+                        //string refer = "SBA" + (number + id + 1);
+                        // data.ReferanceId = refer;
+                        var type = FillSurveyDetailsDataModel(data);
+                        db.SurveyFormDetails.Add(type);
+                        db.SaveChanges();
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+            return data;
+        }
+
+
 
         public VehicalRegDetailsVM SaveVehicalRegDetails(VehicalRegDetailsVM data)
         {
@@ -5169,6 +5266,53 @@ namespace SwachBharat.CMS.Bll.Services
             return model;
         }
 
+
+        private SurveyFormDetail FillSurveyDetailsDataModel(SurveyDetailVM data)
+        {
+            SurveyFormDetail model = new SurveyFormDetail();
+            model.houseId = data.houseId;
+            model.ReferanceId = data.ReferanceId;
+            model.name = (string.IsNullOrEmpty(data.FirstName) ? "" : data.FirstName + " ") + (string.IsNullOrEmpty(data.MiddleName) ? "" : data.MiddleName + " ") + (string.IsNullOrEmpty(data.LastName) ? "" : data.LastName);
+            model.mobileNumber = data.mobileNumber;
+            DateTime dt;
+            bool isDate = DateTime.TryParseExact(data.dateOfBirth,
+                                   "dd/MM/yyyy",
+                                   CultureInfo.InvariantCulture,
+                                   DateTimeStyles.None,
+                                   out dt);
+            if (isDate)
+                model.dateOfBirth = dt;
+            else
+                model.dateOfBirth = null;
+            model.gender = data.gender;
+            model.bloodGroup = data.bloodGroup;
+            model.qualification = data.qualification;
+            model.occupation = data.occupation;
+            model.maritalStatus = data.maritalStatus;
+            model.livingStatus = data.livingStatus;
+            model.totalMember = data.totalMember;
+            model.totalAdults = data.totalAdults;
+            model.totalChildren = data.totalChildren;
+            model.totalSrCitizen = data.totalSrCitizen;
+            model.willingStart = data.willingStart;
+            model.resourcesAvailable = data.resourcesAvailable;
+            model.memberJobOtherCity = data.memberJobOtherCity;
+            model.noOfVehicle = data.noOfVehicle;
+            model.twoWheelerQty = data.twoWheelerQty;
+            model.fourWheelerQty = data.fourWheelerQty;
+            model.noPeopleVote = data.noPeopleVote;
+            model.socialMedia = GetSocialMediaStr(data.socialMedialst);
+            model.onlineShopping = GetShopAppStr(data.shopApplst);
+            model.onlinePayApp = GetPaymentAppStr(data.payApplst);
+            model.insurance = data.insurance;
+            model.underInsurer = data.underInsurer;
+            model.ayushmanBeneficiary = data.ayushmanBeneficiary;
+            model.boosterShot = data.boosterShot;
+            model.memberDivyang = data.memberDivyang;
+
+            return model;
+        }
+
         private Vehical_QR_Master FillVehicalRegDetailsDataModel(VehicalRegDetailsVM data)
         {
             Vehical_QR_Master model = new Vehical_QR_Master();
@@ -5748,6 +5892,160 @@ namespace SwachBharat.CMS.Bll.Services
             }
 
             return model;
+        }
+
+
+        private SurveyDetailVM FillSurveyDetailsViewModel(SurveyFormDetail data)
+        {
+
+            SurveyDetailVM model = new SurveyDetailVM();
+            model.houseId = data.houseId;
+            model.svId = data.svId;
+            model.ReferanceId = data.ReferanceId;
+            model.FirstName = data.name.Split(' ').ElementAtOrDefault(0);
+            model.MiddleName = data.name.Split(' ').ElementAtOrDefault(1);
+            model.LastName = data.name.Split(' ').ElementAtOrDefault(2);
+            model.mobileNumber = data.mobileNumber;
+            model.dateOfBirth = data.dateOfBirth.HasValue ? Convert.ToDateTime(data.dateOfBirth).ToString("dd/MM/yyyy") : "";
+            model.gender = data.gender;
+            model.bloodGroup = data.bloodGroup;
+            model.qualification = data.qualification;
+            model.occupation = data.occupation;
+            model.maritalStatus = data.maritalStatus;
+            model.livingStatus = data.livingStatus;
+            model.totalMember = data.totalMember;
+            model.totalAdults = data.totalAdults;
+            model.totalChildren = data.totalChildren;
+            model.totalSrCitizen = data.totalSrCitizen;
+            model.willingStart = data.willingStart;
+            model.resourcesAvailable = data.resourcesAvailable;
+            model.memberJobOtherCity = data.memberJobOtherCity;
+            model.noOfVehicle = data.noOfVehicle;
+            model.twoWheelerQty = data.twoWheelerQty;
+            model.fourWheelerQty = data.fourWheelerQty;
+            model.noPeopleVote = data.noPeopleVote;
+            model.socialMedia = data.socialMedia;
+            model.socialMedialst = GetSocialMediaLst(data.socialMedia);
+            model.onlineShopping = data.onlineShopping;
+            model.shopApplst = GetShopAppLst(data.onlineShopping);
+            model.onlinePayApp = data.onlinePayApp;
+            model.payApplst = GetPaymentAppLst(data.onlinePayApp);
+            model.insurance = data.insurance;
+            model.underInsurer = data.underInsurer;
+            model.ayushmanBeneficiary = data.ayushmanBeneficiary;
+            model.boosterShot = data.boosterShot;
+            model.memberDivyang = data.memberDivyang;
+
+
+            return model;
+        }
+
+        private List<socialMedia> GetSocialMediaLst(string strSocialMedia)
+        {
+            List<socialMedia> socialMedias = new List<socialMedia>();
+            string[] socialMediaArr = new[] { "Facebook", "Twitter", "Instagram", "Whatsapp", "Linkedin", "Snapchat", "Other" };
+
+            foreach(var soc in socialMediaArr)
+            {
+                socialMedia obj = new socialMedia();
+                if (!string.IsNullOrEmpty(strSocialMedia) && strSocialMedia.ToUpper().Contains(soc.ToUpper()))
+                {
+                    obj.IsSelected = true;
+                    obj.socialMediaName = soc;
+                }
+                else
+                {
+                    obj.IsSelected = false;
+                    obj.socialMediaName = soc;
+                }
+                socialMedias.Add(obj);
+            }
+            return socialMedias;
+        }
+
+        private string GetSocialMediaStr(List<socialMedia> lstSocialMedia)
+        {
+
+            //string[] socialMediaArr = new[] { "Facebook", "Twitter", "Instagram", "Whatsapp", "Linkedin", "Snapchat", "Other" };
+            List<string> lstSocial = new List<string>();
+            foreach (var soc in lstSocialMedia)
+            {
+                if (soc.IsSelected)
+                    lstSocial.Add(soc.socialMediaName);
+            }
+            return string.Join(",", lstSocial); 
+        }
+
+        private string GetShopAppStr(List<shopApp> lstShopApp)
+        {
+
+            //string[] socialMediaArr = new[] { "Facebook", "Twitter", "Instagram", "Whatsapp", "Linkedin", "Snapchat", "Other" };
+            List<string> lstShop = new List<string>();
+            foreach (var shop in lstShopApp)
+            {
+                if (shop.IsSelected)
+                    lstShop.Add(shop.shopAppName);
+            }
+            return string.Join(",", lstShop); 
+        }
+        private string GetPaymentAppStr(List<paymentApp> lstPaymentApp)
+        {
+            string[] payAppArr = new[] { "Bhim", "Paytm", "PhonePe", "GooglePay", "PersonalBanking", "Other" };
+            string[] payAppDispArr = new[] { "Bhim", "Paytm", "PhonePe", "Google Pay", "Personal Banking", "Other" };
+            //string[] socialMediaArr = new[] { "Facebook", "Twitter", "Instagram", "Whatsapp", "Linkedin", "Snapchat", "Other" };
+            List<string> lstPay = new List<string>();
+            foreach (var pay in lstPaymentApp)
+            {
+                if (pay.IsSelected)
+                    lstPay.Add(payAppArr[Array.IndexOf(payAppDispArr,pay.paymentAppName)]);
+            }
+            return string.Join(",", lstPay); 
+        }
+        private List<shopApp> GetShopAppLst(string strShopApp)
+        {
+            List<shopApp> shopApps = new List<shopApp>();
+            string[] shopAppArr = new[] { "Amazon", "Flipkart", "Nykka", "TataCliq", "Snapdeal", "Other" };
+
+            foreach (var shop in shopAppArr)
+            {
+                shopApp obj = new shopApp();
+                if (!string.IsNullOrEmpty(strShopApp) && strShopApp.ToUpper().Contains(shop.ToUpper()))
+                {
+                    obj.IsSelected = true;
+                    obj.shopAppName = shop;
+                }
+                else
+                {
+                    obj.IsSelected = false;
+                    obj.shopAppName = shop;
+                }
+                shopApps.Add(obj);
+            }
+            return shopApps;
+        }
+
+        private List<paymentApp> GetPaymentAppLst(string strPaymentApp)
+        {
+            List<paymentApp> paymentApps = new List<paymentApp>();
+            string[] payAppArr = new[] { "Bhim", "Paytm", "PhonePe", "GooglePay", "PersonalBanking", "Other" };
+            string[] payAppDispArr = new[] { "Bhim", "Paytm", "PhonePe", "Google Pay", "Personal Banking", "Other" };
+
+            foreach (var pay in payAppArr)
+            {
+                paymentApp obj = new paymentApp();
+                if (!string.IsNullOrEmpty(strPaymentApp) && strPaymentApp.ToUpper().Contains(pay.ToUpper()))
+                {
+                    obj.IsSelected = true;
+                    obj.paymentAppName = payAppDispArr[Array.IndexOf(payAppArr, pay)];
+                }
+                else
+                {
+                    obj.IsSelected = false;
+                    obj.paymentAppName = payAppDispArr[Array.IndexOf(payAppArr, pay)]; 
+                }
+                paymentApps.Add(obj);
+            }
+            return paymentApps;
         }
 
         private MasterQRDetailsVM FillMasterQRDetailsViewModel(MasterQR data)
@@ -6773,7 +7071,7 @@ namespace SwachBharat.CMS.Bll.Services
         }
 
 
-        public void SaveHSQRStatusHouse(int houseId, string QRStatus)
+        public void SaveHSQRStatusHouse(int houseId, string QRStatus, string Remark)
         {
             bool? bQRStatus = null;
             try
@@ -6799,6 +7097,7 @@ namespace SwachBharat.CMS.Bll.Services
                         if (model != null)
                         {
                             model.QRStatus = bQRStatus;
+                            model.Remark = Remark;
                             model.QRStatusDate = DateTime.Now;
                             db.SaveChanges();
                         }
@@ -6812,7 +7111,7 @@ namespace SwachBharat.CMS.Bll.Services
         }
 
 
-        public void SaveQRStatusDump(int dumpId, string QRStatus)
+        public void SaveQRStatusDump(int dumpId, string QRStatus, string Remark)
         {
             bool? bQRStatus = null;
             try
@@ -6838,6 +7137,7 @@ namespace SwachBharat.CMS.Bll.Services
                         if (model != null)
                         {
                             model.QRStatus = bQRStatus;
+                            model.Remark = Remark;
                             model.QRStatusDate = DateTime.Now;
                             db.SaveChanges();
                         }
@@ -6850,7 +7150,7 @@ namespace SwachBharat.CMS.Bll.Services
             }
         }
 
-        public void SaveQRStatusLiquid(int liquidId, string QRStatus)
+        public void SaveQRStatusLiquid(int liquidId, string QRStatus, string Remark)
         {
             bool? bQRStatus = null;
             try
@@ -6876,6 +7176,7 @@ namespace SwachBharat.CMS.Bll.Services
                         if (model != null)
                         {
                             model.QRStatus = bQRStatus;
+                            model.Remark = Remark;
                             model.QRStatusDate = DateTime.Now;
                             db.SaveChanges();
                         }
@@ -6889,7 +7190,7 @@ namespace SwachBharat.CMS.Bll.Services
         }
 
 
-        public void SaveQRStatusStreet(int streetId, string QRStatus)
+        public void SaveQRStatusStreet(int streetId, string QRStatus, string Remark)
         {
             bool? bQRStatus = null;
             try
@@ -6915,6 +7216,7 @@ namespace SwachBharat.CMS.Bll.Services
                         if (model != null)
                         {
                             model.QRStatus = bQRStatus;
+                            model.Remark = Remark;
                             model.QRStatusDate = DateTime.Now;
                             db.SaveChanges();
                         }
@@ -7231,7 +7533,8 @@ namespace SwachBharat.CMS.Bll.Services
                     ReferanceId = x.ReferanceId,
                     modifiedDate = x.modified.HasValue ? Convert.ToDateTime(x.modified).ToString("dd/MM/yyyy hh:mm tt") : "",
                     QRStatusDate = x.QRStatusDate.HasValue ? Convert.ToDateTime(x.QRStatusDate).ToString("dd/MM/yyyy hh:mm tt") : "",
-                    QRStatus = x.QRStatus
+                    QRStatus = x.QRStatus,
+                    Remark = x.Remark
                 }).FirstOrDefault();
             }
             return data;
@@ -7260,7 +7563,8 @@ namespace SwachBharat.CMS.Bll.Services
                                            QRCodeImage = p.c.BinaryQrCodeImage,
                                            ReferanceId = p.c.ReferanceId,
                                            QRStatus = p.c.QRStatus,
-                                           QRStatusDate = p.c.QRStatusDate
+                                           QRStatusDate = p.c.QRStatusDate,
+                                           Remark = p.c.Remark
                                        }).Where(a => a.dumpId == dumpId && a.HouseLat != null && a.HouseLong != null).FirstOrDefault();
 
                 if (model != null)
@@ -7276,7 +7580,8 @@ namespace SwachBharat.CMS.Bll.Services
                         ReferanceId = model.ReferanceId,
                         modifiedDate = model.modifiedDate.HasValue ? Convert.ToDateTime(model.modifiedDate).ToString("dd/MM/yyyy hh:mm tt") : "",
                         QRStatusDate = model.QRStatusDate.HasValue ? Convert.ToDateTime(model.QRStatusDate).ToString("dd/MM/yyyy hh:mm tt") : "",
-                        QRStatus = model.QRStatus
+                        QRStatus = model.QRStatus,
+                        Remark = model.Remark
                     };
                 }
             }
@@ -7307,7 +7612,8 @@ namespace SwachBharat.CMS.Bll.Services
                                            QRCodeImage = p.c.BinaryQrCodeImage,
                                            ReferanceId = p.c.ReferanceId,
                                            QRStatus = p.c.QRStatus,
-                                           QRStatusDate = p.c.QRStatusDate
+                                           QRStatusDate = p.c.QRStatusDate,
+                                           Remark = p.c.Remark
                                        }).Where(a => a.liquid == liquidId).FirstOrDefault();
 
                 if (model != null)
@@ -7323,7 +7629,8 @@ namespace SwachBharat.CMS.Bll.Services
                         ReferanceId = model.ReferanceId,
                         modifiedDate = model.modifiedDate.HasValue ? Convert.ToDateTime(model.modifiedDate).ToString("dd/MM/yyyy hh:mm tt") : "",
                         QRStatusDate = model.QRStatusDate.HasValue ? Convert.ToDateTime(model.QRStatusDate).ToString("dd/MM/yyyy hh:mm tt") : "",
-                        QRStatus = model.QRStatus
+                        QRStatus = model.QRStatus,
+                        Remark = model.Remark
                     };
                 }
             }
@@ -7353,7 +7660,8 @@ namespace SwachBharat.CMS.Bll.Services
                                            QRCodeImage = p.c.BinaryQrCodeImage,
                                            ReferanceId = p.c.ReferanceId,
                                            QRStatus = p.c.QRStatus,
-                                           QRStatusDate = p.c.QRStatusDate
+                                           QRStatusDate = p.c.QRStatusDate,
+                                           Remark = p.c.Remark
                                        }).Where(a => a.liquid == streetId).FirstOrDefault();
 
                 if (model != null)
@@ -7369,7 +7677,82 @@ namespace SwachBharat.CMS.Bll.Services
                         ReferanceId = model.ReferanceId,
                         modifiedDate = model.modifiedDate.HasValue ? Convert.ToDateTime(model.modifiedDate).ToString("dd/MM/yyyy hh:mm tt") : "",
                         QRStatusDate = model.QRStatusDate.HasValue ? Convert.ToDateTime(model.QRStatusDate).ToString("dd/MM/yyyy hh:mm tt") : "",
-                        QRStatus = model.QRStatus
+                        QRStatus = model.QRStatus,
+                        Remark = model.Remark
+                    };
+                }
+            }
+            return data;
+        }
+
+
+        public SBASurveyFormDetailsGrid GetSurveyFormDetailsById(int houseId)
+        {
+            SBASurveyFormDetailsGrid data = null;
+            using (var db = new DevChildSwachhBharatNagpurEntities(AppID))
+            {
+                var model = db.SurveyFormDetails.Where(a => a.houseId == houseId).FirstOrDefault();
+
+                if (model != null)
+                {
+                    data = new SBASurveyFormDetailsGrid()
+                    {
+                        svId = model.svId,
+                        houseId = model.houseId,
+                        ReferanceId = model.ReferanceId,
+                        houseLat = model.houseLat,
+                        houseLong = model.houseLong,
+                        name = model.name,
+                        mobileNumber = model.mobileNumber,
+                        age = model.age,
+                        dateOfBirth = model.dateOfBirth,
+                        strDateOfBirth = model.dateOfBirth.HasValue ? Convert.ToDateTime(model.dateOfBirth).ToString("dd/MM/yyyy") : "",
+                        gender = model.gender,
+                        bloodGroup = model.bloodGroup,
+                        qualification = model.qualification,
+                        occupation = model.occupation,
+                        maritalStatus = model.maritalStatus,
+                        marriageDate = model.marriageDate,
+                        strMarriageDate = model.marriageDate.HasValue ? Convert.ToDateTime(model.marriageDate).ToString("dd/MM/yyyy") : "",
+                        livingStatus = model.livingStatus,
+                        totalMember = model.totalMember,
+                        willingStart = model.willingStart,
+                        strWillingStart = model.willingStart.HasValue ? (Convert.ToBoolean(model.willingStart) ? "Yes" : "No") : "",
+                        memberJobOtherCity = model.memberJobOtherCity,
+                        strMemberJobOtherCity = model.memberJobOtherCity.HasValue ? (Convert.ToBoolean(model.memberJobOtherCity) ? "Yes" : "No") : "",
+                        noOfVehicle = model.noOfVehicle,
+                        vehicleType = model.vehicleType,
+                        twoWheelerQty = model.twoWheelerQty,
+                        threeWheelerQty = model.threeWheelerQty,
+                        fourWheelerQty = model.fourWheelerQty,
+                        noPeopleVote = model.noPeopleVote,
+                        socialMedia = model.socialMedia,
+                        onlineShopping = model.onlineShopping,
+                        paymentModePrefer = model.paymentModePrefer,
+                        onlinePayApp = model.onlinePayApp,
+                        insurance = model.insurance,
+                        underInsurer = model.underInsurer,
+                        strUnderInsurer = model.underInsurer.HasValue ? (Convert.ToBoolean(model.underInsurer) ? "Govt." : "Private") : "",
+                        ayushmanBeneficiary = model.ayushmanBeneficiary,
+                        strAyushmanBeneficiary = model.ayushmanBeneficiary.HasValue ? (Convert.ToBoolean(model.ayushmanBeneficiary) ? "Yes" : "No") : "",
+                        boosterShot = model.boosterShot,
+                        strBoosterShot = model.boosterShot.HasValue ? (Convert.ToBoolean(model.boosterShot) ? "Yes" : "No") : "",
+                        memberDivyang = model.memberDivyang,
+                        strMemberDivyang = model.memberDivyang.HasValue ? (Convert.ToBoolean(model.memberDivyang) ? "Yes" : "No") : "",
+                        createUserId = model.createUserId,
+                        createUserName = db.QrEmployeeMasters.Where(e => e.qrEmpId == model.createUserId).Select(e => e.qrEmpName).FirstOrDefault(),
+                        createDate = model.createDate,
+                        strCreateDate = model.createDate.HasValue ? Convert.ToDateTime(model.createDate).ToString("dd/MM/yyyy hh:mm tt") : "",
+                        updateUserId = model.updateUserId,
+                        updateUserName = db.QrEmployeeMasters.Where(e => e.qrEmpId == model.updateUserId).Select(e => e.qrEmpName).FirstOrDefault(),
+                        updateDate = model.updateDate,
+                        strUpdateDate = model.updateDate.HasValue ? Convert.ToDateTime(model.updateDate).ToString("dd/MM/yyyy hh:mm tt") : "",
+                        resourcesAvailable = model.resourcesAvailable,
+                        totalAdults = model.totalAdults,
+                        totalChildren = model.totalChildren,
+                        totalSrCitizen = model.totalSrCitizen
+
+
                     };
                 }
             }

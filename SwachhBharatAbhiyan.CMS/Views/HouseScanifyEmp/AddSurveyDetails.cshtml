@@ -1,0 +1,739 @@
+﻿@model SwachBharat.CMS.Bll.ViewModels.ChildModel.Model.SurveyDetailVM
+
+@{
+    //ViewBag.Title = "घर तपशील जोडा / Add House Details";
+    ViewBag.Title = "Add House Details";
+    Layout = "";
+}
+@Styles.Render("~/Content/IndexCSS")
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+<link href="~/Content/css/blink.css" rel="stylesheet" />
+@Scripts.Render("~/Scripts/IndexScript")
+@Scripts.Render("~/bundles/modernizr")
+<style>
+    .modal-dialog {
+        left: 0% !important;
+    }
+
+    .glyphicon {
+        position: relative;
+        top: -1px;
+        right: 5px;
+    }
+
+    .row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    fieldset {
+        border-radius: 10px;
+        /*border:none !important*/
+    }
+
+    .r-btn {
+        height: 26px;
+        border-radius: 15px;
+        border: 1px solid #0000007a;
+        width: 26px;
+        margin-top: 7px;
+    }
+</style>
+@*<title class="title_change"></title>*@
+@using (Html.BeginForm("AddSurveyDetails", "HouseScanifyEmp", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.houseId);
+    @Html.HiddenFor(model => model.svId);
+
+
+
+
+
+    <div class="container">
+        @*<a onclick="location.reload();" style="color:#3ab59e;margin-right:7%;cursor:pointer" class="pull-right">Refresh</a>*@
+        <div class="row">
+            <div class="col-sm-1" style="padding:10px">
+                <span class="backk">
+
+                    <a href="@Url.Action("SurveyDetails", "HouseScanifyEmp")" id="btnBack" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-circle-arrow-left"></span>  Back</a>
+
+                </span>
+            </div>
+            <div class="col-sm-10">
+                <h1 class="add-edit-h1 title_change" style=""></h1>
+            </div>
+
+        </div>
+        <div class="row" style="border-radius: 5px; background: #d9d9d9; box-shadow: 0px 0px 10px 3px #7a7a7a;">
+            <fieldset style="border: 1px solid #00000059; width: 100%; display: block; margin-left: 0px; margin-right:0px; padding-top: 0.35em; padding-bottom: 0.625em; padding-left: 0.75em; padding-right: 0.75em;">
+                <legend style="display: block;width:auto; max-width: 100%; padding: 0; margin-bottom: 0.5rem; font-size: 1.5rem; line-height: inherit; color: inherit; white-space: normal; text-align:center">Survey Form</legend>
+                <div class="panel panel-warning col-sm-12 ">
+                    <div class="row" style="margin-left: 3%; margin-bottom: 3%;">
+                        <div class="col-md-3" style="background: #d9d9d9; border-radius: 5px; /* text-align: center; */ border: 1px solid #b7b7b7; box-shadow: 0px 0px 6px 1px #7a7a7a;">
+                            @Html.Label("House ID", new { style = "font-weight: bold;margin-top: 0.3rem;" })<b> :</b>
+                            <span>@Model.ReferanceId</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-warning col-sm-12 ">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <fieldset style=" width: 100%; display: block; margin-left: 2px; margin-right: 2px; padding-top: 0.35em; padding-bottom: 0.625em; padding-left: 0.75em; padding-right: 0.75em;">
+                            @*<legend style="display: block;width:auto; max-width: 100%; padding: 0; margin-bottom: 0.5rem; font-size: 1.5rem; line-height: inherit; color: inherit; white-space: normal; text-align:center">Form 1</legend>*@
+                            <div class="row" style="margin-bottom: 1%;">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @*@Html.Label("नाव / Name")*@
+                                        @Html.Label("First Name", new { style = "font-weight: bold" })<b> :</b>
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", style = "font-family:Arial, FontAwesome" })
+                                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                        <span class="text-danger" id="err_name"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @*@Html.Label("नाव / Name")*@
+                                        @Html.Label("Middle Name", new { style = "font-weight: bold" })<b> :</b>
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control", style = "font-family:Arial, FontAwesome" })
+                                        @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                                        <span class="text-danger" id="err_name"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @*@Html.Label("नाव / Name")*@
+                                        @Html.Label("Last Name", new { style = "font-weight: bold" })<b> :</b>
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", style = "font-family:Arial, FontAwesome" })
+                                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                        <span class="text-danger" id="err_name"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @*@Html.Label("मोबाइल नंबर / Mobile Number")*@
+                                        @Html.Label("Mobile Number", new { style = "font-weight: bold" })<b> :</b>
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.TextBoxFor(model => model.mobileNumber, new { @class = "form-control", style = "font-family:Arial, FontAwesome", minlength = "10", maxlength = "10" })
+                                        @Html.ValidationMessageFor(model => model.mobileNumber, "", new { @class = "text-danger" })
+                                        <span class="text-danger" id="err_phone"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @*@Html.Label("घर क्रमांक / House Number")*@
+                                        @Html.Label("Date Of Birth", new { style = "font-weight: bold" })<b> :</b>
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.TextBoxFor(model => model.dateOfBirth, new { @class = "datepicker form-control", style = "font-family:Arial, FontAwesome", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.dateOfBirth, "", new { @class = "text-danger" })
+                                        <span class="text-danger" id="err_house_num"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" style="margin-bottom: 1%;">
+                                    <div class="form-group">
+                                        @*@Html.Label("घर क्रमांक / House Number")*@
+                                        @Html.Label("Gender", new { style = "font-weight: bold;text-transform: capitalize" }) <b> :</b><br />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.RadioButtonFor(model => model.gender, "Male") Male
+                                        @Html.RadioButtonFor(model => model.gender, "Female") Female
+                                        @Html.RadioButtonFor(model => model.gender, "Transgender") Transgender
+                                        <span class="text-danger" id="err_house_num"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        @*@Html.Label("घर क्रमांक / House Number")*@
+                                        @Html.Label("Blood Group", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.RadioButtonFor(model => model.bloodGroup, "A+") A+
+                                        @Html.RadioButtonFor(model => model.bloodGroup, "B+", new { style = "margin-left:12px" }) B+
+                                        @Html.RadioButtonFor(model => model.bloodGroup, "O+", new { style = "margin-left:12px" }) O+
+                                        @Html.RadioButtonFor(model => model.bloodGroup, "AB+", new { style = "margin-left:12px" }) AB+
+                                        @Html.RadioButtonFor(model => model.bloodGroup, "A-", new { style = "margin-left:12px" }) A-
+                                        @Html.RadioButtonFor(model => model.bloodGroup, "B-", new { style = "margin-left:12px" }) B-
+                                        @Html.RadioButtonFor(model => model.bloodGroup, "O-", new { style = "margin-left:12px" }) O-
+                                        @Html.RadioButtonFor(model => model.bloodGroup, "AB-", new { style = "margin-left:12px" }) AB-
+                                        @Html.RadioButtonFor(model => model.bloodGroup, "AB-", new { style = "margin-left:12px" }) AB-
+
+                                        <span class="text-danger" id="err_house_num"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="row" style="margin-bottom: 1%;">
+                        <fieldset style=" display: block; width: 100%; margin-left: 2px; margin-right: 2px; padding-top: 0.35em; padding-bottom: 0.625em; padding-left: 0.75em; padding-right: 0.75em;">
+                            @*<legend style="display: block; width: auto; max-width: 100%; padding: 0; margin-bottom: 0.5rem; font-size: 1.5rem; line-height: inherit; color: inherit; white-space: normal; text-align: center">Form 2</legend>*@
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @*@Html.Label("घर क्रमांक / House Number")*@
+                                        @Html.Label("Qualification", new { style = "font-weight: bold;text-transform: capitalize" }) <b> :</b><br />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.RadioButtonFor(model => model.qualification, "Under Graduate") Under Graduate
+                                        @Html.RadioButtonFor(model => model.qualification, "Graduate", new { style = "margin-left:12px" }) Graduate
+                                        @Html.RadioButtonFor(model => model.qualification, "Post Graduate", new { style = "margin-left:12px" }) Post Graduate
+                                        <span class="text-danger" id="err_house_num"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @*@Html.Label("घर क्रमांक / House Number")*@
+                                        @Html.Label("Occupation", new { style = "font-weight: bold;text-transform: capitalize" }) <b> :</b><br />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.RadioButtonFor(model => model.occupation, "Service") Service
+                                        @Html.RadioButtonFor(model => model.occupation, "Business", new { style = "margin-left:12px" }) Business
+                                        @Html.RadioButtonFor(model => model.occupation, "Professional", new { style = "margin-left:12px" }) Professional
+                                        <span class="text-danger" id="err_house_num"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-bottom: 1%;">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @*@Html.Label("घर क्रमांक / House Number")*@
+                                        @Html.Label("Marital Status", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.RadioButtonFor(model => model.maritalStatus, "Married") Married
+                                        @Html.RadioButtonFor(model => model.maritalStatus, "Unmarried", new { style = "margin-left:12px" }) Unmarried
+                                        <span class="text-danger" id="err_house_num"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @*@Html.Label("घर क्रमांक / House Number")*@
+                                        @Html.Label("Living Status", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.RadioButtonFor(model => model.livingStatus, "Own House") Own House
+                                        @Html.RadioButtonFor(model => model.livingStatus, "Rented", new { style = "margin-left:12px" }) Rented
+                                        @Html.RadioButtonFor(model => model.livingStatus, "Lease", new { style = "margin-left:12px" }) Lease
+                                        <span class="text-danger" id="err_house_num"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </fieldset>
+                    </div>
+
+                    <div class="row">
+                        <fieldset style="display: block;width:100%; margin-left: 2px; margin-right: 2px; padding-top: 0.35em; padding-bottom: 0.625em; padding-left: 0.75em; padding-right: 0.75em;">
+                            @*<legend style="display: block; width: auto; max-width: 100%; padding: 0; margin-bottom: 0.5rem; font-size: 1.5rem; line-height: inherit; color: inherit; white-space: normal; text-align: center ">Form 3</legend>*@
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @*@Html.Label("घर क्रमांक / House Number")*@
+                                        @Html.Label("Total No Of Members (Family & Dependents)", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        <div style="display: flex; flex-direction: row;margin-bottom:10px">
+                                            <div style="width:185px"> @Html.Label("Total Member", new { style = "font-weight: bold;margin-right: 7.5%;" })</div>
+                                            @Html.TextBoxFor(model => model.totalMember, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px", @readonly = "readonly" })
+                                        </div>
+                                        <div style="display: flex; flex-direction: row; margin-bottom: 10px">
+                                            <div style="width:150px">@Html.Label("Adults", new { style = "font-weight: bold" })</div>
+                                            <input type="button" id="AdultsPlus" value="+" class="r-btn" />
+                                            @Html.TextBoxFor(model => model.totalAdults, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px;margin-left:10px;margin-right:10px", @readonly = "readonly" })
+                                            <input type="button" id="AdultsMinus" value="-" class="r-btn" />
+                                        </div>
+                                        <div style="display: flex; flex-direction: row; margin-bottom: 10px">
+                                            <div style="width:150px">
+                                                @Html.Label("Children", new { style = "font-weight: bold" })
+                                            </div>
+                                            <input type="button" id="ChildrenPlus" value="+" class="r-btn" />
+                                            @Html.TextBoxFor(model => model.totalChildren, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px;margin-right:10px;margin-left:10px", @readonly = "readonly" })
+                                            <input type="button" id="ChildrenMinus" value="-" class="r-btn" />
+                                        </div>
+                                        <div style="display: flex; flex-direction: row; margin-bottom: 5px">
+                                            <div style="width:150px">
+                                                @Html.Label("Senior Citizen", new { style = "font-weight: bold" })
+                                            </div>
+                                            <input type="button" id="SeniorPlus" value="+" class="r-btn" />
+                                            @Html.TextBoxFor(model => model.totalSrCitizen, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px!important;margin-left:10px;margin-right:10px", @readonly = "readonly" })
+                                            <input type="button" id="SeniorMinus" value="-" class="r-btn" />
+                                        </div>
+                                        <br />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                        <span class="text-danger" id="err_house_num"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group" style="margin-bottom: 5%;">
+                                        @*@Html.Label("घर क्रमांक / House Number")*@
+                                        @Html.Label("Is Any Of Your Family Member is willing to start The Business?", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.RadioButtonFor(model => model.willingStart, true) Yes
+                                        @Html.RadioButtonFor(model => model.willingStart, false, new { style = "margin-left:12px" }) No
+                                        <span class="text-danger" id="err_house_num"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+
+                                    <div class="form-group" style="margin-bottom:5%">
+                                        @*@Html.Label("घर क्रमांक / House Number")*@
+                                        @Html.Label("If Yes Then Resources Available To Start The?", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.RadioButtonFor(model => model.resourcesAvailable, "Land") Land
+                                        @Html.RadioButtonFor(model => model.resourcesAvailable, "Shop", new { style = "margin-left:12px" }) Shop
+                                        @Html.RadioButtonFor(model => model.resourcesAvailable, "Other", new { style = "margin-left:12px" }) Other
+
+                                        <span class="text-danger" id="err_house_num"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+
+                                </div>
+
+
+
+
+                            </div>
+
+                            <div class="row" style="margin-bottom: 1%;">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @*@Html.Label("घर क्रमांक / House Number")*@
+                                        @Html.Label("Any Of Your Family Members Are Relocated To Other Cities For Job/Business Or Other Purpose", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.RadioButtonFor(model => model.memberJobOtherCity, true) Yes
+                                        @Html.RadioButtonFor(model => model.memberJobOtherCity, false, new { style = "margin-left:12px" }) No
+                                        <span class="text-danger" id="err_house_num"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" style="margin-bottom: 1%;">
+                                        @*@Html.Label("घर क्रमांक / House Number")*@
+                                        <div style="display: flex; flex-direction: row; margin-bottom: 10px">
+                                            <div style="width:185px">@Html.Label("Number Of Vehicle", new { style = "font-weight: bold;margin-right: 7.5%;" }) </div>
+                                            @Html.TextBoxFor(model => model.noOfVehicle, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px", @readonly = "readonly" })
+                                        </div>
+                                        <div style="display: flex; flex-direction: row; margin-bottom: 10px">
+                                            <div style="width:150px">
+                                                @Html.Label("Two Wheeler", new { style = "font-weight: bold" })
+                                            </div>
+                                            <input type="button" id="TwoWheelerPlus" value="+" class="r-btn" />
+                                            @Html.TextBoxFor(model => model.twoWheelerQty, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px;margin-left:10px;margin-right:10px", @readonly = "readonly" })
+                                            <input type="button" id="TwoWheelerMinus" value="-" class="r-btn" />
+                                        </div>
+                                        <div style="display: flex; flex-direction: row; margin-bottom: 10px">
+                                            <div style="width:150px">
+                                                @Html.Label("Four Wheeler", new { style = "font-weight: bold" })
+                                            </div>
+                                            <input type="button" id="FourWheelerPlus" value="+" class="r-btn" />
+                                            @Html.TextBoxFor(model => model.fourWheelerQty, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px;margin-left:10px;margin-right:10px", @readonly = "readonly" })
+                                            <input type="button" id="FourWheelerMinus" value="-" class="r-btn" />
+                                        </div>
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                        <span class="text-danger" id="err_house_num"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                    <div class="form-group" style="margin-bottom: 5%;">
+                                        @Html.Label("No Of People Registered To Vote", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        <div style="display: flex; flex-direction: row;">
+                                            <input type="button" id="VoterPlus" value="+" class="r-btn" />
+                                            @Html.TextBoxFor(model => model.noPeopleVote, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px;margin-left:10px;margin-right:10px", @readonly = "readonly" })
+                                            <input type="button" id="VoterMinus" value="-" class="r-btn" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.Label("Do Have Insurance", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.RadioButtonFor(model => model.insurance, "Life Insurance") Life Insurance
+                                        @Html.RadioButtonFor(model => model.insurance, "Medical Insurance", new { style = "margin-left:12px" }) Medical Insurance
+                                        @Html.RadioButtonFor(model => model.insurance, "Both", new { style = "margin-left:12px" }) Both
+                                        <span class="text-danger" id="err_house_num"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" style="margin-bottom: 5%;">
+                                        @Html.Label("Which Social Media Platform You Use To Interact", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        @for (int i = 0; i < Model.socialMedialst.Count; i++)
+                                        {
+                                            @Html.CheckBoxFor(m => m.socialMedialst[i].IsSelected, new { style = "margin-left:12px" })
+                                            @Html.LabelFor(m => m.socialMedialst[i].IsSelected, Model.socialMedialst[i].socialMediaName, new { style = "margin-left:5px" })
+                                            @Html.HiddenFor(m => m.socialMedialst[i].socialMediaName)
+
+                                        }
+
+                                    </div>
+                                    <div class="form-group" style="margin-bottom:5%;">
+                                        @Html.Label("Preferred Online Shopping App", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        @for (int i = 0; i < Model.shopApplst.Count; i++)
+                                        {
+                                            @Html.CheckBoxFor(m => m.shopApplst[i].IsSelected, new { style = "margin-left:12px" })
+                                            @Html.LabelFor(m => m.shopApplst[i].IsSelected, Model.shopApplst[i].shopAppName, new { style = "margin-left:5px" })
+                                            @Html.HiddenFor(m => m.shopApplst[i].shopAppName)
+                                        }
+
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.Label("Which Online Payment App Do You Use?", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        @for (int i = 0; i < Model.payApplst.Count; i++)
+                                        {
+                                            @Html.CheckBoxFor(m => m.payApplst[i].IsSelected, new { style = "margin-left:12px" })
+                                            @Html.LabelFor(m => m.payApplst[i].IsSelected, Model.payApplst[i].paymentAppName, new { style = "margin-left:5px" })
+                                            @Html.HiddenFor(m => m.payApplst[i].paymentAppName)
+                                        }
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="row">
+                        <fieldset style="display: block;width:100%; margin-left: 2px; margin-right: 2px; padding-top: 0.35em; padding-bottom: 0.625em; padding-left: 0.75em; padding-right: 0.75em;">
+                            @*<legend style="display: block; width: auto; max-width: 100%; padding: 0; margin-bottom: 0.5rem; font-size: 1.5rem; line-height: inherit; color: inherit; white-space: normal; text-align: center; ">Form 5</legend>*@
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div class="form-group" style="margin-bottom: 5%;">
+                                        @*@Html.Label("घर क्रमांक / House Number")*@
+                                        @Html.Label("If Insured, Under Which Insured", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.RadioButtonFor(model => model.underInsurer, true) Government
+                                        @Html.RadioButtonFor(model => model.underInsurer, false, new { style = "margin-left:12px" }) Private
+                                        <span class="text-danger" id="err_house_num"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        @*@Html.Label("घर क्रमांक / House Number")*@
+                                        @Html.Label("Are You Ayushman Bharat Beneficiary", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.RadioButtonFor(model => model.ayushmanBeneficiary, true) Yes
+                                        @Html.RadioButtonFor(model => model.ayushmanBeneficiary, false, new { style = "margin-left:12px" }) No
+                                        <span class="text-danger" id="err_house_num"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" style="margin-bottom: 5%;">
+                                        @*@Html.Label("घर क्रमांक / House Number")*@
+                                        @Html.Label("Have You Taken Your Covid Booster dose?", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.RadioButtonFor(model => model.boosterShot, true) Yes
+                                        @Html.RadioButtonFor(model => model.boosterShot, false, new { style = "margin-left:12px" }) No
+                                        <span class="text-danger" id="err_house_num"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        @*@Html.Label("घर क्रमांक / House Number")*@
+                                        @Html.Label("Is any Members Of Family Is Divyang Or Differently Abled", new { style = "font-weight: bold" }) <b> :</b><br />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.RadioButtonFor(model => model.memberDivyang, true) Yes
+                                        @Html.RadioButtonFor(model => model.memberDivyang, false, new { style = "margin-left:12px" }) No
+                                        <span class="text-danger" id="err_house_num"></span>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                        <span class="help-block with-errors"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+                    </div>
+                    <div class="row justify-content-between">
+
+
+                        @Html.HiddenFor(c => c.ReferanceId)
+
+                        @Html.HiddenFor(model => model.houseLong, new { @class = "form-control", required = "required" })
+
+                        @Html.HiddenFor(model => model.houseLat, new { @class = "form-control", required = "required" })
+
+                        <div class="col-md-4" style="padding-top:10px">
+                            <center><span class="text-danger" id="err_generate"></span></center>
+                            <div class="form-group1 text-center mt-4">
+                                <button type="submit" name="submit" class="btn btn-primary btn-sm" id="btnSubmit" onclick="return Validate()">
+
+                                    <span class="glyphicon glyphicon-saved"></span>
+                                    <span id="buttonName" onclick="disableButton(this)">Save Changes</span>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!--<center><span class="text-danger" id="err_generate"></span></center>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <div class="">
+                                    <div class="form-group" style="margin-top:-25px;">
+
+                                        <button type="submit" name="submit" class="btn" id="btnSubmit" onclick="return Validate()">
+
+                                            <span class="glyphicon glyphicon-saved"></span>
+                                            <span id="buttonName" onclick="disableButton(this)">Save</span>
+                                        </button>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>-->
+                    @*<div class="form-group1">
+                            <button type="submit" name="submit" class="btn" id="btnSubmit" onclick="return Validate()">
+
+                                <span class="glyphicon glyphicon-saved"></span>
+                                <span id="buttonName" onclick="disableButton(this)">Save</span>
+                            </button>
+                        </div>*@
+                    <!--</div>--><br /><br /><br />
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+
+}
+
+
+
+<script>
+    document.getElementById("ownerName").addEventListener("input", forceLower);
+
+    // Event handling functions are automatically passed a reference to the
+    // event that triggered them as the first argument (evt)
+    function forceLower(evt) {
+        // Get an array of all the words (in all lower case)
+        var words = evt.target.value.toLowerCase().split(/\s+/g);
+
+        // Loop through the array and replace the first letter with a cap
+        var newWords = words.map(function (element) {
+            // As long as we're not dealing with an empty array element, return the first letter
+            // of the word, converted to upper case and add the rest of the letters from this word.
+            // Return the final word to a new array
+            return element !== "" ? element[0].toUpperCase() + element.substr(1, element.length) : "";
+        });
+
+        // Replace the original value with the updated array of capitalized words.
+        evt.target.value = newWords.join(" ");
+    }
+</script>
+
+
+<script type="text/javascript">
+    function calcTotalMembers() {
+        $("#totalMember").val(parseInt($("#totalAdults").val()) + parseInt($("#totalChildren").val()) + parseInt($("#totalSrCitizen").val()));
+    }
+    $("#AdultsPlus").click(function () {
+
+        $("#totalAdults").val(parseInt($("#totalAdults").val()) + 1);
+        calcTotalMembers();
+    });
+
+    $("#AdultsMinus").click(function () {
+        var adults = parseInt($("#totalAdults").val());
+        if (adults > 0)
+            $("#totalAdults").val(parseInt($("#totalAdults").val()) - 1);
+        else
+            $("#totalAdults").val(0);
+        calcTotalMembers();
+    });
+
+    $("#ChildrenPlus").click(function () {
+        $("#totalChildren").val(parseInt($("#totalChildren").val()) + 1);
+        calcTotalMembers();
+    });
+    $("#ChildrenMinus").click(function () {
+        var children = parseInt($("#totalChildren").val());
+        if (children > 0)
+            $("#totalChildren").val(parseInt($("#totalChildren").val()) - 1);
+        else
+            $("#totalChildren").val(0);
+        calcTotalMembers();
+    });
+
+    $("#SeniorPlus").click(function () {
+        $("#totalSrCitizen").val(parseInt($("#totalSrCitizen").val()) + 1);
+        calcTotalMembers();
+    });
+
+    $("#SeniorMinus").click(function () {
+        var senior = parseInt($("#totalSrCitizen").val());
+        if (senior > 0)
+            $("#totalSrCitizen").val(parseInt($("#totalSrCitizen").val()) - 1);
+        else
+            $("#totalSrCitizen").val(0);
+        calcTotalMembers();
+    });
+
+
+
+
+    function calcTotalVehicle() {
+        $("#noOfVehicle").val(parseInt($("#twoWheelerQty").val()) + parseInt($("#fourWheelerQty").val()));
+    }
+
+    $("#TwoWheelerPlus").click(function () {
+        $("#twoWheelerQty").val(parseInt($("#twoWheelerQty").val()) + 1);
+        calcTotalVehicle();
+    });
+
+    $("#TwoWheelerMinus").click(function () {
+        var twoWh = parseInt($("#twoWheelerQty").val());
+        if (twoWh > 0)
+            $("#twoWheelerQty").val(parseInt($("#twoWheelerQty").val()) - 1);
+        else
+            $("#twoWheelerQty").val(0);
+        calcTotalVehicle();
+    });
+
+    $("#FourWheelerPlus").click(function () {
+        $("#fourWheelerQty").val(parseInt($("#fourWheelerQty").val()) + 1);
+        calcTotalVehicle();
+    });
+
+    $("#FourWheelerMinus").click(function () {
+        var fourWh = parseInt($("#fourWheelerQty").val());
+        if (fourWh > 0)
+            $("#fourWheelerQty").val(parseInt($("#fourWheelerQty").val()) - 1);
+        else
+            $("#fourWheelerQty").val(0);
+        calcTotalVehicle();
+    });
+
+
+    $("#VoterPlus").click(function () {
+        $("#noPeopleVote").val(parseInt($("#noPeopleVote").val()) + 1);
+
+    });
+
+    $("#VoterMinus").click(function () {
+        var novoter = parseInt($("#noPeopleVote").val());
+        if (novoter > 0)
+            $("#noPeopleVote").val(parseInt($("#noPeopleVote").val()) - 1);
+        else
+            $("#noPeopleVote").val(0);
+
+    });
+
+    $('#FirstName').keypress(function (e) {
+        if (e.keyCode === 32)
+            return false;
+    });
+    $('#MiddleName').keypress(function (e) {
+        if (e.keyCode === 32)
+            return false;
+    });
+    $('#LastName').keypress(function (e) {
+        if (e.keyCode === 32)
+            return false;
+    });
+
+
+
+</script>
+<script src="~/Content/graph-assets/js/custom.js"></script>
+<script src="~/Content/css/datepicker/js/datepicker.js"></script>
+<script type="text/javascript">
+    function getFormatedDate(d) {
+        var date = new Date(d);
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = day + "/" + month + "/" + year;
+        return today;
+
+    }
+
+    //var dbdt = $("#dateOfBirth").val();
+    //if (dbdt && dbdt.length > 0) {
+    //    $("#dateOfBirth").val(getFormatedDate(dbdt));
+    //}
+
+
+    /* $(document).ready(function () {*/
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        //changemonth: true,
+        //changeyear: true,
+        pickTime: false,
+    }).on('changeDate', function (e) {
+
+        $(this).datepicker('hide');
+
+    });
+
+
+        //var dbdt = $("#dateOfBirth").val();
+        //if (dbdt && dbdt.length > 0) {
+        //    $("#dateOfBirth").val(getFormatedDate(new Date(dbdt)));
+        //}
+
+       // $(".datepicker.form-control").each(function () {
+       //     $(this).datepicker('setValue', getFormatedDate($(this).val()));
+       //});
+
+    /* });*/
+
+
+
+
+       // $(".datepicker").each(function (e,d) {
+       //     $(d).datepicker('setValue', getFormatedDate(new Date($(d).val())));
+       //});
+
+    //hide  show on hover
+    //$('#dateOfBirth').focus(function () {
+    //    $('.dtpk_drpdwn').eq(1).hide();
+    //});
+    //$('#dateOfBirth').focus(function () {
+    //    $('.dtpk_drpdwn').eq(0).hide();
+    //});
+</script>
+@*@Scripts.Render("~/Scripts/ThemeScripts")*@
+
