@@ -312,8 +312,9 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
 
                 SurveyDetailVM house = childRepository.SaveSurvey(survey);
 
-
-                return Redirect("/HouseScanifyEmp/SurveyDetails");
+                ViewData["Message"] = "Success";
+                return View("AddSurveyDetails", survey);
+                //return Redirect("/HouseScanifyEmp/SurveyDetails");
 
 
             }

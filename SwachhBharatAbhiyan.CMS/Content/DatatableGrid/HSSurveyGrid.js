@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    $.get("/houseScanify/GetAppNames", null, house);
+    //$.get("/houseScanify/GetAppNames", null, house);
 
     function house(data) {
         var qqq = $('#appid').val();

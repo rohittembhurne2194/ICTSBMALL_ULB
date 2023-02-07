@@ -5762,35 +5762,157 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
         }
 
 
-        public IEnumerable<SBASurveyFormDetailsGrid> GetHSSurveyData(long wildcard, string SearchString, DateTime? fdate, DateTime? tdate, int userId, int appId)
-        {
-            List<SBASurveyFormDetailsGrid> obj = new List<SBASurveyFormDetailsGrid>();
-            using (var db = new DevChildSwachhBharatNagpurEntities(appId))
-            {
-                var data = db.SurveyFormDetails.OrderBy(a => a.houseId).ToList();
+        //public IEnumerable<SBASurveyFormDetailsGrid> GetHSSurveyData(long wildcard, string SearchString, DateTime? fdate, DateTime? tdate, int userId, int appId)
+        //{
+        //    List<SBASurveyFormDetailsGrid> obj = new List<SBASurveyFormDetailsGrid>();
+        //    using (var db = new DevChildSwachhBharatNagpurEntities(appId))
+        //    {
+        //        var data = db.SurveyFormDetails.OrderBy(a => a.houseId).ToList();
 
+        //        if (Convert.ToDateTime(fdate).ToString("dd/MM/yyyy") == Convert.ToDateTime(DateTime.Now).ToString("dd/MM/yyyy"))
+        //        {
+        //            data = data.Where(c => (c.createDate <= Convert.ToDateTime(fdate).AddDays(1))).ToList();
+        //        }
+        //        else
+        //        {
+
+        //            data = data.Where(c => (c.createDate >= fdate && c.createDate <= tdate)).ToList();
+        //        }
+
+        //        if (userId > 0)
+        //        {
+        //            var model = data.Where(c => c.createUserId == userId).ToList();
+
+        //            data = model.ToList();
+        //        }
+
+        //        foreach (var x in data)
+        //        {
+                    
+        //            obj.Add(new SBASurveyFormDetailsGrid()
+        //            {
+        //                svId = x.svId,
+        //                houseId = x.houseId,
+        //                ReferanceId = x.ReferanceId,
+        //                name = x.name,
+        //                //houseLat = x.houseLat,
+        //                //houseLong = x.houseLong,
+        //                //mobileNumber = x.mobileNumber,
+        //                //age = x.age,
+        //                //dateOfBirth = x.dateOfBirth,
+        //                //strDateOfBirth = x.dateOfBirth.HasValue ? Convert.ToDateTime(x.dateOfBirth).ToString("dd/MM/yyyy") : "",
+        //                //gender = x.gender,
+        //                //bloodGroup = x.bloodGroup,
+        //                //qualification = x.qualification,
+        //                //occupation = x.occupation,
+        //                //maritalStatus = x.maritalStatus,
+        //                //marriageDate = x.marriageDate,
+        //                //strMarriageDate = x.marriageDate.HasValue ? Convert.ToDateTime(x.marriageDate).ToString("dd/MM/yyyy") : "",
+        //                //livingStatus = x.livingStatus,
+        //                //totalMember = x.totalMember,
+        //                //willingStart = x.willingStart,
+        //                //strWillingStart = x.willingStart.HasValue ? (Convert.ToBoolean(x.willingStart) ? "Yes" : "No") : "",
+        //                //memberJobOtherCity = x.memberJobOtherCity,
+        //                //strMemberJobOtherCity = x.memberJobOtherCity.HasValue ? (Convert.ToBoolean(x.memberJobOtherCity) ? "Yes" : "No") : "",
+        //                //noOfVehicle = x.noOfVehicle,
+        //                //vehicleType = x.vehicleType,
+        //                //twoWheelerQty = x.twoWheelerQty,
+        //                //threeWheelerQty = x.threeWheelerQty,
+        //                //fourWheelerQty = x.fourWheelerQty,
+        //                //noPeopleVote = x.noPeopleVote,
+        //                //socialMedia = x.socialMedia,
+        //                //onlineShopping = x.onlineShopping,
+        //                //paymentModePrefer = x.paymentModePrefer,
+        //                //onlinePayApp = x.onlinePayApp,
+        //                //insurance = x.insurance,
+        //                //underInsurer = x.underInsurer,
+        //                //strUnderInsurer = x.underInsurer.HasValue ? (Convert.ToBoolean(x.underInsurer) ? "Govt." : "Private") : "",
+        //                //ayushmanBeneficiary = x.ayushmanBeneficiary,
+        //                //strAyushmanBeneficiary = x.ayushmanBeneficiary.HasValue ? (Convert.ToBoolean(x.ayushmanBeneficiary) ? "Yes" : "No") : "",
+        //                //boosterShot = x.boosterShot,
+        //                //strBoosterShot = x.boosterShot.HasValue ? (Convert.ToBoolean(x.boosterShot) ? "Yes" : "No") : "",
+        //                //memberDivyang = x.memberDivyang,
+        //                //strMemberDivyang = x.memberDivyang.HasValue ? (Convert.ToBoolean(x.memberDivyang) ? "Yes" : "No") : "",
+        //                createUserId = x.createUserId,
+        //                createUserName = db.QrEmployeeMasters.Where(e => e.qrEmpId == x.createUserId).Select(e => e.qrEmpName).FirstOrDefault(),
+        //                //createDate = x.createDate,
+        //                //strCreateDate = x.createDate.HasValue ? Convert.ToDateTime(x.createDate).ToString("dd/MM/yyyy hh:mm tt") : "",
+        //                //updateUserId = x.updateUserId,
+        //                //updateUserName = db.QrEmployeeMasters.Where(e => e.qrEmpId == x.updateUserId).Select(e => e.qrEmpName).FirstOrDefault(),
+        //                //updateDate = x.updateDate,
+        //                //strUpdateDate = x.updateDate.HasValue ? Convert.ToDateTime(x.updateDate).ToString("dd/MM/yyyy hh:mm tt") : "",
+        //                //resourcesAvailable = x.resourcesAvailable,
+        //                //totalAdults = x.totalAdults,
+        //                //totalChildren = x.totalChildren,
+        //                //totalSrCitizen = x.totalSrCitizen
+
+
+
+
+        //            });
+        //        }
+
+        //        if (!string.IsNullOrEmpty(SearchString))
+        //        {
+        //            obj = obj.Where(c => ((string.IsNullOrEmpty(c.name) ? " " : c.name) + " " + (string.IsNullOrEmpty(c.ReferanceId) ? " " : c.ReferanceId) + " " + (string.IsNullOrEmpty(c.createUserName) ? " " : c.createUserName)).ToUpper().Contains(SearchString.ToUpper())
+        //             ).ToList();
+
+        //        }
+        //        return obj.OrderBy(c => c.houseId).ToList();
+        //    }
+        //}
+
+        public IEnumerable<SBASurveyFormDetailsGrid> GetHSSurveyData(long wildcard, string SearchString, DateTime? fdate, DateTime? tdate, int userId, int appId, string sortColumn = "", string sortColumnDir = "", string draw = "", string length = "", string start = "")
+        {
+            int pageSize = length != null ? Convert.ToInt32(length) : 0;
+            int skip = start != null ? Convert.ToInt32(start) : 0;
+            Func<SurveyFormDetail,bool> pred = delegate (SurveyFormDetail val) {
+                bool bDate = false;
                 if (Convert.ToDateTime(fdate).ToString("dd/MM/yyyy") == Convert.ToDateTime(DateTime.Now).ToString("dd/MM/yyyy"))
                 {
-                    data = data.Where(c => (c.createDate <= Convert.ToDateTime(fdate).AddDays(1))).ToList();
+                    bDate = val.createDate <= Convert.ToDateTime(fdate).AddDays(1);
                 }
                 else
                 {
-
-                    data = data.Where(c => (c.createDate >= fdate && c.createDate <= tdate)).ToList();
+                    bDate = val.createDate >= fdate && val.createDate <= tdate;
                 }
-
+                bool bUserId = false;
                 if (userId > 0)
                 {
-                    var model = data.Where(c => c.createUserId == userId).ToList();
-
-                    data = model.ToList();
+                    bUserId = val.createUserId == userId;
                 }
+                else
+                {
+                    bUserId = true;
+                }
+                bool bSearch = false;
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    bSearch = ((string.IsNullOrEmpty(val.name) ? " " : val.name) + " " + (string.IsNullOrEmpty(val.ReferanceId) ? " " : val.ReferanceId)).ToUpper().Contains(SearchString.ToUpper());
+                }
+                else
+                {
+                    bSearch = true;
+                }
+                return bDate && bUserId && bSearch;
+            };
 
+            List<SBASurveyFormDetailsGrid> obj = new List<SBASurveyFormDetailsGrid>();
+
+            using (var db = new DevChildSwachhBharatNagpurEntities(appId))
+            {
+                var query = db.SurveyFormDetails.Where(pred).OrderBy(a => a.houseId);
+                var totalRowCount = query.Count();
+                var data = query.Skip(skip)
+                                     .Take(pageSize)
+                                     .ToList();
+        
                 foreach (var x in data)
                 {
-                    
+
                     obj.Add(new SBASurveyFormDetailsGrid()
                     {
+                        totalRowCount = totalRowCount,
                         svId = x.svId,
                         houseId = x.houseId,
                         ReferanceId = x.ReferanceId,
@@ -5852,16 +5974,15 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                     });
                 }
 
-                if (!string.IsNullOrEmpty(SearchString))
-                {
-                    obj = obj.Where(c => ((string.IsNullOrEmpty(c.name) ? " " : c.name) + " " + (string.IsNullOrEmpty(c.ReferanceId) ? " " : c.ReferanceId) + " " + (string.IsNullOrEmpty(c.createUserName) ? " " : c.createUserName)).ToUpper().Contains(SearchString.ToUpper())
-                     ).ToList();
+                //if (!string.IsNullOrEmpty(SearchString))
+                //{
+                //    obj = obj.Where(c => ((string.IsNullOrEmpty(c.name) ? " " : c.name) + " " + (string.IsNullOrEmpty(c.ReferanceId) ? " " : c.ReferanceId) + " " + (string.IsNullOrEmpty(c.createUserName) ? " " : c.createUserName)).ToUpper().Contains(SearchString.ToUpper())
+                //     ).ToList();
 
-                }
+                //}
                 return obj.OrderBy(c => c.houseId).ToList();
             }
         }
-
 
 
         //public IEnumerable<SBAHSHouseDetailsGrid> GetHSHouseDetailsData(long wildcard, string SearchString, DateTime? fdate, DateTime? tdate, int userId, int appId, string sortColumn = "", string sortColumnDir = "", string draw = "", string length = "", string start = "")

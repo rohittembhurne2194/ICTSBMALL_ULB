@@ -553,7 +553,7 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
                     return gridRepository;
                     break;
                 case "HSSurvey":
-                    gridRepository = new HSSurveyGridRepository(0, searchString, fdate, tdate, userId, appId);
+                    gridRepository = new HSSurveyGridRepository(0, searchString, fdate, tdate, userId, appId, sortColumn, sortColumnDir, draw, length, start);
                     return gridRepository;
                     break;
                 case "URAttendance":

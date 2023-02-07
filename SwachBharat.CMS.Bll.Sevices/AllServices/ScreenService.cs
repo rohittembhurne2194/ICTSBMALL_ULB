@@ -1322,7 +1322,8 @@ namespace SwachBharat.CMS.Bll.Services
                         {
                             model.svId = data.svId;
                             model.ReferanceId = data.ReferanceId;
-                            model.name = (string.IsNullOrEmpty(data.FirstName) ? "" : data.FirstName + " ") + (string.IsNullOrEmpty(data.MiddleName) ? "" : data.MiddleName + " ") + (string.IsNullOrEmpty(data.LastName) ? "" : data.LastName );
+                            //model.name = (string.IsNullOrEmpty(data.FirstName) ? "" : data.FirstName + " ") + (string.IsNullOrEmpty(data.MiddleName) ? "" : data.MiddleName + " ") + (string.IsNullOrEmpty(data.LastName) ? "" : data.LastName );
+                            model.name =  data.FirstName + " " +  data.MiddleName + " " + data.LastName;
                             model.mobileNumber = data.mobileNumber;
                             DateTime dt;
                             bool isDate = DateTime.TryParseExact(data.dateOfBirth,

@@ -62,5 +62,7 @@ namespace SwachBharat.CMS.Bll.ViewModels.Grid
         public Nullable<int> totalAdults { get; set; }
         public Nullable<int> totalChildren { get; set; }
         public Nullable<int> totalSrCitizen { get; set; }
+        public int totalRowCount { get; set; }
+
     }
 }

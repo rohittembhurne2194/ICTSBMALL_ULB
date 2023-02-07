@@ -388,7 +388,7 @@
                                         @Html.Label("Which Social Media Platform You Use To Interact", new { style = "font-weight: bold" }) <b> :</b><br />
                                         @for (int i = 0; i < Model.socialMedialst.Count; i++)
                                         {
-                                            @Html.CheckBoxFor(m => m.socialMedialst[i].IsSelected, new { style = "margin-left:12px" })
+                                            @Html.CheckBoxFor(m => m.socialMedialst[i].IsSelected, new { style = "margin-left:13px" })
                                             @Html.LabelFor(m => m.socialMedialst[i].IsSelected, Model.socialMedialst[i].socialMediaName, new { style = "margin-left:5px" })
                                             @Html.HiddenFor(m => m.socialMedialst[i].socialMediaName)
 
@@ -709,23 +709,23 @@
     });
 
 
-        //var dbdt = $("#dateOfBirth").val();
-        //if (dbdt && dbdt.length > 0) {
-        //    $("#dateOfBirth").val(getFormatedDate(new Date(dbdt)));
-        //}
+    //var dbdt = $("#dateOfBirth").val();
+    //if (dbdt && dbdt.length > 0) {
+    //    $("#dateOfBirth").val(getFormatedDate(new Date(dbdt)));
+    //}
 
-       // $(".datepicker.form-control").each(function () {
-       //     $(this).datepicker('setValue', getFormatedDate($(this).val()));
-       //});
+    // $(".datepicker.form-control").each(function () {
+    //     $(this).datepicker('setValue', getFormatedDate($(this).val()));
+    //});
 
     /* });*/
 
 
 
 
-       // $(".datepicker").each(function (e,d) {
-       //     $(d).datepicker('setValue', getFormatedDate(new Date($(d).val())));
-       //});
+    // $(".datepicker").each(function (e,d) {
+    //     $(d).datepicker('setValue', getFormatedDate(new Date($(d).val())));
+    //});
 
     //hide  show on hover
     //$('#dateOfBirth').focus(function () {
@@ -735,5 +735,14 @@
     //    $('.dtpk_drpdwn').eq(0).hide();
     //});
 </script>
+@if (ViewData["Message"] != null && ViewData["Message"].ToString() == "Success")
+{
+    <script type="text/javascript">
+        $(function () {
+            alert("Survey details for House Reference ID @Model.ReferanceId.ToString() Saved Successfully...");
+            window.location.href = "/HouseScanifyEmp/SurveyDetails";
+            });
+    </script>
+}
 @*@Scripts.Render("~/Scripts/ThemeScripts")*@
 
