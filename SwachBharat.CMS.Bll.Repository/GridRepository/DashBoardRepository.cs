@@ -17,6 +17,7 @@ using System.Xml;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Data.Entity;
+using SwachBharat.CMS.Bll.Repository.GridRepository.Grid;
 
 namespace SwachBharat.CMS.Bll.Repository.GridRepository
 {
@@ -3631,6 +3632,45 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
             }
         }
 
+        public IEnumerable<SBAAllULBDetails> GetHSALLULBData(long wildcard, string SearchString, int appId)
+        {
+            List<SBAAllULBDetails> obj = new List<SBAAllULBDetails>();
+            DevSwachhBharatMainEntities dbm = new DevSwachhBharatMainEntities();
+            var appdetails = dbm.AppDetails.ToList();
+
+            foreach (var x in appdetails)
+            {
+                obj.Add(new SBAAllULBDetails()
+                {
+                    Ulb_Name = x.AppName.ToString(),
+                    ulb_Property = x.APIHit.ToString(),
+                    ulb_Liquid_Property = x.ulb_Liquid_Property.ToString(),
+                    ulb_Street_Property = x.ulb_Street_Property.ToString(),
+                    ulb_Dump_Property = x.ulb_Dump_Property.ToString(),
+                    Total_HouseScan_Property = x.Total_HouseScan_Property.ToString(),
+                    Total_LiquidScan_Property = x.Total_LiquidScan_Property.ToString(),
+                    Total_StreetScan_Property = x.Total_StreetScan_Property.ToString(),
+                    Total_DumpScan_Property = x.Total_DumpScan_Property.ToString()
+
+                });
+            }
+             
+           
+              
+
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    var model = obj.Where(c => c.Ulb_Name.Contains(SearchString) || c.Ulb_Name.ToLower().Contains(SearchString)).ToList();
+
+                    obj = model.ToList();
+                }
+
+              
+                //var d = obj.OrderByDescending(c => DateTime.Parse(c.daDateTIme)).ToList();
+                var d = obj.OrderBy(c => c.Ulb_Name).ToList();
+                return d;
+            
+        }
         public IEnumerable<SBAAttendenceGrid> GetMonthlyAttendeceData(long wildcard, string SearchString, string smonth, string emonth, string syear, string eyear, int userId, int appId, string Emptype)
         {
             List<SBAAttendenceGrid> obj = new List<SBAAttendenceGrid>();

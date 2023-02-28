@@ -1709,5 +1709,21 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
 
             return result;
         }
+
+        public ActionResult HSULBDetails()
+        {
+            if (Session["utype"] != null && (Session["utype"].ToString() == "SUA" || Session["utype"].ToString() == "A"))
+            {
+                ViewBag.UType = Session["utype"];
+                ViewBag.HSuserid = Session["Id"];
+                return View();
+
+            }
+            else
+            {
+                return Redirect("/Account/Login");
+            }
+
+        }
     }
 }

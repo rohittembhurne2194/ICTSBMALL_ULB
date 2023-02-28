@@ -1,0 +1,236 @@
+﻿
+@{
+    ViewBag.Title = "HSULBDetails";
+    Layout = "~/Views/Shared/_HSLayout.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
+<link href='https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css'>
+<link href='https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css' rel='stylesheet' type='text/css'>
+
+<header class="page-header">
+    <div class="container-fluid">
+        <h2 class="no-margin-bottom">All ULB Details</h2>
+    </div>
+</header>
+
+<div class="container mt-2">
+
+    <table id="hsallulbdata" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>ULB Name</th>
+                <th>Total House Property</th>
+                <th>Total House Scan Property</th>
+                <th>Total Liquid Property</th>
+                <th>Total Liquid Scan Property</th>
+                <th>Total Street Property</th>
+                <th>Total Street Scan Property</th>
+                <th>Total DumpYard Property</th>
+                <th>Total DumpYard Scan Property</th>
+            </tr>
+        </thead>
+      
+    </table>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //debugger
+        var date = new Date();
+        var today = '';
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = day + "-" + month + "-" + year;
+        //debugger
+
+        $('#hsallulbdata').DataTable({
+            dom: 'Bfrtip',
+            "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+            buttons: [
+               
+                {
+                    extend: 'csv',
+                    filename: 'All ULB Details' + '_' + today,
+                    title: 'All ULB Details' + '_' + today
+                },
+                {
+                    extend: 'excel',
+                    filename: 'All ULB Details' + '_' + today,
+                    title: 'All ULB Details' + '_' + today
+                },
+                {
+                    extend: 'pdf',
+                    filename: 'All ULB Details' + '_' + today,
+                    title: 'All ULB Details' + '_' + today
+                },
+                {
+                    extend: 'print',
+                    filename: 'All ULB Details' + '_' + today,
+                    title: 'All ULB Details' + '_' + today
+                }
+            ],
+            
+            processing: true,
+            serverSide: true,
+            "ajax": {
+                "url": "/Datable/GetJqGridJson?rn=HSAllULBDetails",
+                "type": "POST",
+                "datatype": "json"
+            },
+            "columnDefs": [
+                {
+                    "targets": [1],
+                    "visible": true,
+
+                    "render": function (data, type, full, meta) {
+                        if (full["ulb_Property"] == null || full["ulb_Property"] == "") {
+                          
+                            
+                            return "0";
+                        }
+                        else {
+
+                            return "<span>" + full["ulb_Property"] + "</span>";
+                        }
+                    },
+                },
+                {
+                    "targets": [2],
+                    "visible": true,
+
+                    "render": function (data, type, full, meta) {
+                        if (full["Total_HouseScan_Property"] == null || full["Total_HouseScan_Property"] == "") {
+
+
+                            return "0";
+                        }
+                        else {
+
+                            return "<span>" + full["Total_HouseScan_Property"] + "</span>";
+                        }
+                    },
+                },
+                {
+                    "targets": [3],
+                    "visible": true,
+
+                    "render": function (data, type, full, meta) {
+                        if (full["ulb_Liquid_Property"] == null || full["ulb_Liquid_Property"] == "") {
+
+
+                            return "0";
+                        }
+                        else {
+
+                            return "<span>" + full["ulb_Liquid_Property"] + "</span>";
+                        }
+                    },
+                },
+                {
+                    "targets": [4],
+                    "visible": true,
+
+                    "render": function (data, type, full, meta) {
+                        if (full["Total_LiquidScan_Property"] == null || full["Total_LiquidScan_Property"] == "") {
+
+
+                            return "0";
+                        }
+                        else {
+
+                            return "<span>" + full["Total_LiquidScan_Property"] + "</span>";
+                        }
+                    },
+                },
+                {
+                    "targets": [5],
+                    "visible": true,
+
+                    "render": function (data, type, full, meta) {
+                        if (full["ulb_Street_Property"] == null || full["ulb_Street_Property"] == "") {
+
+
+                            return "0";
+                        }
+                        else {
+
+                            return "<span>" + full["ulb_Street_Property"] + "</span>";
+                        }
+                    },
+                },
+                {
+                    "targets": [6],
+                    "visible": true,
+
+                    "render": function (data, type, full, meta) {
+                        if (full["Total_StreetScan_Property"] == null || full["Total_StreetScan_Property"] == "") {
+
+
+                            return "0";
+                        }
+                        else {
+
+                            return "<span>" + full["Total_StreetScan_Property"] + "</span>";
+                        }
+                    },
+                },
+                {
+                    "targets": [7],
+                    "visible": true,
+
+                    "render": function (data, type, full, meta) {
+                        if (full["ulb_Dump_Property"] == null || full["ulb_Dump_Property"] == "") {
+
+
+                            return "0";
+                        }
+                        else {
+
+                            return "<span>" + full["ulb_Dump_Property"] + "</span>";
+                        }
+                    },
+                },
+                {
+                    "targets": [8],
+                    "visible": true,
+
+                    "render": function (data, type, full, meta) {
+                        if (full["Total_DumpScan_Property"] == null || full["Total_DumpScan_Property"] == "") {
+
+
+                            return "0";
+                        }
+                        else {
+
+                            return "<span>" + full["Total_DumpScan_Property"] + "</span>";
+                        }
+                    },
+                },
+            ],
+            "columns": [
+                { "data": "Ulb_Name", "name": "Ulb_Name", "autoWidth": true },
+                { "data": "ulb_Property", "name": "ulb_Property", "autoWidth": true },
+                { "data": "Total_HouseScan_Property", "name": "Total_HouseScan_Property", "autoWidth": true },
+                { "data": "ulb_Liquid_Property", "name": "ulb_Liquid_Property", "autoWidth": true },
+                { "data": "Total_LiquidScan_Property", "name": "Total_LiquidScan_Property", "autoWidth": true },
+                { "data": "ulb_Street_Property", "name": "ulb_Street_Property", "autoWidth": true },
+                { "data": "Total_StreetScan_Property", "name": "Total_StreetScan_Property", "autoWidth": true },
+                { "data": "ulb_Dump_Property", "name": "ulb_Dump_Property", "autoWidth": true },
+                { "data": "Total_DumpScan_Property", "name": "Total_DumpScan_Property", "autoWidth": true },
+            ],
+        });
+    });
+</script>

@@ -366,6 +366,10 @@ namespace SwachhBharatAbhiyan.CMS.Controllers
                     return gridRepository;
                     break;
 
+                case "HSAllULBDetails":
+                    gridRepository = new HSALLULBDetailsGridRepository(0, searchString, appId);
+                    return gridRepository;
+                    break;
                 case "DumpPlantAttendence":
                     gridRepository = new AttendeceGridRepository(0, searchString, fdate, tdate, userId, appId, "D");
                     return gridRepository;

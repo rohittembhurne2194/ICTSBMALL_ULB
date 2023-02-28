@@ -3251,6 +3251,7 @@
     <Content Include="Views\GarbageCollection\BCDumpYardIndex.cshtml" />
     <Content Include="Views\HouseScanifyEmp\SurveyDetails.cshtml" />
     <Content Include="Views\HouseScanifyEmp\AddSurveyDetails.cshtml" />
+    <Content Include="Views\HouseScanifyEmp\HSULBDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

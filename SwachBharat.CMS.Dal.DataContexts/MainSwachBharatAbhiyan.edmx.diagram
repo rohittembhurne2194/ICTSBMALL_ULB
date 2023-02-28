@@ -23,7 +23,6 @@
         <EntityTypeShape EntityType="DevSwachhBharatMainModel.AspNetUser" Width="1.5" PointX="3" PointY="1.25" />
         <AssociationConnector Association="DevSwachhBharatMainModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="DevSwachhBharatMainModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
-        <EntityTypeShape EntityType="DevSwachhBharatMainModel.AppDetail" Width="1.5" PointX="0.75" PointY="9.75" />
         <EntityTypeShape EntityType="DevSwachhBharatMainModel.UR_Location" Width="1.5" PointX="15.375" PointY="11.75" />
         <EntityTypeShape EntityType="DevSwachhBharatMainModel.HSUR_Daily_Attendance" Width="1.5" PointX="14.375" PointY="6.75" />
         <EntityTypeShape EntityType="DevSwachhBharatMainModel.GoogleAPIDetail" Width="1.5" PointX="7.375" PointY="3.75" />
@@ -32,6 +31,7 @@
         <EntityTypeShape EntityType="DevSwachhBharatMainModel.AD_USER_MST_STREET" Width="1.5" PointX="13.375" PointY="0.75" />
         <EntityTypeShape EntityType="DevSwachhBharatMainModel.CheckAppD" Width="1.5" PointX="9.375" PointY="13.75" />
         <EntityTypeShape EntityType="DevSwachhBharatMainModel.Sauchalay_feedback" Width="1.5" PointX="15.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DevSwachhBharatMainModel.AppDetail" Width="1.5" PointX="0.75" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
