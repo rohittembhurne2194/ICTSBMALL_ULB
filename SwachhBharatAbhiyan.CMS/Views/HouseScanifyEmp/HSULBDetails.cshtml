@@ -54,32 +54,42 @@
         if (day < 10) day = "0" + day;
 
         var today = day + "-" + month + "-" + year;
+        var time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
         //debugger
 
         $('#hsallulbdata').DataTable({
             dom: 'Bfrtip',
             "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+          
             buttons: [
-               
+
+                //{
+                //    extend: 'copy',
+                //    filename: 'All ULB Details' + '_' + today + ' ' + time,
+                //    title: 'All ULB Details' + '_' + today + ' ' + time
+                //},
                 {
                     extend: 'csv',
-                    filename: 'All ULB Details' + '_' + today,
-                    title: 'All ULB Details' + '_' + today
+                    filename: 'All ULB Details' + '_' + today + ' ' + time,
+                    title: 'All ULB Details' + '_' + today + ' ' + time
                 },
                 {
                     extend: 'excel',
-                    filename: 'All ULB Details' + '_' + today,
-                    title: 'All ULB Details' + '_' + today
+                    filename: 'All ULB Details' + '_' + today + ' ' + time,
+                    title: 'All ULB Details' + '_' + today + ' ' + time
                 },
                 {
                     extend: 'pdf',
-                    filename: 'All ULB Details' + '_' + today,
-                    title: 'All ULB Details' + '_' + today
+                    filename: 'All ULB Details' + '_' + today + ' ' + time,
+                    title: 'All ULB Details' + '_' + today + ' ' + time
                 },
                 {
                     extend: 'print',
-                    filename: 'All ULB Details' + '_' + today,
-                    title: 'All ULB Details' + '_' + today
+                    filename: 'All ULB Details' + '_' + today + ' ' + time,
+                    title: 'All ULB Details' + '_' + today + ' ' + time
+                },
+                {
+                    extend:'pageLength'
                 }
             ],
             
