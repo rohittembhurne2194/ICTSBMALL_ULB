@@ -104,5 +104,10 @@ namespace SwachBharat.CMS.Dal.DataContexts
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ULBADMIN_Result>("SP_ULBADMIN", divisionIdInParameter, districtIdInParameter, appIdINParameter, userIdParameter);
         }
+    
+        public virtual ObjectResult<AllULB_Property_ScanCount_Result> AllULB_Property_ScanCount()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AllULB_Property_ScanCount_Result>("AllULB_Property_ScanCount");
+        }
     }
 }

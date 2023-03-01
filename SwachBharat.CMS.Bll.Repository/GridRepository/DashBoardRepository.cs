@@ -3636,38 +3636,54 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
         {
             List<SBAAllULBDetails> obj = new List<SBAAllULBDetails>();
             DevSwachhBharatMainEntities dbm = new DevSwachhBharatMainEntities();
-            var appdetails = dbm.AppDetails.ToList();
+            //var appdetails = dbm.AppDetails.ToList();
+            //foreach (var x in appdetails)
+            //{
+            //    obj.Add(new SBAAllULBDetails()
+            //    {
+            //        Ulb_Name = x.AppName.ToString(),
+            //        ulb_Property = x.APIHit.ToString(),
+            //        ulb_Liquid_Property = x.ulb_Liquid_Property.ToString(),
+            //        ulb_Street_Property = x.ulb_Street_Property.ToString(),
+            //        ulb_Dump_Property = x.ulb_Dump_Property.ToString(),
+            //        Total_HouseScan_Property = x.Total_HouseScan_Property.ToString(),
+            //        Total_LiquidScan_Property = x.Total_LiquidScan_Property.ToString(),
+            //        Total_StreetScan_Property = x.Total_StreetScan_Property.ToString(),
+            //        Total_DumpScan_Property = x.Total_DumpScan_Property.ToString()
 
-            foreach (var x in appdetails)
+            //    });
+            //}
+
+            var data = dbm.AllULB_Property_ScanCount().Select(x => new SBAAllULBDetails
             {
-                obj.Add(new SBAAllULBDetails()
-                {
-                    Ulb_Name = x.AppName.ToString(),
-                    ulb_Property = x.APIHit.ToString(),
-                    ulb_Liquid_Property = x.ulb_Liquid_Property.ToString(),
-                    ulb_Street_Property = x.ulb_Street_Property.ToString(),
-                    ulb_Dump_Property = x.ulb_Dump_Property.ToString(),
-                    Total_HouseScan_Property = x.Total_HouseScan_Property.ToString(),
-                    Total_LiquidScan_Property = x.Total_LiquidScan_Property.ToString(),
-                    Total_StreetScan_Property = x.Total_StreetScan_Property.ToString(),
-                    Total_DumpScan_Property = x.Total_DumpScan_Property.ToString()
+               Ulb_Name = x.AppName,
+               ulb_Property = x.total_house.ToString(),
+               ulb_Liquid_Property = x.total_liquid.ToString(),
+               ulb_Street_Property = x.total_street.ToString(),
+               ulb_Dump_Property = x.total_dump.ToString(),
+               Total_HouseScan_Property = x.total_housescan.ToString(),
+               Total_LiquidScan_Property = x.total_liquidscan.ToString(),
+               Total_StreetScan_Property = x.total_streetscan.ToString(),
+               Total_DumpScan_Property = x.total_dumpscan.ToString()
 
-                });
-            }
+
+            }).OrderBy(c => c.Ulb_Name).ToList().ToList();
+
+          
              
            
               
 
                 if (!string.IsNullOrEmpty(SearchString))
                 {
-                    var model = obj.Where(c => c.Ulb_Name.Contains(SearchString) || c.Ulb_Name.ToLower().Contains(SearchString)).ToList();
+                    var model = data.Where(c => c.Ulb_Name.Contains(SearchString) || c.Ulb_Name.ToLower().Contains(SearchString)).ToList();
 
-                    obj = model.ToList();
+                    data = model.ToList();
                 }
 
               
                 //var d = obj.OrderByDescending(c => DateTime.Parse(c.daDateTIme)).ToList();
-                var d = obj.OrderBy(c => c.Ulb_Name).ToList();
+                var d = data.OrderBy(c => c.Ulb_Name).ToList();
                 return d;
             
         }

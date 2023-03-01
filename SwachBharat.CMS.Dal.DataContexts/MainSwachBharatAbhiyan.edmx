@@ -449,6 +449,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="AllULB_Property_ScanCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_Admin_table" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_Admin2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_ULBADMIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -625,6 +626,7 @@
           <EntitySet Name="CheckAppDs" EntityType="DevSwachhBharatMainModel.CheckAppD" />
           <EntitySet Name="Sauchalay_feedback" EntityType="DevSwachhBharatMainModel.Sauchalay_feedback" />
           <EntitySet Name="AppDetails" EntityType="DevSwachhBharatMainModel.AppDetail" />
+          <FunctionImport Name="AllULB_Property_ScanCount" ReturnType="Collection(DevSwachhBharatMainModel.AllULB_Property_ScanCount_Result)" />
         </EntityContainer>
         <EntityType Name="Game_AnswerType">
           <Key>
@@ -1033,6 +1035,17 @@
           <Property Name="Total_StreetScan_Property" Type="Int32" />
           <Property Name="Total_DumpScan_Property" Type="Int32" />
         </EntityType>
+        <ComplexType Name="AllULB_Property_ScanCount_Result">
+          <Property Type="String" Name="AppName" Nullable="false" MaxLength="9" />
+          <Property Type="Int32" Name="total_house" Nullable="false" />
+          <Property Type="Int32" Name="total_housescan" Nullable="false" />
+          <Property Type="Int32" Name="total_liquid" Nullable="false" />
+          <Property Type="Int32" Name="total_liquidscan" Nullable="false" />
+          <Property Type="Int32" Name="total_street" Nullable="false" />
+          <Property Type="Int32" Name="total_streetscan" Nullable="false" />
+          <Property Type="Int32" Name="total_dump" Nullable="false" />
+          <Property Type="Int32" Name="total_dumpscan" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1524,6 +1537,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AllULB_Property_ScanCount" FunctionName="DevSwachhBharatMainModel.Store.AllULB_Property_ScanCount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DevSwachhBharatMainModel.AllULB_Property_ScanCount_Result">
+                <ScalarProperty Name="AppName" ColumnName="AppName" />
+                <ScalarProperty Name="total_house" ColumnName="total_house" />
+                <ScalarProperty Name="total_housescan" ColumnName="total_housescan" />
+                <ScalarProperty Name="total_liquid" ColumnName="total_liquid" />
+                <ScalarProperty Name="total_liquidscan" ColumnName="total_liquidscan" />
+                <ScalarProperty Name="total_street" ColumnName="total_street" />
+                <ScalarProperty Name="total_streetscan" ColumnName="total_streetscan" />
+                <ScalarProperty Name="total_dump" ColumnName="total_dump" />
+                <ScalarProperty Name="total_dumpscan" ColumnName="total_dumpscan" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

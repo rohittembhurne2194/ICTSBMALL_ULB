@@ -86,6 +86,9 @@
     <Compile Include="AEmployeeMaster.cs">
       <DependentUpon>MainSwachBharatAbhiyan.tt</DependentUpon>
     </Compile>
+    <Compile Include="AllULB_Property_ScanCount_Result.cs">
+      <DependentUpon>MainSwachBharatAbhiyan.tt</DependentUpon>
+    </Compile>
     <Compile Include="AppConnection.cs">
       <DependentUpon>MainSwachBharatAbhiyan.tt</DependentUpon>
     </Compile>
