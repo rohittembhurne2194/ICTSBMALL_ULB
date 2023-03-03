@@ -195,6 +195,14 @@
       <Link>.editorconfig</Link>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\SwachBharat.CMS.Bll.Repository.dll" />
+    <Content Include="bin\Debug\SwachBharat.CMS.Bll.Repository.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="bin\x64\Release\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
