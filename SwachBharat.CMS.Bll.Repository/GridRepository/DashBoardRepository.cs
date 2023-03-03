@@ -3636,7 +3636,7 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
         {
             List<SBAAllULBDetails> obj = new List<SBAAllULBDetails>();
             DevSwachhBharatMainEntities dbm = new DevSwachhBharatMainEntities();
-            var appdetails = dbm.AppDetails.ToList();
+            var appdetails = dbm.AppDetails.Where(c => c.IsActive == true).ToList();
             foreach (var x in appdetails)
             {
                 obj.Add(new SBAAllULBDetails()
