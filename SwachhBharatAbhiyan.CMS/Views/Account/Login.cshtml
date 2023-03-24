@@ -392,11 +392,13 @@
 <script>
     $("#login-username").keyup(function () {
         /* alert('j')*/
-        if ($("#login-username").val().toLowerCase() == "akotwaste@ulb.com" || $("#login-username").val().toLowerCase() == "akotliquid@ulb.com" || $("#login-username").val().toLowerCase() == "akotstreet@ulb.com" ||
-            $("#login-username").val().toLowerCase() == "nagpurwaste@ulb.com" || $("#login-username").val().toLowerCase() == "nagpurliquid@ulb.com" || $("#login-username").val().toLowerCase() == "nagpurstreet@ulb.com" ||
-            $("#login-username").val().toLowerCase() == "ballarpurwaste@ulb.com" || $("#login-username").val().toLowerCase() == "ballarpurliquid@ulb.com" || $("#login-username").val().toLowerCase() == "ballarpurstreet@ulb.com" ||
-            $("#login-username").val().toLowerCase() == "shrirampurwaste@ulb.com" || $("#login-username").val().toLowerCase() == "shrirampurliquid@ulb.com" || $("#login-username").val().toLowerCase() == "shrirampurstreet@ulb.com" ||
-            $("#login-username").val().toLowerCase() == "wanadongriwaste@ulb.com" || $("#login-username").val().toLowerCase() == "wanadongriliquid@ulb.com" || $("#login-username").val().toLowerCase() == "wanadongristreet@ulb.com" )
+        if (
+            $("#login-username").val().toLowerCase() == "nagpurwaste@ulb.com"       ||  $("#login-username").val().toLowerCase() == "nagpurliquid@ulb.com"      ||  $("#login-username").val().toLowerCase() == "nagpurstreet@ulb.com"      ||
+            $("#login-username").val().toLowerCase() == "ballarpurwaste@ulb.com"    ||  $("#login-username").val().toLowerCase() == "ballarpurliquid@ulb.com"   ||  $("#login-username").val().toLowerCase() == "ballarpurstreet@ulb.com"   ||
+            $("#login-username").val().toLowerCase() == "shrirampurwaste@ulb.com"   ||  $("#login-username").val().toLowerCase() == "shrirampurliquid@ulb.com"  ||  $("#login-username").val().toLowerCase() == "shrirampurstreet@ulb.com"  ||
+            $("#login-username").val().toLowerCase() == "wanadongriwaste@ulb.com"   ||  $("#login-username").val().toLowerCase() == "wanadongriliquid@ulb.com"  ||  $("#login-username").val().toLowerCase() == "wanadongristreet@ulb.com"  ||
+            $("#login-username").val().toLowerCase() == "parbhaniwaste@ulb.com"     ||  $("#login-username").val().toLowerCase() == "parbhaniliquid@ulb.com"    ||  $("#login-username").val().toLowerCase() == "parbhanistreet@ulb.com"
+          )
         {
             alert('ULB Not Accessible, Use Separate Domain For It. ')
             $(':input[type="submit"]').prop('disabled', true);
@@ -408,4 +410,6 @@
             $(':input[type="submit"]').prop('disabled', false);
         }
     });
+
+   
 </script>
