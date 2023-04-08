@@ -478,7 +478,9 @@ namespace SwachBharat.CMS.Bll.Services
 
                 foreach (var a in appid)
                 {
-                    var tes = dbMain.tehsils.Where(c => c.id == a.Key).FirstOrDefault<tehsil>();
+                    var tes = dbMain.tehsils.Where(c => c.id == a.
+                    
+                    ).FirstOrDefault<tehsil>();
                     if (tes != null)
                     {
 
