@@ -5743,11 +5743,19 @@ namespace SwachBharat.CMS.Bll.Repository.GridRepository
                     string Time2 = ((x.endTime == "" ? displayTime : x.endTime).ToString());
 
                     DateTime startDate = Convert.ToDateTime(a + " " + Time1);
-                    DateTime endDate = Convert.ToDateTime(b + " " + Time2);
-                    var houseCount = db.HouseMasters.Where(c => DbFunctions.TruncateTime(c.modified) >= DbFunctions.TruncateTime(startDate) && DbFunctions.TruncateTime(c.modified) <= DbFunctions.TruncateTime(endDate) && c.userId == x.qrEmpId).Count();
-                    var liquidCount = db.LiquidWasteDetails.Where(c => DbFunctions.TruncateTime(c.lastModifiedDate) >= DbFunctions.TruncateTime(startDate) && DbFunctions.TruncateTime(c.lastModifiedDate) <= DbFunctions.TruncateTime(endDate) && c.userId == x.qrEmpId).Count();
-                    var streetCount = db.StreetSweepingDetails.Where(c => DbFunctions.TruncateTime(c.lastModifiedDate) >= DbFunctions.TruncateTime(startDate) && DbFunctions.TruncateTime(c.lastModifiedDate) <= DbFunctions.TruncateTime(endDate) && c.userId == x.qrEmpId).Count();
-                    var dumpyardcount = db.DumpYardDetails.Where(c => DbFunctions.TruncateTime(c.lastModifiedDate) >= DbFunctions.TruncateTime(startDate) && DbFunctions.TruncateTime(c.lastModifiedDate) <= DbFunctions.TruncateTime(endDate) && c.userId == x.qrEmpId).Count();
+                    DateTime endDate = Convert.ToDateTime(b + " " + Time2).AddSeconds(59);
+
+                    //var houseCount = db.HouseMasters.Where(c => DbFunctions.TruncateTime(c.modified) >= DbFunctions.TruncateTime(startDate) && DbFunctions.TruncateTime(c.modified) <= DbFunctions.TruncateTime(endDate) && c.userId == x.qrEmpId).Count();
+                    //var liquidCount = db.LiquidWasteDetails.Where(c => DbFunctions.TruncateTime(c.lastModifiedDate) >= DbFunctions.TruncateTime(startDate) && DbFunctions.TruncateTime(c.lastModifiedDate) <= DbFunctions.TruncateTime(endDate) && c.userId == x.qrEmpId).Count();
+                    //var streetCount = db.StreetSweepingDetails.Where(c => DbFunctions.TruncateTime(c.lastModifiedDate) >= DbFunctions.TruncateTime(startDate) && DbFunctions.TruncateTime(c.lastModifiedDate) <= DbFunctions.TruncateTime(endDate) && c.userId == x.qrEmpId).Count();
+                    //var dumpyardcount = db.DumpYardDetails.Where(c => DbFunctions.TruncateTime(c.lastModifiedDate) >= DbFunctions.TruncateTime(startDate) && DbFunctions.TruncateTime(c.lastModifiedDate) <= DbFunctions.TruncateTime(endDate) && c.userId == x.qrEmpId).Count();
+
+                    ////Bad Response
+                    var houseCount = db.HouseMasters.Where(c => startDate <= c.modified && endDate >= c.modified && c.userId == x.qrEmpId).Count();
+                    var liquidCount = db.LiquidWasteDetails.Where(c => startDate <= c.lastModifiedDate && endDate >= c.lastModifiedDate && c.userId == x.qrEmpId).Count();
+                    var streetCount = db.StreetSweepingDetails.Where(c => startDate <= c.lastModifiedDate && endDate >= c.lastModifiedDate && c.userId == x.qrEmpId).Count();
+                    var dumpyardcount = db.DumpYardDetails.Where(c => startDate <= c.lastModifiedDate && endDate >= c.lastModifiedDate && c.userId == x.qrEmpId).Count();
+
                     ///x.daDate = checkNull(x.daDate.tp);
                     //x.endLat = checkNull(x.endLat);
                     //x.endLong = checkNull(x.endLong);

@@ -259,25 +259,25 @@
                                         </div>
                                         <div style="display: flex; flex-direction: row; margin-bottom: 10px">
                                             <div style="width:150px">@Html.Label("Adults", new { style = "font-weight: bold" })</div>
-                                            <input type="button" id="AdultsPlus" value="+" class="r-btn" />
-                                            @Html.TextBoxFor(model => model.totalAdults, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px;margin-left:10px;margin-right:10px", @readonly = "readonly" })
                                             <input type="button" id="AdultsMinus" value="-" class="r-btn" />
+                                            @Html.TextBoxFor(model => model.totalAdults, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px;margin-left:10px;margin-right:10px", @readonly = "readonly" })
+                                            <input type="button" id="AdultsPlus" value="+" class="r-btn" />
                                         </div>
                                         <div style="display: flex; flex-direction: row; margin-bottom: 10px">
                                             <div style="width:150px">
                                                 @Html.Label("Children", new { style = "font-weight: bold" })
                                             </div>
-                                            <input type="button" id="ChildrenPlus" value="+" class="r-btn" />
-                                            @Html.TextBoxFor(model => model.totalChildren, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px;margin-right:10px;margin-left:10px", @readonly = "readonly" })
                                             <input type="button" id="ChildrenMinus" value="-" class="r-btn" />
+                                            @Html.TextBoxFor(model => model.totalChildren, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px;margin-right:10px;margin-left:10px", @readonly = "readonly" })
+                                            <input type="button" id="ChildrenPlus" value="+" class="r-btn" />
                                         </div>
                                         <div style="display: flex; flex-direction: row; margin-bottom: 5px">
                                             <div style="width:150px">
                                                 @Html.Label("Senior Citizen", new { style = "font-weight: bold" })
                                             </div>
-                                            <input type="button" id="SeniorPlus" value="+" class="r-btn" />
-                                            @Html.TextBoxFor(model => model.totalSrCitizen, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px!important;margin-left:10px;margin-right:10px", @readonly = "readonly" })
                                             <input type="button" id="SeniorMinus" value="-" class="r-btn" />
+                                            @Html.TextBoxFor(model => model.totalSrCitizen, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px!important;margin-left:10px;margin-right:10px", @readonly = "readonly" })
+                                            <input type="button" id="SeniorPlus" value="+" class="r-btn" />
                                         </div>
                                         <br />
                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -346,17 +346,18 @@
                                             <div style="width:150px">
                                                 @Html.Label("Two Wheeler", new { style = "font-weight: bold" })
                                             </div>
-                                            <input type="button" id="TwoWheelerPlus" value="+" class="r-btn" />
-                                            @Html.TextBoxFor(model => model.twoWheelerQty, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px;margin-left:10px;margin-right:10px", @readonly = "readonly" })
+
                                             <input type="button" id="TwoWheelerMinus" value="-" class="r-btn" />
+                                            @Html.TextBoxFor(model => model.twoWheelerQty, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px;margin-left:10px;margin-right:10px", @readonly = "readonly" })
+                                            <input type="button" id="TwoWheelerPlus" value="+" class="r-btn" />
                                         </div>
                                         <div style="display: flex; flex-direction: row; margin-bottom: 10px">
                                             <div style="width:150px">
                                                 @Html.Label("Four Wheeler", new { style = "font-weight: bold" })
                                             </div>
-                                            <input type="button" id="FourWheelerPlus" value="+" class="r-btn" />
-                                            @Html.TextBoxFor(model => model.fourWheelerQty, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px;margin-left:10px;margin-right:10px", @readonly = "readonly" })
                                             <input type="button" id="FourWheelerMinus" value="-" class="r-btn" />
+                                            @Html.TextBoxFor(model => model.fourWheelerQty, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px;margin-left:10px;margin-right:10px", @readonly = "readonly" })
+                                            <input type="button" id="FourWheelerPlus" value="+" class="r-btn" />
                                         </div>
                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -367,9 +368,9 @@
                                     <div class="form-group" style="margin-bottom: 5%;">
                                         @Html.Label("No Of People Registered To Vote", new { style = "font-weight: bold" }) <b> :</b><br />
                                         <div style="display: flex; flex-direction: row;">
-                                            <input type="button" id="VoterPlus" value="+" class="r-btn" />
-                                            @Html.TextBoxFor(model => model.noPeopleVote, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px;margin-left:10px;margin-right:10px", @readonly = "readonly" })
                                             <input type="button" id="VoterMinus" value="-" class="r-btn" />
+                                            @Html.TextBoxFor(model => model.noPeopleVote, new { @class = "form-control", style = "font-family:Arial, FontAwesome;width:50px;margin-left:10px;margin-right:10px", @readonly = "readonly" })
+                                            <input type="button" id="VoterPlus" value="+" class="r-btn" />
                                         </div>
                                     </div>
                                     <div class="form-group">
